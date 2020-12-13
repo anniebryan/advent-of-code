@@ -44,8 +44,7 @@ def try_all_sequences():
                 return result[1]
 
 def part_1():
-    instructions = get_instructions()
-    return run_sequence(instructions)[1]
+    return run_sequence(get_instructions())[1]
 
 def part_2():
     return try_all_sequences()
