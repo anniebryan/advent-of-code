@@ -23,14 +23,10 @@ def get_departure_requirements():
 
 def get_earliest_timestamp():
     requirements = get_departure_requirements()
-    offsets = {(i[0] % i[1], i[1]) for i in requirements}
+    offsets = {(b - a % b, b) for a,b in requirements}
     time, inc = 0, 1
     for t, bus in offsets:
-        if t > 0:
-            val = bus - t
-        else:
-            val = 0
-        while time % bus != val:
+        while time % bus != t % bus:
             time += inc
         inc *= bus
     return time
