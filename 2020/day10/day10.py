@@ -1,4 +1,5 @@
 from collections import defaultdict
+from math import prod
 
 filename = '2020/day10/day10.txt'
 puzzle_input = open(filename).readlines()
@@ -9,7 +10,7 @@ def get_differences(numbers):
     d = defaultdict(int)
     for i in range(len(numbers) - 1):
         d[numbers[i+1] - numbers[i]] += 1
-    return d
+    return d[1], d[3]
 
 def num_arrangements(numbers, last, memo={}):
     n = len(numbers)
@@ -24,8 +25,7 @@ def num_arrangements(numbers, last, memo={}):
     return memo[(n, last)]
 
 def part_1():
-    d = get_differences(numbers)
-    return d[1]*d[3]
+    return prod(get_differences(numbers))
 
 def part_2():
     return num_arrangements(sorted(numbers), 0)
