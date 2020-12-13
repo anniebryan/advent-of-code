@@ -50,8 +50,7 @@ def part_1():
     return find_first_invalid(25)
 
 def part_2():
-    target = part_1()
-    return encryption_weakness(target)
+    return encryption_weakness(part_1())
 
 print("Part 1: {}".format(part_1()))
 print("Part 2: {}".format(part_2()))
