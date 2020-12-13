@@ -24,7 +24,7 @@ def process_instruction(instruction, direction, x, y):
 def process_waypoint(instruction, x, y, way_x, way_y):
     action, val = instruction[0], instruction[1]
     if action == 'N':
-        return x, y, way_x , way_y + val
+        return x, y, way_x, way_y + val
     elif action == 'S':
         return x, y, way_x, way_y - val
     elif action == 'E':
