@@ -1,4 +1,5 @@
 from collections import defaultdict
+from math import prod
 
 filename = '2020/day1/day1.txt'
 puzzle_input = open(filename).readlines()
@@ -31,12 +32,10 @@ def find_three_that_sum(expense_report, n):
     return (0, 0, 0) # no three entries sum to n
 
 def part_1():
-    entries = find_two_that_sum(expense_report, 2020)
-    return entries[0]*entries[1]
+    return prod(find_two_that_sum(expense_report, 2020))
 
 def part_2():
-    entries = find_three_that_sum(expense_report, 2020)
-    return entries[0]*entries[1]*entries[2]
+    return prod(find_three_that_sum(expense_report, 2020))
 
 print("Part 1: {}".format(part_1()))
 print("Part 2: {}".format(part_2()))
