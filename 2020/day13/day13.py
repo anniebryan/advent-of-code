@@ -1,4 +1,5 @@
 from collections import defaultdict
+from math import prod
 
 filename = '2020/day13/day13.txt'
 puzzle_input = open(filename).readlines()
@@ -32,8 +33,7 @@ def get_earliest_timestamp():
     return time
 
 def part_1():
-    output = next_bus_time()
-    return output[0]*output[1]
+    return prod(next_bus_time())
 
 def part_2():
     return get_earliest_timestamp()
