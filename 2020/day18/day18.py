@@ -19,20 +19,18 @@ def process_addition(exp, i):
 
     prefix = ' '.join(vals[:i-1])
     suffix = ' '.join(vals[i+2:])
-    return evaluate_expression(prefix + ' ' + str(first_val + second_val) + ' ' + suffix, True)
+    return evaluate_expression(' '.join([prefix, str(first_val + second_val), suffix]), True)
 
 def evaluate_expression(exp, add_first):
     if len(exp.split()) == 1: return exp
-    
     if '(' in exp: return process_parens(exp, exp.find('('), add_first)
-
     if add_first and '+' in exp: return process_addition(exp, exp.split().index('+'))
 
     split_vals = exp.split()
     first_val, op, second_val = int(split_vals[0]), split_vals[1], int(split_vals[2])
     rest = ' '.join(split_vals[3:])
-    if op == '+': return evaluate_expression(str(first_val + second_val) + ' ' + rest, add_first)
-    if op == '*': return evaluate_expression(str(first_val * second_val) + ' ' + rest, add_first)
+    if op == '+': return evaluate_expression(' '.join([str(first_val + second_val), rest]), add_first)
+    if op == '*': return evaluate_expression(' '.join([str(first_val * second_val), rest]), add_first)
 
 def sum_all(add_first):
     return sum([int(evaluate_expression(line, add_first)) for line in puzzle_input])
