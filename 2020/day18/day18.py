@@ -34,11 +34,14 @@ def evaluate_expression(exp, add_first):
     if op == '+': return evaluate_expression(str(first_val + second_val) + ' ' + rest, add_first)
     if op == '*': return evaluate_expression(str(first_val * second_val) + ' ' + rest, add_first)
 
+def sum_all(add_first):
+    return sum([int(evaluate_expression(line, add_first)) for line in puzzle_input])
+
 def part_1():
-    return sum([int(evaluate_expression(line, False)) for line in puzzle_input])
+    return sum_all(False)
 
 def part_2():
-    return sum([int(evaluate_expression(line, True)) for line in puzzle_input])
+    return sum_all(True)
 
 print("Part 1: {}".format(part_1()))
 print("Part 2: {}".format(part_2()))
