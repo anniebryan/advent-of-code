@@ -27,12 +27,10 @@ def build_regex(rules, n, part_2):
     pattern = pattern[:-1] # remove last "|"
     return f'({pattern})'
 
-def get_messages_that_match(rule, part_2):
-    rules, messages = process_input()
-    return regex.findall(f'^{build_regex(rules, rule, part_2)}$', messages, flags=regex.MULTILINE)
-
 def num_that_match(rule, part_2):
-    return len(get_messages_that_match(rule, part_2))
+    rules, messages = process_input()
+    matches = regex.findall(f'^{build_regex(rules, rule, part_2)}$', messages, flags=regex.MULTILINE)
+    return len(matches)
 
 def part_1():
     return num_that_match(0, False)
