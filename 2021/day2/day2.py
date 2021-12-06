@@ -1,10 +1,13 @@
 day = 2
+
+example_filename = f'day{day}/day{day}_ex.txt'
+example_input = open(example_filename).readlines()
+
 filename = f'day{day}/day{day}.txt'
 puzzle_input = open(filename).readlines()
-commands = [(n.split(' ')[0], int(n.split(' ')[1])) for n in puzzle_input]
 
-example = [('forward', 5), ('down', 5), ('forward', 8), ('up', 3), ('down', 8), ('forward', 2)]
-# commands = example
+# commands = [(n.split(' ')[0], int(n.split(' ')[1])) for n in example_input]
+commands = [(n.split(' ')[0], int(n.split(' ')[1])) for n in puzzle_input]
 
 forward = lambda x: x[0] == 'forward'
 up = lambda x: x[0] == 'up'

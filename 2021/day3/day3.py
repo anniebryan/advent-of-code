@@ -1,10 +1,13 @@
 day = 3
+
+example_filename = f'day{day}/day{day}_ex.txt'
+example_input = open(example_filename).readlines()
+
 filename = f'day{day}/day{day}.txt'
 puzzle_input = open(filename).readlines()
-report = [n.split('\n')[0] for n in puzzle_input]
 
-example = ['00100', '11110', '10110', '10111', '10101', '01111', '00111', '11100', '10000', '11001', '00010', '01010']
-# report = example
+# report = [n.split('\n')[0] for n in example_input]
+report = [n.split('\n')[0] for n in puzzle_input]
 
 bits = lambda i, iterable: [int(n[i]) for n in iterable]
 most_common = lambda i, iterable: '1' if sum(bits(i, iterable)) >= len(list(iterable))/2 else '0'

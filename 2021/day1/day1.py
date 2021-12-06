@@ -1,10 +1,13 @@
 day = 1
+
+example_filename = f'day{day}/day{day}_ex.txt'
+example_input = open(example_filename).readlines()
+
 filename = f'day{day}/day{day}.txt'
 puzzle_input = open(filename).readlines()
-measurements = [int(n) for n in puzzle_input]
 
-example = [199, 200, 208, 210, 200, 207, 240, 269, 260, 263]
-# measurements = example
+# measurements = [int(n) for n in example_input]
+measurements = [int(n) for n in puzzle_input]
 
 increasing = lambda x, y: y > x
 
