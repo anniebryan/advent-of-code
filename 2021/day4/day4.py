@@ -10,11 +10,8 @@ numbers = lambda input: [int(n) for n in input[0].split(',')]
 boards = lambda input: [[[int(item) for item in row.split(' ') if len(item) > 0] for row in board.split('\n') if len(row) > 0] for board in ''.join([n for n in input[1:]]).split('\n\n')]
 board_dict = lambda input: {i: {val: (j,k) for j, row in enumerate(board) for k, val in enumerate(row)} for i, board in enumerate(boards(input))}
 
-# input_numbers = numbers(example_input)
-# input_boards = board_dict(example_input)
-
-input_numbers = numbers(puzzle_input)
-input_boards = board_dict(puzzle_input)
+# input_numbers, input_boards = numbers(example_input), board_dict(example_input)
+input_numbers, input_boards = numbers(puzzle_input), board_dict(puzzle_input)
 
 num_boards = len(input_boards)
 
