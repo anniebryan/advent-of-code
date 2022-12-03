@@ -1,26 +1,37 @@
 day = 1
 
 example_filename = f'day{day}/day{day}_ex.txt'
-example_input = open(example_filename).readlines()
+example_input = [r.strip() for r in open(example_filename).readlines()]
 
 filename = f'day{day}/day{day}.txt'
-puzzle_input = open(filename).readlines()
+puzzle_input = [r.strip() for r in open(filename).readlines()]
 
-def get_all_elves(input):
-  elf_cals = []
+def get_max_three(a, b, c, current_elf):
+  if current_elf > c:
+    c = current_elf
+    if current_elf > b:
+      (b, c) = (current_elf, b)
+      if current_elf > a:
+        (a, b) = (current_elf, a)
+  return (a, b, c)
+
+def max_three_elves(input):
+  a, b, c = 0, 0, 0
+  current_elf = 0
   for cal in input:
-    if cal != '\n':
-      elf_cals.append(int(cal))
+    if cal == '':
+      a, b, c = get_max_three(a, b, c, current_elf)
+      current_elf = 0
     else:
-      yield sum(elf_cals)
-      elf_cals = []
-  yield sum(elf_cals)
+      current_elf += int(cal)
+  return get_max_three(a, b, c, current_elf)
 
 def part_1(input):
-  return max(get_all_elves(input))
+  return max_three_elves(input)[0]
 
 def part_2(input):
-  return sum(sorted(get_all_elves(input), reverse=True)[:3])
+  return sum(max_three_elves(input))
+
 
 print(f'Part 1 example: {part_1(example_input)}')
 print(f'Part 1 puzzle: {part_1(puzzle_input)}')
