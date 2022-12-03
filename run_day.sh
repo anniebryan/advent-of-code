@@ -1,5 +1,7 @@
 #!/bin/bash
 #
-echo running code for day $2 of year $1...
-cd $1
-python3 day$2/day$2.py
+year=$1
+day=$2
+echo "running code for day ${day} of year ${year}..."
+cd ${year}
+python3 day${day}/day${day}.py

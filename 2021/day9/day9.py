@@ -2,89 +2,95 @@ from functools import reduce
 
 day = 9
 
-# example_filename = f'day{day}/day{day}_ex.txt'
-# example_input = open(example_filename).readlines()
-# heightmap = [[int(val) for val in str(int(row))] for row in example_input]
+example_filename = f'day{day}/day{day}_ex.txt'
+example_input = open(example_filename).readlines()
 
 filename = f'day{day}/day{day}.txt'
 puzzle_input = open(filename).readlines()
-heightmap = [[int(val) for val in row.strip()] for row in puzzle_input]
 
-num_rows, num_cols = len(heightmap), len(heightmap[0])
-heightmap_dict = {(i,j): heightmap[j][i] for i in range(num_cols) for j in range(num_rows)}
+def get_heightmap_dict(input):
+  heightmap = [[int(val) for val in row.strip()] for row in input]
+  num_rows = len(heightmap)
+  num_cols = len(heightmap[0])
+  heightmap_dict = {(i,j): heightmap[j][i] for i in range(num_cols) for j in range(num_rows)}
+  return (heightmap_dict, num_rows, num_cols)
 
-def horizontal_neighbor_locs(i, j):
-  left, right = ((i-1, j), (i+1, j))
+def horizontal_neighbor_locs(num_cols, i, j):
+  left, right = ((i - 1, j), (i + 1, j))
   locs = set()
-  if i != 0: locs.add(left)
-  if i != num_cols-1: locs.add(right)
+  if i != 0:
+    locs.add(left)
+  if i != num_cols-1:
+    locs.add(right)
   return locs
 
-def vertical_neighbor_locs(i, j):
+def vertical_neighbor_locs(num_rows, i, j):
   up, down = ((i, j-1), (i, j+1))
   locs = set()
-  if j != 0: locs.add(up)
-  if j != num_rows-1: locs.add(down)
+  if j != 0:
+    locs.add(up)
+  if j != num_rows-1:
+    locs.add(down)
   return locs
 
-def neighbor_locs(i, j):
-  return horizontal_neighbor_locs(i, j).union(vertical_neighbor_locs(i, j))
-
-def is_low_point(i, j):
+def is_low_point(heightmap_dict, num_rows, num_cols, i, j):
   val = heightmap_dict[(i, j)]
-  neighbors = neighbor_locs(i, j)
-  neighbor_vals = [heightmap_dict[n] for n in neighbors]
-  return all(list(map(lambda v: val < v, neighbor_vals)))
+  neighbors = horizontal_neighbor_locs(num_cols, i, j).union(vertical_neighbor_locs(num_rows, i, j))
+  return all([val < heightmap_dict[n] for n in neighbors])
 
-def expand_basin_horizontally(i, j):
+def expand_basin_horizontally(heightmap_dict, num_cols, i, j):
   basin = {(i, j)}
   val = heightmap_dict[(i, j)]
-  neighbors = horizontal_neighbor_locs(i, j)
-  add_to_basin = set(filter(lambda v: val < heightmap_dict[v] and heightmap_dict[v] != 9, neighbors))
-  if add_to_basin:
-    expanded = set()
-    for loc in add_to_basin:
-      expanded = expanded.union(expand_basin_horizontally(*loc))
-    basin = basin.union(expanded)
+  neighbors = horizontal_neighbor_locs(num_cols, i, j)
+  add_to_basin = {v for v in neighbors if val < heightmap_dict[v] and heightmap_dict[v] != 9}
+  for loc in add_to_basin:
+    basin = basin.union(expand_basin_horizontally(heightmap_dict, num_cols, *loc))
   return basin
 
-def expand_basin_vertically(i, j):
+def expand_basin_vertically(heightmap_dict, num_rows, i, j):
   basin = {(i, j)}
   val = heightmap_dict[(i, j)]
-  neighbors = vertical_neighbor_locs(i, j)
-  add_to_basin = set(filter(lambda v: val < heightmap_dict[v] and heightmap_dict[v] != 9, neighbors))
+  neighbors = vertical_neighbor_locs(num_rows, i, j)
+  add_to_basin = {v for v in neighbors if val < heightmap_dict[v] and heightmap_dict[v] != 9}
   basin = basin.union(add_to_basin)
   return basin
 
-def create_basin(i, j):
-  basin = expand_basin_horizontally(i, j)
-  original_size = len(basin)
+def create_basin(heightmap_dict, num_rows, num_cols, i, j):
+  basin = expand_basin_horizontally(heightmap_dict, num_cols, i, j)
+  prev_size = len(basin)
   finished = False
 
   while not finished:
-    # expand vertically
-    basin = basin.union(*[expand_basin_vertically(*loc) for loc in basin])
+    expand_vertically = [expand_basin_vertically(heightmap_dict, num_rows, *loc) for loc in basin]
+    basin = basin.union(*expand_vertically)
 
-    # expand horizontally
-    basin = basin.union(*[expand_basin_horizontally(*loc) for loc in basin])
+    expand_horizontally = [expand_basin_horizontally(heightmap_dict, num_cols, *loc) for loc in basin]
+    basin = basin.union(*expand_horizontally)
 
     new_size = len(basin)
-    finished = (new_size == original_size)
-    original_size = new_size
+    finished = (new_size == prev_size)
+    prev_size = new_size
+
   return basin
 
-def basin_size(i, j):
-  return len(create_basin(i, j))
+def get_low_points(heightmap_dict, num_rows, num_cols):
+  return [loc for loc in heightmap_dict.keys() if is_low_point(heightmap_dict, num_rows, num_cols, *loc)]
 
-def get_low_points():
-  return list(filter(lambda loc: is_low_point(*loc), heightmap_dict.keys()))
+def part_1(input):
+  (heightmap_dict, num_rows, num_cols) = get_heightmap_dict(input)
+  low_points = get_low_points(heightmap_dict, num_rows, num_cols)
+  return sum([1 + heightmap_dict[loc] for loc in low_points])
 
-def part_1():
-  return sum(list(map(lambda loc: 1+heightmap_dict[loc], get_low_points())))
+def part_2(input):
+  (heightmap_dict, num_rows, num_cols) = get_heightmap_dict(input)
+  low_points = get_low_points(heightmap_dict, num_rows, num_cols)
+  basin_sizes = [len(create_basin(heightmap_dict, num_rows, num_cols, *loc)) for loc in low_points]
+  three_largest_basins = sorted(basin_sizes, reverse=True)[:3]
+  return reduce(lambda a, b: a * b, three_largest_basins)
 
-def part_2():
-  basin_sizes = map(lambda loc: basin_size(*loc), get_low_points())
-  return reduce(lambda a, b: a*b, sorted(basin_sizes, reverse=True)[:3])
 
-print(f'Part 1: {part_1()}')
-print(f'Part 2: {part_2()}')
+print(f'Part 1 example: {part_1(example_input)}')
+print(f'Part 1 puzzle: {part_1(puzzle_input)}')
+
+print(f'Part 2 example: {part_2(example_input)}')
+print(f'Part 2 puzzle: {part_2(puzzle_input)}')

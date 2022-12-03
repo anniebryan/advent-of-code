@@ -1,16 +1,16 @@
 day = 13
 
-# example_filename = f'day{day}/day{day}_ex.txt'
-# example_input = open(example_filename).readlines()
-# dots, instructions = "".join(example_input).split('\n\n')
-# dots = [tuple([int(val) for val in line.split(',')]) for line in dots.split('\n')]
-# instructions = [tuple([line.split('=')[0][-1], int(line.split('=')[1])]) for line in instructions.split('\n')]
+example_filename = f'day{day}/day{day}_ex.txt'
+example_input = open(example_filename).readlines()
 
 filename = f'day{day}/day{day}.txt'
 puzzle_input = open(filename).readlines()
-dots, instructions = "".join(puzzle_input).split('\n\n')
-dots = [tuple([int(val) for val in line.split(',')]) for line in dots.split('\n')]
-instructions = [tuple([line.split('=')[0][-1], int(line.split('=')[1])]) for line in instructions.split('\n')]
+
+def get_dots_instructions(input):
+  dots, instructions = "".join(input).split('\n\n')
+  dots = [tuple([int(val) for val in line.split(',')]) for line in dots.split('\n')]
+  instructions = [tuple([line.split('=')[0][-1], int(line.split('=')[1])]) for line in instructions.split('\n')]
+  return (dots, instructions)
 
 def fold(dots, dir, val):
   new_dots = set()
@@ -34,16 +34,21 @@ def visualize(dots):
     s += ''.join(['#' if (i, j) in dots else '.' for i in range(max_x + 1)]) + '\n'
   return s
 
-def part_1():
-  return len(fold(dots, 'x', 655))
+def part_1(input):
+  (dots, instructions) = get_dots_instructions(input)
+  dir, val = instructions[0]
+  return len(fold(dots, dir, val))
 
-def part_2():
-  global dots
+def part_2(input):
+  (dots, instructions) = get_dots_instructions(input)
   for instruction in instructions:
     dir, val = instruction
     dots = fold(dots, dir, val)
-
   return visualize(dots)
 
-print(f'Part 1: {part_1()}')
-print(f'Part 2: {part_2()}')
+
+print(f'Part 1 example: {part_1(example_input)}')
+print(f'Part 1 puzzle: {part_1(puzzle_input)}')
+
+print(f'Part 2 example: {part_2(example_input)}')
+print(f'Part 2 puzzle: {part_2(puzzle_input)}')

@@ -6,21 +6,37 @@ example_input = open(example_filename).readlines()
 filename = f'day{day}/day{day}.txt'
 puzzle_input = open(filename).readlines()
 
-numbers = lambda input: [int(n) for n in input[0].split(',')]
-boards = lambda input: [[[int(item) for item in row.split(' ') if len(item) > 0] for row in board.split('\n') if len(row) > 0] for board in ''.join([n for n in input[1:]]).split('\n\n')]
-board_dict = lambda input: {i: {val: (j,k) for j, row in enumerate(board) for k, val in enumerate(row)} for i, board in enumerate(boards(input))}
+def get_input_numbers(input):
+  return [int(n) for n in input[0].split(',')]
 
-# input_numbers, input_boards = numbers(example_input), board_dict(example_input)
-input_numbers, input_boards = numbers(puzzle_input), board_dict(puzzle_input)
+def get_input_boards(input):
+  boards = []
+  for board in ''.join([n for n in input[1:]]).split('\n\n'):
+    board_row = []
+    for row in board.split('\n'):
+      if len(row) > 0:
+        board_row.append([int(item) for item in row.split(' ') if len(item) > 0])
+    boards.append(board_row)
 
-num_boards = len(input_boards)
+  boards_dict = {}
+  for i, board in enumerate(boards):
+    board_dict = {}
+    for j, row in enumerate(board):
+      for k, val in enumerate(row):
+        board_dict[val] = (j, k)
+    boards_dict[i] = board_dict
+  return boards_dict
 
 size = 5
 row = lambda marked: any([all([(i, j) in marked for j in range(size)]) for i in range(size)])
 col = lambda marked: any([all([(i, j) in marked for i in range(size)]) for j in range(size)])
 wins = lambda marked: row(marked) or col(marked)
 
-def part_1():
+def part_1(input):
+  input_numbers = get_input_numbers(input)
+  input_boards = get_input_boards(input)
+  num_boards = len(input_boards)
+
   marked_spaces = {i: set() for i in range(num_boards)}
   for num in input_numbers:
     for j in range(num_boards):
@@ -34,7 +50,11 @@ def part_1():
       unmarked = [winning_board[s] for s in all_spaces if s not in marked_spaces[winning_board_num]]
       return sum(unmarked) * num
 
-def part_2():
+def part_2(input):
+  input_numbers = get_input_numbers(input)
+  input_boards = get_input_boards(input)
+  num_boards = len(input_boards)
+  
   marked_spaces = {i: set() for i in range(num_boards)}
   prev_has_won = [wins(marked_spaces[i]) for i in range(num_boards)]
   for num in input_numbers:
@@ -51,5 +71,9 @@ def part_2():
     else:
       prev_has_won = has_won
 
-print(f'Part 1: {part_1()}')
-print(f'Part 2: {part_2()}')
+
+print(f'Part 1 example: {part_1(example_input)}')
+print(f'Part 1 puzzle: {part_1(puzzle_input)}')
+
+print(f'Part 2 example: {part_2(example_input)}')
+print(f'Part 2 puzzle: {part_2(puzzle_input)}')

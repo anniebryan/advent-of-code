@@ -2,13 +2,14 @@ from collections import defaultdict
 
 day = 8
 
-# example_filename = f'day{day}/day{day}_ex.txt'
-# example_input = open(example_filename).readlines()
-# lines = [[[val.strip() for val in x.split(' ')] for x in line.split(' | ')] for line in example_input]
+example_filename = f'day{day}/day{day}_ex.txt'
+example_input = open(example_filename).readlines()
 
 filename = f'day{day}/day{day}.txt'
 puzzle_input = open(filename).readlines()
-lines = [[[val.strip() for val in x.split(' ')] for x in line.split(' | ')] for line in puzzle_input]
+
+def get_lines(input):
+  return [[[val.strip() for val in x.split(' ')] for x in line.split(' | ')] for line in input]
 
 TOP = 'top'
 TOP_LEFT = 'top left'
@@ -33,9 +34,8 @@ nums = {
   9: {TOP, TOP_LEFT, TOP_RIGHT, MIDDLE, BOTTOM_RIGHT, BOTTOM}
 }
 
-segment_counts = {segment: len(list(filter(lambda num: segment in nums[num], nums))) for segment in segments}
-
 def get_count(letter_counts, loc):
+  segment_counts = {segment: len(list(filter(lambda num: segment in nums[num], nums))) for segment in segments}
   return filter(lambda l: letter_counts[l] == segment_counts[loc], letter_counts).__next__()
 
 def get_signal(signals, length):
@@ -68,11 +68,17 @@ def get_output_number(line):
   
   return int(''.join([str(filter(lambda n: nums[n] == {mapping[letter] for letter in val}, nums).__next__()) for val in output]))
 
-def part_1():
+def part_1(input):
+  lines = get_lines(input)
   return sum([sum([1*(len(item) in {2,3,4,7}) for item in line[1]]) for line in lines])
 
-def part_2():
+def part_2(input):
+  lines = get_lines(input)
   return sum(list(map(get_output_number, lines)))
 
-print(f'Part 1: {part_1()}')
-print(f'Part 2: {part_2()}')
+
+print(f'Part 1 example: {part_1(example_input)}')
+print(f'Part 1 puzzle: {part_1(puzzle_input)}')
+
+print(f'Part 2 example: {part_2(example_input)}')
+print(f'Part 2 puzzle: {part_2(puzzle_input)}')
