@@ -1,15 +1,19 @@
 day = 3
 
 example_filename = f'day{day}/day{day}_ex.txt'
-example_input = open(example_filename).readlines()
+example_input = [r.strip() for r in open(example_filename).readlines()]
 
 filename = f'day{day}/day{day}.txt'
-puzzle_input = open(filename).readlines()
+puzzle_input = [r.strip() for r in open(filename).readlines()]
 
-def letter_in_common_2(left, right):
-  left_ch = set([ch for ch in left])
-  for ch in right:
-    if ch in left_ch:
+def letter_in_common(row):
+  n = len(row)//2
+  left = set()
+  for i in range(len(row)):
+    ch = row[i]
+    if i < n:
+      left.add(ch)
+    elif ch in left:
       return ch
 
 def letter_in_common_3(a, b, c):
@@ -28,16 +32,14 @@ def priority(ch):
 def part_1(input):
   tot = 0
   for row in input:
-    row = row.strip()
-    n = len(row)//2
-    ch = letter_in_common_2(row[:n], row[n:])
+    ch = letter_in_common(row)
     tot += priority(ch)
   return tot
 
 def part_2(input):
   tot = 0
   for i in range(0, len(input), 3):
-    ch = letter_in_common_3(*[row.strip() for row in input[i:i+3]])
+    ch = letter_in_common_3(*input[i:i+3])
     tot += priority(ch)
   return tot
 
