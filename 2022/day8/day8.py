@@ -33,16 +33,11 @@ class Forest:
     return False
 
   def num_visible(self, dir, i, j):
-    if len(dir) in {0, 1}:
-      return len(dir)
-    cant_see_below = dir[0]
-    num_visible = 1
-    for tree in dir[1:]:
+    num_visible = 0
+    for tree in dir:
+      num_visible += 1
       if tree >= self.trees[i][j]:
-        return num_visible + 1
-      if tree >= cant_see_below:
-        num_visible += 1
-        cant_see_below = tree
+        break
     return num_visible
 
   def scenic_score(self, i, j):
@@ -65,7 +60,6 @@ def part_2(input):
   max_scenic_score = 0
   for i in range(forest.height):
     for j in range(forest.width):
-      # TODO returning incorrect answer
       max_scenic_score = max(max_scenic_score, forest.scenic_score(i, j))
   return max_scenic_score
 
