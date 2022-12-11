@@ -10,13 +10,11 @@ class Forest:
   def __init__(self, grid):
     self.height = len(grid)
     self.width = len(grid[0])
-    trees = {}
-    for i in range(self.height): # rows
-      row = grid[i]
-      trees[i] = {}
-      for j in range(self.width): # cols
-        trees[i][j] = int(row[j])
-    self.trees = trees
+    self.trees = {}
+    for i in range(self.height):
+      self.trees[i] = {}
+      for j in range(self.width):
+        self.trees[i][j] = int(grid[i][j])
 
   def trees_to_edge(self, i, j):
     top = [self.trees[x][j] for x in range(i)][::-1]
@@ -32,18 +30,15 @@ class Forest:
         return True
     return False
 
-  def num_visible(self, dir, i, j):
-    num_visible = 0
-    for tree in dir:
-      num_visible += 1
-      if tree >= self.trees[i][j]:
-        break
-    return num_visible
-
   def scenic_score(self, i, j):
     score = 1
     for dir in self.trees_to_edge(i, j):
-      score *= self.num_visible(dir, i, j)
+      num_visible = 0
+      for tree in dir:
+        num_visible += 1
+        if tree >= self.trees[i][j]:
+          break
+      score *= num_visible
     return score
 
 def part_1(input):
