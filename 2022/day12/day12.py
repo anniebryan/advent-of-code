@@ -61,15 +61,30 @@ def min_distances(map, map_size, start_locs, end_loc):
 
 def part_1(input):
   map, map_size, start_loc, end_loc = create_map(input)
-  return min_distances(map, map_size, {start_loc}, end_loc).__next__()
+  dist = bfs(map, map_size, start_loc, end_loc)
+  if dist is not None:
+    return dist[end_loc]
+  return "Unable to get to E from S"
 
 def part_2(input):
   map, map_size, _, end_loc = create_map(input)
-  all_start_locs = {(i, j) for (i, j) in map if map[(i, j)] == 1}
-  return min(min_distances(map, map_size, all_start_locs, end_loc))
+  d = {}
+  for start_loc in map:
+    if map[start_loc] == 1: # valid start location
+      dist = bfs(map, map_size, start_loc, end_loc)
+      if dist is not None:
+        d[start_loc] = dist[end_loc]
+
+  if len(d) == 0:
+    return "Unable to get to E from any square at elevation a"
+  best_start_loc = min(d, key=d.get)
+  return (best_start_loc, d[best_start_loc])
 
 print(f'Part 1 example: {part_1(example_input)}')
 print(f'Part 1 puzzle: {part_1(puzzle_input)}')
 
-print(f'Part 2 example: {part_2(example_input)}')
-print(f'Part 2 puzzle: {part_2(puzzle_input)}')
+example_sol = part_2(example_input)
+print(f'Part 2 example: Starting from {example_sol[0]} gives a min distance of {example_sol[1]}')
+
+puzzle_sol = part_2(puzzle_input)
+print(f'Part 2 puzzle: Starting from {puzzle_sol[0]} gives a min distance of {puzzle_sol[1]}')
