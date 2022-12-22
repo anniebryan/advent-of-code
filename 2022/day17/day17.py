@@ -1,4 +1,3 @@
-from collections import deque
 from itertools import cycle
 
 ############################
@@ -48,16 +47,49 @@ def drop(rock: list[dict], ground: set[tuple], jet_queue: cycle):
       break
 
 
+def update_cycles(history: dict[int, int], i: int, cycles: dict[int, tuple[int, int]]):
+  for c in range(i):
+    cycle_len = c + 1
+    if i % cycle_len == 0:
+      diff = history[i] - history[i - cycle_len]
+      if cycle_len not in cycles:
+        cycles[cycle_len] = (diff, 1)
+      else:
+        (d, n) = cycles[cycle_len]
+        if d == diff:
+          cycles[cycle_len] = (d, n + 1)
+          # need to see same difference for 10 cycles
+          if n >= 9:
+            return (cycle_len, d)
+        else:
+          cycles[cycle_len] = (diff, 1)
+  return (None, None)
+
+
 def drop_n_rocks(jet_queue, n):
   rocks = get_rocks()
   height = 0
   ground = set([(i, 0) for i in range(7)])
-  for _ in range(n):
+  history, cycles = {}, {}
+  cycle_len, d, return_idx = None, None, None
+
+  for i in range(n):
+    if i == return_idx:
+      return int(height + ((n - i) / cycle_len) * d)
+
     rock = [{'x': d['x'] + 2, 'y': d['y'] + height + 4} for d in rocks.__next__()]
     drop(rock, ground, jet_queue)
     ground.update((d['x'], d['y']) for d in rock)
     height = max(height, max(d['y'] for d in rock))
+
+    if return_idx is None:
+      history[i] = height
+      (cycle_len, d) = update_cycles(history, i, cycles)
+      if cycle_len is not None:
+        return_idx = i + (n % cycle_len)
+
   return height
+
 
 def part_1(input):
   jet_queue = cycle(input[0])
@@ -65,7 +97,6 @@ def part_1(input):
 
 def part_2(input):
   jet_queue = cycle(input[0])
-  # TODO too slow, need to optimize
   return drop_n_rocks(jet_queue, 1000000000000)
 
 
@@ -76,10 +107,10 @@ with open(f'day{day}/day{day}_ex.txt') as ex_filename:
   example_input = [r.strip() for r in ex_filename.readlines()]
   print("---Example---")
   print(f'Part 1: {part_1(example_input)}')
-  # print(f'Part 2: {part_2(example_input)}')
+  print(f'Part 2: {part_2(example_input)}')
 
 with open(f'day{day}/day{day}.txt') as filename:
   puzzle_input = [r.strip() for r in filename.readlines()]
   print("---Puzzle---")
   print(f'Part 1: {part_1(puzzle_input)}')
-  # print(f'Part 2: {part_2(puzzle_input)}')
+  print(f'Part 2: {part_2(puzzle_input)}')
