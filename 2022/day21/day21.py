@@ -5,6 +5,21 @@
 import re
 import operator
 
+ops = {
+  "+": operator.add,
+  "-": operator.sub,
+  "*": operator.mul,
+  "/": operator.truediv
+}
+
+inverse_ops = {
+  "+": operator.sub,
+  "-": operator.add,
+  "*": operator.truediv,
+  "/": operator.mul
+}
+
+
 class Monkey:
   def __init__(self, row):
     match = re.match(f"(.*): (\d+)", row)
@@ -12,49 +27,71 @@ class Monkey:
       (name, number) = match.groups()
       self.name = name
       self.number = int(number)
-      self.monkey_one = None
-      self.operation = None
-      self.monkey_two = None
     else:
       match = re.match(f"(.*): (.*) (\+|\-|\*|\/) (.*)", row)
       assert(match is not None)
       (name, monkey_one, operation, monkey_two) = match.groups()
       self.name = name
       self.number = None
-      self.monkey_one = monkey_one
-      self.operation = {"+": operator.add, "-": operator.sub, "*": operator.mul, "/": operator.truediv}[operation]
-      self.monkey_two = monkey_two
+      self.monkey_one_name = monkey_one
+      self.monkey_two_name = monkey_two
+      self.operation = operation
 
-  def know_number(self):
-    return self.number is not None
+  def get_number(self, monkeys):
+    if self.number is not None:
+      return self.number
+
+    left_val = monkeys[self.monkey_one_name].get_number(monkeys)
+    right_val = monkeys[self.monkey_two_name].get_number(monkeys)
+
+    if isinstance(left_val, int) and isinstance(right_val, int):
+      return int(ops[self.operation](left_val, right_val))
+    else:
+      return Expression(left_val, right_val, self.operation)
+
+class Expression:
+  def __init__(self, left, right, operation):
+    self.left = left
+    self.right = right
+    self.op_symbol = operation
+
+  def __str__(self):
+    return f"({self.left} {self.op_symbol} {self.right})"
 
 
 def parse(input):
   monkeys = {}
-  known_numbers = {}
   for row in input:
     monkey = Monkey(row)
     monkeys[monkey.name] = monkey
-    if monkey.know_number():
-      known_numbers[monkey.name] = monkey.number
-  return monkeys, known_numbers
+  return monkeys
+
+def set_equal(monkeys):
+  root_monkey = monkeys["root"]
+  monkeys["humn"].number = "X"
+  target_value = monkeys[root_monkey.monkey_two_name].get_number(monkeys)
+  expression = monkeys[root_monkey.monkey_one_name].get_number(monkeys)
+  while not ((isinstance(expression, str)) or isinstance(expression.left, int) and isinstance(expression.right, int)):
+    if isinstance(expression.right, int):
+      target_value = int(inverse_ops[expression.op_symbol](target_value, expression.right))
+      expression = expression.left
+    elif isinstance(expression.left, int):
+      if expression.op_symbol in {"+", "*"}:
+        target_value = int(inverse_ops[expression.op_symbol](target_value, expression.left))
+      else:
+        target_value = int(ops[expression.operation](expression.left, target_value))
+      expression = expression.right
+  return target_value
+
 
 def part_1(input):
-  monkeys, known_numbers = parse(input)
-  while "root" not in known_numbers:
-    for name, monkey in monkeys.items():
-      if name not in known_numbers:
-        monkey_one = monkey.monkey_one
-        monkey_two = monkey.monkey_two
-        if monkey_one in known_numbers and monkey_two in known_numbers:
-          monkey_num = monkey.operation(known_numbers[monkey_one], known_numbers[monkey_two])
-          monkey.number = monkey_num
-          known_numbers[name] = monkey_num
-  return int(known_numbers["root"])
+  monkeys = parse(input)
+  return monkeys["root"].get_number(monkeys)
 
   
 def part_2(input):
-  return "Not implemented"
+  monkeys = parse(input)
+  return set_equal(monkeys)
 
 
 day = 21
