@@ -18,9 +18,13 @@ def main(year: str, day: str) -> None:
     part_2 = getattr(module, "part_2", None)
 
     for input_filename in ["example", "puzzle"]:
-        with open(base_dir / f"{input_filename}.txt") as file:
+        print(f"---{input_filename.capitalize()}---")
+        input_filepath = base_dir / f"{input_filename}.txt"
+        if not input_filepath.exists():
+            print("Input file not found.")
+            continue
+        with open(input_filepath) as file:
             puzzle_input = [line.strip() for line in file]
-            print(f"---{input_filename.capitalize()}---")
             print(f"Part 1: {part_1(puzzle_input)}")
             print(f"Part 2: {part_2(puzzle_input)}")
 
