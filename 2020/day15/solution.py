@@ -1,4 +1,4 @@
-filename = '2020/day15/day15.txt'
+filename = '2020/day15/puzzle.txt'
 puzzle_input = open(filename).read().split(',')
 
 def process_input():

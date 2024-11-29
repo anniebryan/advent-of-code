@@ -1,6 +1,6 @@
 from re import findall
 
-text = open('2018/day10/day10.txt').readlines()
+text = open('2018/day10/puzzle.txt').readlines()
 data = [[int(x) for x in findall(r'-?\d+', i)] for i in text]
 
 def get_boxes():

@@ -1,7 +1,7 @@
 import re
 from collections import defaultdict
 
-records = open('2018/day4/day4.txt').read()
+records = open('2018/day4/puzzle.txt').read()
 pattern = r'\[(\d+)-(\d+)-(\d+) (\d+):(\d+)\] (.+)'
 records = re.findall(pattern,records)
 

@@ -1,4 +1,4 @@
-filename = '2020/day17/day17.txt'
+filename = '2020/day17/puzzle.txt'
 puzzle_input = open(filename).readlines()
 
 def initial_active(num_dim):

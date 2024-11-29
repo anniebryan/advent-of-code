@@ -2,7 +2,7 @@
 
 import numpy as np
 
-serial_number = int(open('2018/day11/day11.txt').read())
+serial_number = int(open('2018/day11/puzzle.txt').read())
 
 def power_level(x, y):
     rack_id = x + 10

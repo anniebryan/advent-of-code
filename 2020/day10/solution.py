@@ -1,7 +1,7 @@
 from collections import defaultdict
 from math import prod
 
-filename = '2020/day10/day10.txt'
+filename = '2020/day10/puzzle.txt'
 puzzle_input = open(filename).readlines()
 numbers = [int(n) for n in puzzle_input]
 

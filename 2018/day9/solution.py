@@ -2,7 +2,7 @@ import re
 from collections import deque, defaultdict
 
 def get_info():
-    text = open('2018/day9/day9.txt').read()
+    text = open('2018/day9/puzzle.txt').read()
     pattern = r'([\d]+) players; last marble is worth ([\d]+) points'
     num_players, last_marble = map(lambda x: int(x), re.findall(pattern, text)[0])
     return num_players, last_marble

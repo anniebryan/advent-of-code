@@ -1,7 +1,7 @@
 import string
 from functools import reduce
 
-s = open('2018/day5/day5.txt').read()
+s = open('2018/day5/puzzle.txt').read()
 
 def destroy(p, c):
     # p: previous

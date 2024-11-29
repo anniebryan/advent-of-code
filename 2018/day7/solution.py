@@ -2,7 +2,7 @@ import re
 import copy
 from collections import defaultdict
 
-instructions = open('2018/day7/day7.txt').readlines()
+instructions = open('2018/day7/puzzle.txt').readlines()
 requirements = {re.findall(r'Step ([A-Z]) must be finished before step ([A-Z]) can begin', i)[0] for i in instructions}
 all_steps = {r[i] for r in requirements for i in [0, 1]}
 all_prerequisites = defaultdict(set)

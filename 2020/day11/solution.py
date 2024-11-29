@@ -1,6 +1,6 @@
 from collections import defaultdict
 
-filename = '2020/day11/day11.txt'
+filename = '2020/day11/puzzle.txt'
 puzzle_input = open(filename).readlines()
 
 def get_area_dimensions():

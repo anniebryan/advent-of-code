@@ -1,6 +1,6 @@
 from collections import deque
 
-filename = '2020/day9/day9.txt'
+filename = '2020/day9/puzzle.txt'
 puzzle_input = open(filename).readlines()
 numbers = [int(n) for n in puzzle_input]
 

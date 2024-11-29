@@ -2,10 +2,10 @@ from collections import deque
 
 day = 11
 
-example_filename = f'day{day}/day{day}_ex.txt'
+example_filename = f'day{day}/example.txt'
 example_input = open(example_filename).readlines()
 
-filename = f'day{day}/day{day}.txt'
+filename = f'day{day}/puzzle.txt'
 puzzle_input = open(filename).readlines()
 
 def get_octopus_dict(input):

@@ -1,6 +1,6 @@
 from math import prod
 
-filename = '2020/day3/day3.txt'
+filename = '2020/day3/puzzle.txt'
 puzzle_input = open(filename).readlines()
 
 def num_trees(right, down):

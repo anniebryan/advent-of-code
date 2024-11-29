@@ -116,13 +116,13 @@ def part_2(input):
 
 day = 19
 
-with open(f'day{day}/day{day}_ex.txt') as ex_filename:
+with open(f'day{day}/example.txt') as ex_filename:
   example_input = [r.strip() for r in ex_filename.readlines()]
   print("---Example---")
   print(f'Part 1: {part_1(example_input)}')
   print(f'Part 2: {part_2(example_input)}')
 
-with open(f'day{day}/day{day}.txt') as filename:
+with open(f'day{day}/puzzle.txt') as filename:
   puzzle_input = [r.strip() for r in filename.readlines()]
   print("---Puzzle---")
   print(f'Part 1: {part_1(puzzle_input)}')

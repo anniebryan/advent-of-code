@@ -1,6 +1,6 @@
 # Day 12: Subterranean Sustainability
 
-puzzle_input = open('2018/day12/day12.txt').readlines()
+puzzle_input = open('2018/day12/puzzle.txt').readlines()
 
 def get_initial_plant_indices():
     initial_state = puzzle_input[0].split()[-1]

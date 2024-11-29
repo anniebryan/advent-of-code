@@ -1,9 +1,9 @@
 day = 6
 
-example_filename = f'day{day}/day{day}_ex.txt'
+example_filename = f'day{day}/example.txt'
 example_input = open(example_filename).readlines()[0]
 
-filename = f'day{day}/day{day}.txt'
+filename = f'day{day}/puzzle.txt'
 puzzle_input = open(filename).readlines()[0]
 
 def all_different(last_elems):

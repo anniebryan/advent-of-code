@@ -1,4 +1,4 @@
-filename = '2020/day4/day4.txt'
+filename = '2020/day4/puzzle.txt'
 puzzle_input = open(filename).readlines()
 
 REQUIRED_FIELDS = {'byr', 'iyr', 'eyr', 'hgt', 'hcl', 'ecl', 'pid'}

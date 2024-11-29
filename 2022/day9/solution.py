@@ -1,12 +1,12 @@
 day = 9
 
-example_filename = f'day{day}/day{day}_ex.txt'
+example_filename = f'day{day}/example.txt'
 example_input = [r.strip() for r in open(example_filename).readlines()]
 
-example2_filename = f'day{day}/day{day}_ex2.txt'
+example2_filename = f'day{day}/example2.txt'
 example2_input = [r.strip() for r in open(example2_filename).readlines()]
 
-filename = f'day{day}/day{day}.txt'
+filename = f'day{day}/puzzle.txt'
 puzzle_input = [r.strip() for r in open(filename).readlines()]
 
 def get_moves(input):

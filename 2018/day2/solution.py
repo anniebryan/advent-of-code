@@ -1,6 +1,6 @@
 import string
 
-boxes = open('2018/day2/day2.txt').readlines()
+boxes = open('2018/day2/puzzle.txt').readlines()
 
 def part_1():
     num_2 = 0

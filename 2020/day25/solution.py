@@ -1,6 +1,6 @@
 from collections import defaultdict
 
-filename = '2020/day25/day25.txt'
+filename = '2020/day25/puzzle.txt'
 puzzle_input = open(filename).readlines()
 
 def get_public_keys():

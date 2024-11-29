@@ -1,7 +1,7 @@
 from collections import deque
 from math import prod
 
-filename = '2020/day20/day20.txt'
+filename = '2020/day20/puzzle.txt'
 puzzle_input = open(filename).read().split('\n\n')
 
 def process_input():

@@ -1,6 +1,6 @@
 import re
 
-text = open('2018/day8/day8.txt').read()
+text = open('2018/day8/puzzle.txt').read()
 
 def process_data(data):
     num_children = next(data)

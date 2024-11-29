@@ -4,13 +4,13 @@ import heapq
 
 day = 15
 
-# example_filename = f'day{day}/day{day}_ex.txt'
+# example_filename = f'day{day}/example.txt
 # example_input = open(example_filename).readlines()
 # num_cols, num_rows = len(example_input[0].strip()), len(example_input)
 # part_1_risk_levels = {(i,j): int(example_input[i][j]) for i in range(num_rows) for j in range(num_cols)}
 # part_2_risk_levels = {(i+num_cols*x, j+num_rows*y): (int(example_input[i][j]) + x + y - 1) % 9 + 1 for j in range(num_cols) for i in range(num_rows) for y in range(5) for x in range(5)}
 
-filename = f'day{day}/day{day}.txt'
+filename = f'day{day}/puzzle.txt'
 puzzle_input = open(filename).readlines()
 num_cols, num_rows = len(puzzle_input[0].strip()), len(puzzle_input)
 part_1_risk_levels = {(i,j): int(puzzle_input[i][j]) for i in range(num_rows) for j in range(num_cols)}

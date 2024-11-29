@@ -1,6 +1,6 @@
 from math import prod
 
-filename = '2020/day16/day16.txt'
+filename = '2020/day16/puzzle.txt'
 puzzle_input = open(filename).readlines()
 
 def process_input():

@@ -1,7 +1,7 @@
 import regex
 from itertools import count
 
-filename = '2020/day19/day19.txt'
+filename = '2020/day19/puzzle.txt'
 puzzle_input = open(filename).read()
 
 def process_input():

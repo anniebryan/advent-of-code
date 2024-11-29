@@ -1,4 +1,4 @@
-filename = '2020/day8/day8.txt'
+filename = '2020/day8/puzzle.txt'
 puzzle_input = open(filename).readlines()
 
 def get_instructions():

@@ -3,10 +3,10 @@ from collections import defaultdict
 
 day = 15
 
-example_filename = f'day{day}/day{day}_ex.txt'
+example_filename = f'day{day}/example.txt
 example_input = [r.strip() for r in open(example_filename).readlines()]
 
-filename = f'day{day}/day{day}.txt'
+filename = f'day{day}/puzzle.txt'
 puzzle_input = [r.strip() for r in open(filename).readlines()]
 
 

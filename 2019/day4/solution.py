@@ -1,6 +1,6 @@
 import re
 
-file = open('2019/day4/day4.txt')
+file = open('2019/day4/puzzle.txt')
 given_range = file.readlines()
 min_r, max_r = (int(x) for x in re.findall('(\d+)-(\d+)', given_range[0])[0])
 

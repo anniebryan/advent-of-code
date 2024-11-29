@@ -1,6 +1,6 @@
 from math import prod
 
-filename = '2020/day23/day23.txt'
+filename = '2020/day23/puzzle.txt'
 puzzle_input = open(filename).read()
 
 def get_initial_cups(num_cups):

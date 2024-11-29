@@ -1,6 +1,6 @@
 from collections import defaultdict
 
-filename = '2020/day6/day6.txt'
+filename = '2020/day6/puzzle.txt'
 puzzle_input = open(filename).readlines()
 
 def get_groups():

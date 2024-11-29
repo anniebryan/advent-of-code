@@ -1,4 +1,4 @@
-frequencies = open('2018/day1/day1.txt').readlines()
+frequencies = open('2018/day1/puzzle.txt').readlines()
 
 def part_1():
     return sum([int(x) for x in frequencies])

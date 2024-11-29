@@ -1,6 +1,6 @@
 from collections import deque
 
-filename = '2020/day22/day22.txt'
+filename = '2020/day22/puzzle.txt'
 puzzle_input = open(filename).read()
 
 def get_initial_decks():

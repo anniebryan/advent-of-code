@@ -1,7 +1,7 @@
 import re
 from collections import defaultdict
 
-coords = open('2018/day6/day6.txt').readlines()
+coords = open('2018/day6/puzzle.txt').readlines()
 points = [tuple(map(int, re.findall(r'\d+', x))) for x in coords]
 
 # get min and max bounds

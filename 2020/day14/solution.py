@@ -1,6 +1,6 @@
 import random
 
-filename = '2020/day14/day14.txt'
+filename = '2020/day14/puzzle.txt'
 puzzle_input = open(filename).readlines()
 
 def binary(n):

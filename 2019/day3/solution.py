@@ -1,6 +1,6 @@
 import csv
 
-file = open('2019/day3/day3.txt')
+file = open('2019/day3/puzzle.txt')
 csv_reader = csv.reader(file, delimiter=',')
 wire_1, wire_2 = [[(i[0], int(i[1:])) for i in row] for row in csv_reader]
 

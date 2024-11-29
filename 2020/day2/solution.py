@@ -1,4 +1,4 @@
-filename = '2020/day2/day2.txt'
+filename = '2020/day2/puzzle.txt'
 puzzle_input = open(filename).readlines()
 
 def get_passwords():

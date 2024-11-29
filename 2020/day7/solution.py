@@ -2,7 +2,7 @@ import re
 from collections import defaultdict
 from collections import deque
 
-filename = '2020/day7/day7.txt'
+filename = '2020/day7/puzzle.txt'
 puzzle_input = open(filename).readlines()
 
 def get_containers():

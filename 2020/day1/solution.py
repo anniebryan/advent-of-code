@@ -1,7 +1,7 @@
 from collections import defaultdict
 from math import prod
 
-filename = '2020/day1/day1.txt'
+filename = '2020/day1/puzzle.txt'
 puzzle_input = open(filename).readlines()
 expense_report = [int(i) for i in puzzle_input]
 

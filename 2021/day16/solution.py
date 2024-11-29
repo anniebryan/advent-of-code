@@ -1,10 +1,10 @@
 day = 16
 
-# example_filename = f'day{day}/day{day}_ex.txt'
+# example_filename = f'day{day}/example.txt
 # example_input = open(example_filename).readlines()
 # hex_str = example_input[0]
 
-filename = f'day{day}/day{day}.txt'
+filename = f'day{day}/puzzle.txt'
 puzzle_input = open(filename).readlines()
 hex_str = puzzle_input[0]
 

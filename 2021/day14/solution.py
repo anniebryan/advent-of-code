@@ -2,12 +2,12 @@ from collections import defaultdict, deque
 
 day = 14
 
-# example_filename = f'day{day}/day{day}_ex.txt'
+# example_filename = f'day{day}/example.txt
 # example_input = open(example_filename).readlines()
 # template = example_input[0].strip()
 # rules = [tuple(rule.strip().split(' -> ')) for rule in example_input[2:]]
 
-filename = f'day{day}/day{day}.txt'
+filename = f'day{day}/puzzle.txt'
 puzzle_input = open(filename).readlines()
 template = puzzle_input[0].strip()
 rules = [tuple(rule.strip().split(' -> ')) for rule in puzzle_input[2:]]

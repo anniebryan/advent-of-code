@@ -3,10 +3,10 @@ import re
 
 day = 5
 
-example_filename = f'day{day}/day{day}_ex.txt'
+example_filename = f'day{day}/example.txt'
 example_input = open(example_filename).readlines()
 
-filename = f'day{day}/day{day}.txt'
+filename = f'day{day}/puzzle.txt'
 puzzle_input = open(filename).readlines()
 
 def get_crates_and_instructions(input):

@@ -1,7 +1,7 @@
 from collections import defaultdict
 from math import prod
 
-filename = '2020/day13/day13.txt'
+filename = '2020/day13/puzzle.txt'
 puzzle_input = open(filename).readlines()
 
 def get_earliest_bus():

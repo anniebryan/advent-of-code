@@ -1,4 +1,4 @@
-modules = open('2019/day1/day1.txt').readlines()
+modules = open('2019/day1/puzzle.txt').readlines()
 masses = [int(m) for m in modules]
 
 

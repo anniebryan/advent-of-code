@@ -1,6 +1,6 @@
 import csv
 
-file = open('2019/day2/day2.txt')
+file = open('2019/day2/puzzle.txt')
 csv_reader = csv.reader(file, delimiter=',')
 ints = [int(i) for i in [row for row in csv_reader][0]]
 

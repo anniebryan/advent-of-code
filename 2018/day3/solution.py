@@ -1,6 +1,6 @@
 import re
 
-claims = open('2018/day3/day3.txt').read()
+claims = open('2018/day3/puzzle.txt').read()
 pattern = r'#(\d+) @ (\d+),(\d+): (\d+)x(\d+)'
 claims = [[int(y) for y in x] for x in re.findall(pattern,claims)]
            

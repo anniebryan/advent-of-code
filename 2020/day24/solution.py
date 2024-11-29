@@ -1,6 +1,6 @@
 from collections import defaultdict
 
-filename = '2020/day24/day24.txt'
+filename = '2020/day24/puzzle.txt'
 puzzle_input = open(filename).readlines()
 
 def get_instructions():

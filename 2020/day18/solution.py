@@ -1,4 +1,4 @@
-filename = '2020/day18/day18.txt'
+filename = '2020/day18/puzzle.txt'
 puzzle_input = open(filename).readlines()
 
 def process_parens(exp, i, add_first):

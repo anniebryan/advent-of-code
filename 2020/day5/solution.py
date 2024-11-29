@@ -1,4 +1,4 @@
-filename = '2020/day5/day5.txt'
+filename = '2020/day5/puzzle.txt'
 puzzle_input = open(filename).readlines()
 
 def binary_search(s, low_c, high_val):
