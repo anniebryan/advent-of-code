@@ -1,4 +1,5 @@
 import sys
+import os
 import importlib.util
 from pathlib import Path
 
@@ -17,9 +18,18 @@ def main(year: str, day: str) -> None:
     part_1 = getattr(module, "part_1", None)
     part_2 = getattr(module, "part_2", None)
 
-    for input_filename in ["example", "puzzle"]:
-        print(f"---{input_filename.capitalize()}---")
-        input_filepath = base_dir / f"{input_filename}.txt"
+    input_files = [fname for fname in os.listdir(base_dir) if fname.endswith(".txt")]
+    ex_input_files = sorted([fname for fname in input_files if fname != "puzzle.txt"])
+    if len(ex_input_files) == 0:
+        ex_input_files, ex_display_names = ["example.txt"], ["Example"]
+    elif len(ex_input_files) == 1:
+        ex_display_names = ["Example"]
+    else:
+        ex_display_names = [f"Example {i + 1}" for i in range(len(ex_input_files))]
+
+    for input_filename, display_name in zip(ex_input_files + ["puzzle.txt"], ex_display_names + ["Puzzle"]):
+        print(f"---{display_name}---")
+        input_filepath = base_dir / input_filename
         if not input_filepath.exists():
             print("Input file not found.")
             continue
