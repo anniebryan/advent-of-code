@@ -1,10 +1,30 @@
-import sys
+import click
 import os
 import importlib.util
 from pathlib import Path
+from typing import Callable
 
 
-def main(year: str, day: str) -> None:
+def run_solution(base_dir: Path, input_filename: str, display_name: str, part_1: Callable, part_2: Callable) -> None:
+    print(f"---{display_name}---")
+    input_filepath = base_dir / input_filename
+    if not input_filepath.exists():
+        print("Input file not found.")
+        return
+    with open(input_filepath) as file:
+        puzzle_input = [line.strip("\n") for line in file]
+        print(f"Part 1: {part_1(puzzle_input)}")
+        print(f"Part 2: {part_2(puzzle_input)}")
+    return
+
+
+@click.command()
+@click.argument("year")
+@click.argument("day")
+@click.option("-se", "--skip_example", is_flag=True, default=False)
+@click.option("-sp", "--skip_puzzle", is_flag=True, default=False)
+def main(year: str, day: str, skip_example: bool = False, skip_puzzle: bool = False) -> None:
+    print(f"{year=} {day=}")
     base_dir = Path(f"{year}/day{day}")
     file_path = base_dir / "solution.py"
 
@@ -27,18 +47,13 @@ def main(year: str, day: str) -> None:
     else:
         ex_display_names = [f"Example {i + 1}" for i in range(len(ex_input_files))]
 
-    for input_filename, display_name in zip(ex_input_files + ["puzzle.txt"], ex_display_names + ["Puzzle"]):
-        print(f"---{display_name}---")
-        input_filepath = base_dir / input_filename
-        if not input_filepath.exists():
-            print("Input file not found.")
-            continue
-        with open(input_filepath) as file:
-            puzzle_input = [line.strip("\n") for line in file]
-            print(f"Part 1: {part_1(puzzle_input)}")
-            print(f"Part 2: {part_2(puzzle_input)}")
+    if not skip_example:
+        for input_filename, display_name in zip(ex_input_files, ex_display_names):
+            run_solution(base_dir, input_filename, display_name, part_1, part_2)
+    
+    if not skip_puzzle:
+        run_solution(base_dir, "puzzle.txt", "Puzzle", part_1, part_2)
 
 
 if __name__ == "__main__":
-    year, day = sys.argv[1:]
-    main(year, day)
+    main()
