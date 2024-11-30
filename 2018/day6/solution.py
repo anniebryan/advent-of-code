@@ -57,13 +57,14 @@ def part_1(puzzle_input):
 
 
 def part_2(puzzle_input):
-    points = get_points(puzzle_input)
+    max_total_distance = int(puzzle_input[0])
+    points = get_points(puzzle_input[1:])
     x_min, x_max, y_min, y_max = get_min_max_bounds(points)
     region = set()
     for x in range(x_min, x_max + 1):
         for y in range(y_min, y_max + 1):
             dists = distances((x, y), points)
             total_d = sum([d[0] for d in dists])
-            if total_d < 10000:
+            if total_d < max_total_distance:
                 region.add((x, y))
     return len(region)

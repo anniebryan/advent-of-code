@@ -59,10 +59,11 @@ def encryption_weakness(numbers, target):
 
 
 def part_1(puzzle_input):
-    numbers = get_numbers(puzzle_input)
-    return find_first_invalid(numbers, 25)
+    preamble = int(puzzle_input[0].split("=")[1])
+    numbers = get_numbers(puzzle_input[1:])
+    return find_first_invalid(numbers, preamble)
 
 
 def part_2(puzzle_input):
-    numbers = get_numbers(puzzle_input)
+    numbers = get_numbers(puzzle_input[1:])
     return encryption_weakness(numbers, part_1(puzzle_input))

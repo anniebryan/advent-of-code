@@ -4,7 +4,7 @@ Day 2: 1202 Program Alarm
 """
 
 def get_ints(puzzle_input):
-    ints = [int(i) for i in puzzle_input[0].split(",")]
+    ints = [int(i) for i in puzzle_input.split(",")]
     return ints
 
 
@@ -46,14 +46,19 @@ def run_until_halt(ints: list):
 
 
 def part_1(puzzle_input):
-    ints = get_ints(puzzle_input)
-    ints[1] = 12
-    ints[2] = 2
+    replace = (puzzle_input[0] == "T")
+    ints = get_ints(puzzle_input[1])
+    if replace:
+        ints[1] = 12
+        ints[2] = 2
     return run_until_halt(ints)[0]
 
 
 def part_2(puzzle_input):
-    ints = get_ints(puzzle_input)
+    replace = (puzzle_input[0] == "T")
+    if not replace:
+        return "Not supported"
+    ints = get_ints(puzzle_input[1])
     desired_output = 19690720
     for noun in range(100):
         for verb in range(100):

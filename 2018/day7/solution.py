@@ -47,7 +47,7 @@ def part_1(puzzle_input):
     returns an order for steps to be completed satisfying all prerequisites as given in day7.txt
     ties are broken alphabetically
     """
-    all_steps, all_prerequisites, all_dependencies = parse_requirements(puzzle_input)
+    all_steps, all_prerequisites, all_dependencies = parse_requirements(puzzle_input[2:])
     steps, prerequisites = copy.deepcopy(all_steps), copy.deepcopy(all_prerequisites)
     completed = set()
     order = []
@@ -56,10 +56,10 @@ def part_1(puzzle_input):
         order.append(min(available))
         completed.add(min(available))
         prerequisites = update_prerequisites(prerequisites, all_dependencies, min(available))
-    return order
+    return "".join(order)
 
 
-def get_required_duration(c):
+def get_required_duration(c, seconds_to_subtract):
     """
     :return: integer duration of time
     >>> get_required_duration('A')
@@ -67,10 +67,10 @@ def get_required_duration(c):
     >>> get_required_duration('Z')
     86
     """
-    return ord(c) - 4
+    return ord(c) - 4 - seconds_to_subtract
 
 
-def timestep(workers, completed, prerequisites, all_steps, all_dependencies):
+def timestep(workers, completed, prerequisites, all_steps, all_dependencies, seconds_to_subtract):
     """
     symbolizes the passage of one step of time
     """
@@ -87,7 +87,7 @@ def timestep(workers, completed, prerequisites, all_steps, all_dependencies):
     while available_workers and available_steps:
         w = min(available_workers)
         s = min(available_steps)
-        workers[w] = (s, get_required_duration(s))
+        workers[w] = (s, get_required_duration(s, seconds_to_subtract))
         available_workers = {w for w in workers if not workers[w]}
         being_completed = {workers[w][0] for w in workers if workers[w] is not None}
         available_steps = get_available(all_steps, completed.union(being_completed), prerequisites)
@@ -100,8 +100,9 @@ def part_2(puzzle_input):
     given durations as described in get_required_duration
     ties are broken alphabetically
     """
-    all_steps, all_prerequisites, all_dependencies = parse_requirements(puzzle_input)
-    num_workers = 5
+    num_workers = int(puzzle_input[0])
+    seconds_to_subtract = int(puzzle_input[1])
+    all_steps, all_prerequisites, all_dependencies = parse_requirements(puzzle_input[2:])
     # maps worker -> None if idle
     # maps worker -> (step, time remaining) otherwise
     workers = dict.fromkeys(range(num_workers))
@@ -109,6 +110,6 @@ def part_2(puzzle_input):
     time = 0
     _, prerequisites = copy.deepcopy(all_steps), copy.deepcopy(all_prerequisites)
     while len(completed) < len(all_steps):
-        workers, completed, prerequisites = timestep(workers, completed, prerequisites, all_steps, all_dependencies)
+        workers, completed, prerequisites = timestep(workers, completed, prerequisites, all_steps, all_dependencies, seconds_to_subtract)
         time += 1
     return time - 1
