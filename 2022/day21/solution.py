@@ -6,19 +6,29 @@ Day 21: Monkey Math
 import re
 import operator
 
-ops = {
+OPS = {
     "+": operator.add,
     "-": operator.sub,
     "*": operator.mul,
     "/": operator.truediv
 }
 
-inverse_ops = {
+INVERSE_OPS = {
     "+": operator.sub,
     "-": operator.add,
     "*": operator.truediv,
     "/": operator.mul
 }
+
+
+class Expression:
+    def __init__(self, left, right, operation):
+        self.left = left
+        self.right = right
+        self.op_symbol = operation
+
+    def __str__(self):
+        return f"({self.left} {self.op_symbol} {self.right})"
 
 
 class Monkey:
@@ -46,18 +56,9 @@ class Monkey:
         right_val = monkeys[self.monkey_two_name].get_number(monkeys)
 
         if isinstance(left_val, int) and isinstance(right_val, int):
-            return int(ops[self.operation](left_val, right_val))
+            return int(OPS[self.operation](left_val, right_val))
         else:
             return Expression(left_val, right_val, self.operation)
-
-class Expression:
-    def __init__(self, left, right, operation):
-        self.left = left
-        self.right = right
-        self.op_symbol = operation
-
-    def __str__(self):
-        return f"({self.left} {self.op_symbol} {self.right})"
 
 
 def parse(puzzle_input):
@@ -67,6 +68,7 @@ def parse(puzzle_input):
         monkeys[monkey.name] = monkey
     return monkeys
 
+
 def set_equal(monkeys):
     root_monkey = monkeys["root"]
     monkeys["humn"].number = "X"
@@ -74,13 +76,13 @@ def set_equal(monkeys):
     expression = monkeys[root_monkey.monkey_one_name].get_number(monkeys)
     while not ((isinstance(expression, str)) or isinstance(expression.left, int) and isinstance(expression.right, int)):
         if isinstance(expression.right, int):
-            target_value = int(inverse_ops[expression.op_symbol](target_value, expression.right))
+            target_value = int(INVERSE_OPS[expression.op_symbol](target_value, expression.right))
             expression = expression.left
         elif isinstance(expression.left, int):
             if expression.op_symbol in {"+", "*"}:
-                target_value = int(inverse_ops[expression.op_symbol](target_value, expression.left))
+                target_value = int(INVERSE_OPS[expression.op_symbol](target_value, expression.left))
             else:
-                target_value = int(ops[expression.op_symbol](expression.left, target_value))
+                target_value = int(OPS[expression.op_symbol](expression.left, target_value))
             expression = expression.right
     return target_value
 

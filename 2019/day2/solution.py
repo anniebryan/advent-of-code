@@ -24,9 +24,9 @@ def handle_opcode(i: int, ints: list):
         return 'halt'
     else:
         if opcode == 1:
-            new_ints[ints[i+3]] = ints[ints[i+1]] + ints[ints[i+2]]
+            new_ints[ints[i + 3]] = ints[ints[i + 1]] + ints[ints[i + 2]]
         elif opcode == 2:
-            new_ints[ints[i+3]] = ints[ints[i+1]] * ints[ints[i+2]]
+            new_ints[ints[i + 3]] = ints[ints[i + 1]] * ints[ints[i + 2]]
         else:
             return 'something went wrong'
         return new_ints

@@ -42,14 +42,16 @@ def compare_pair(left, right):
         return list_result
     return compare_pair(left[1:], right[1:])
 
+
 def part_1(puzzle_input):
-    pairs = [(ast.literal_eval(puzzle_input[i]), ast.literal_eval(puzzle_input[i+1])) for i in range(0, len(puzzle_input), 3)]
+    pairs = [(ast.literal_eval(puzzle_input[i]), ast.literal_eval(puzzle_input[i + 1])) for i in range(0, len(puzzle_input), 3)]
     in_order_idx_sum = 0
     for i, pair in enumerate(pairs):
         left, right = pair
         if compare_pair(left, right) == -1:
             in_order_idx_sum += i + 1
     return in_order_idx_sum
+
 
 def part_2(puzzle_input):
     packets = [ast.literal_eval(line) for line in puzzle_input if len(line) > 0]

@@ -38,6 +38,7 @@ class Forest:
             score *= num_visible
         return score
 
+
 def part_1(puzzle_input):
     forest = Forest(puzzle_input)
     visible_trees = 0
@@ -46,6 +47,7 @@ def part_1(puzzle_input):
             if forest.is_visible(i, j):
                 visible_trees += 1
     return visible_trees
+
 
 def part_2(puzzle_input):
     forest = Forest(puzzle_input)

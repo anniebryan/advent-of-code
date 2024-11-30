@@ -5,30 +5,38 @@ Day 11: Dumbo Octopus
 
 from collections import deque
 
+
 def get_octopus_dict(puzzle_input):
     octopuses = [[int(val) for val in str(int(row))] for row in puzzle_input]
     num_rows, num_cols = len(octopuses), len(octopuses[0])
     num_octopuses = num_rows * num_cols
-    octopus_dict = {(i,j): octopuses[j][i] for i in range(num_cols) for j in range(num_rows)}
-    return (octopus_dict, num_rows, num_cols, num_octopuses)
+    octopus_dict = {(i, j): octopuses[j][i] for i in range(num_cols) for j in range(num_rows)}
+    return octopus_dict, num_rows, num_cols, num_octopuses
+
 
 def get_neighbors(num_rows, num_cols, i, j):
-    left, right, up, down = ((i-1, j), (i+1, j), (i, j-1), (i, j+1))
-    top_left, top_right, bottom_left, bottom_right = ((i-1, j-1), (i+1, j-1), (i-1, j+1), (i+1, j+1))
     locs = set()
     if i != 0:
-        locs.add(left)
-        if j != 0: locs.add(top_left)
-        if j != num_rows-1: locs.add(bottom_left)
+        locs.add((i - 1, j))  # left
+        if j != 0:
+            locs.add((i - 1, j - 1))  # top left
+        if j != num_rows - 1:
+            locs.add((i - 1, j + 1))  # bottom left
 
-    if i != num_cols-1:
-        locs.add(right)
-        if j != 0: locs.add(top_right)
-        if j != num_rows-1: locs.add(bottom_right)
+    if i != num_cols - 1:
+        locs.add((i + 1, j))  # right
+        if j != 0:
+            locs.add((i + 1, j - 1))  # top right
+        if j != num_rows - 1:
+            locs.add((i + 1, j + 1))  # bottom right
 
-    if j != 0: locs.add(up)
-    if j != num_rows-1: locs.add(down)
+    if j != 0:
+        locs.add((i, j - 1))  # up
+    if j != num_rows - 1:
+        locs.add((i, j + 1))  # down
+
     return locs
+
 
 def timestep(num_rows, num_cols, d):
     new_d = d
@@ -74,10 +82,12 @@ def run_until_all_flashed(octopus_dict, num_rows, num_cols, num_octopuses):
         if num_flashed == num_octopuses:
             return i
 
+
 def part_1(puzzle_input):
-    (octopus_dict, num_rows, num_cols, _) = get_octopus_dict(puzzle_input)
+    octopus_dict, num_rows, num_cols, _ = get_octopus_dict(puzzle_input)
     return n_timesteps(octopus_dict, num_rows, num_cols, 100)
 
+
 def part_2(puzzle_input):
-    (octopus_dict, num_rows, num_cols, num_octopuses) = get_octopus_dict(puzzle_input)
+    octopus_dict, num_rows, num_cols, num_octopuses = get_octopus_dict(puzzle_input)
     return run_until_all_flashed(octopus_dict, num_rows, num_cols, num_octopuses)

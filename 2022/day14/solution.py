@@ -20,6 +20,7 @@ def points(line):
                 yield (i, y)
         start_point = point
 
+
 def get_rock(input):
     rock = set()
     for line in input:
@@ -56,17 +57,18 @@ def print_pile(rock, sand):
     filled = rock.union(sand)
     xs = {p[0] for p in filled}
     ys = {p[1] for p in filled}
-    s = ""
-    for y in range(min(ys), max(ys)+1):
-        for x in range(min(xs), max(xs)+1):
+    s = []
+    for y in range(min(ys), max(ys) + 1):
+        for x in range(min(xs), max(xs) + 1):
             if (x, y) in rock:
-                s += "#"
+                s.append("#")
             elif (x, y) in sand:
-                s += "o"
+                s.append("o")
             else:
-                s += "."
-        s += "\n"
-    print(s)
+                s.append(".")
+        s.append("\n")
+    print("".join(s))
+    return
 
 
 def pour_sand(rock, y_max, sand_start, verbose=False):
@@ -103,8 +105,8 @@ def part_2(input):  # TODO speedup
     x_min, x_max = x_range
     y_min, y_max = y_range
 
-    floor_depth = y_max+2
-    floor = points(f"{500-floor_depth-2},{floor_depth} -> {500+floor_depth+2},{floor_depth}")
+    floor_depth = y_max + 2
+    floor = points(f"{500 - floor_depth - 2},{floor_depth} -> {500 + floor_depth + 2},{floor_depth}")
     for point in floor:
         rock.add(point)
     return pour_sand(rock, floor_depth, (500, 0))

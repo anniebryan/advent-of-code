@@ -3,12 +3,11 @@ Advent of Code 2020
 Day 11: Seating System
 """
 
-from collections import defaultdict
-
 def get_area_dimensions(puzzle_input):
     width = len(puzzle_input)
     height = len(puzzle_input[0])
     return width, height
+
 
 def get_seat_locations(puzzle_input):
     width, height = get_area_dimensions(puzzle_input)
@@ -18,6 +17,7 @@ def get_seat_locations(puzzle_input):
             if puzzle_input[i][j] == 'L':
                 seats.add((i, j))
     return seats
+
 
 def get_visible_seats(puzzle_input, seats, i, j, adjacent):
     width, height = get_area_dimensions(puzzle_input)
@@ -35,6 +35,7 @@ def get_visible_seats(puzzle_input, seats, i, j, adjacent):
                     visible_seats.add((x, y))
     return visible_seats
 
+
 def get_num_occupied(puzzle_input, seats, occupied, seat, adjacent):
     i, j = seat
     visible_seats = get_visible_seats(puzzle_input, seats, i, j, adjacent)
@@ -44,16 +45,18 @@ def get_num_occupied(puzzle_input, seats, occupied, seat, adjacent):
             n += 1
     return n
 
+
 def timestep(puzzle_input, seats, occupied, adjacent, threshold):
     new_occupied = set()
     for seat in seats:
-        if seat not in occupied: # empty
+        if seat not in occupied:  # empty
             if get_num_occupied(puzzle_input, seats, occupied, seat, adjacent) == 0:
                 new_occupied.add(seat)
-        else: # occupied
+        else:  # occupied
             if get_num_occupied(puzzle_input, seats, occupied, seat, adjacent) < threshold:
                 new_occupied.add(seat)
     return new_occupied
+
 
 def run_until_steady_state(puzzle_input, adjacent, threshold):
     seats = get_seat_locations(puzzle_input)
@@ -64,8 +67,10 @@ def run_until_steady_state(puzzle_input, adjacent, threshold):
         new_occupied = timestep(puzzle_input, seats, occupied, adjacent, threshold)
     return new_occupied
 
+
 def part_1(puzzle_input):
     return len(run_until_steady_state(puzzle_input, True, 4))
+
 
 def part_2(puzzle_input):
     return len(run_until_steady_state(puzzle_input, False, 5))

@@ -3,7 +3,8 @@ Advent of Code 2019
 Day 4: Secure Container
 """
 
-import re
+import regex as re
+
 
 def get_min_max_r(puzzle_input):
     min_r, max_r = (int(x) for x in re.findall('(\d+)-(\d+)', puzzle_input[0])[0])
@@ -12,13 +13,13 @@ def get_min_max_r(puzzle_input):
 
 def adjacent_digits(n):
     s = str(n)
-    adjacent = [s[i] == s[i+1] for i in range(len(s)-1)]
+    adjacent = [s[i] == s[i + 1] for i in range(len(s) - 1)]
     return any(adjacent)
 
 
 def never_decreases(n):
     s = str(n)
-    decreases = [s[i] > s[i+1] for i in range(len(s)-1)]
+    decreases = [s[i] > s[i + 1] for i in range(len(s) - 1)]
     return not any(decreases)
 
 
@@ -26,8 +27,8 @@ def contains_double(n):
     s = str(n)
     lengths = []
     current = 1
-    for i in range(len(s)-1):
-        if s[i] == s[i+1]:
+    for i in range(len(s) - 1):
+        if s[i] == s[i + 1]:
             current += 1
         else:
             lengths.append(current)

@@ -5,11 +5,14 @@ Day 12: Passage Pathing
 
 from collections import defaultdict, deque
 
+
 def get_edges(puzzle_input):
     return {tuple([s.strip() for s in line.split('-')]) for line in puzzle_input}
 
+
 is_end = lambda s: s == 'end'
 is_small = lambda s: s.islower() and not is_end(s)
+
 
 def get_neighbors(puzzle_input):
     neighbors = defaultdict(set)
@@ -20,6 +23,7 @@ def get_neighbors(puzzle_input):
         if y != 'start':
             neighbors[x].add(y)
     return neighbors
+
 
 def cave_generator(puzzle_input, part_2):
     queue = deque()
@@ -47,8 +51,10 @@ def cave_generator(puzzle_input, part_2):
             else:
                 queue.append((new_path, neighbor, small_caves_visited, small_cave_visited_twice))
 
+
 def part_1(puzzle_input):
     return len(list(cave_generator(puzzle_input, False)))
+
 
 def part_2(puzzle_input):
     return len(list(cave_generator(puzzle_input, True)))

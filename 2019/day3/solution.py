@@ -9,37 +9,36 @@ def get_wires(puzzle_input):
 
 
 def combine(loc, dir):
-    change_by = {'L':(-1,0),
-                 'R':(1,0),
-                 'U':(0,1),
-                 'D':(0,-1)}
-    new_loc = tuple(loc[i] + change_by[dir[0]][i]*dir[1] for i in range(2))
+    change_by = {'L': (-1, 0), 'R':(1, 0), 'U':(0, 1), 'D':(0, -1)}
+    new_loc = tuple(loc[i] + change_by[dir[0]][i] * dir[1] for i in range(2))
     return new_loc
 
 
 def get_vertices(wire, current_loc = (0,0)):
-    if not wire: return [current_loc]
+    if not wire:
+        return [current_loc]
     new_loc = combine(current_loc, wire[0])
     return [current_loc] + get_vertices(wire[1:], new_loc)
 
 
 def get_path(vertices):
-    if len(vertices) < 2: return []
+    if len(vertices) < 2:
+        return []
     if vertices[0][0] == vertices[1][0]:
         if vertices[0][1] < vertices[1][1]:
-            path = [(vertices[0][0], i+1) for i in range(vertices[0][1], vertices[1][1])]
+            path = [(vertices[0][0], i + 1) for i in range(vertices[0][1], vertices[1][1])]
         else:
             path = [(vertices[0][0], i) for i in range(vertices[1][1], vertices[0][1])][::-1]
     else:
         if vertices[0][0] < vertices[1][0]:
-            path = [(i+1, vertices[0][1]) for i in range(vertices[0][0], vertices[1][0])]
+            path = [(i + 1, vertices[0][1]) for i in range(vertices[0][0], vertices[1][0])]
         else:
             path = [(i, vertices[0][1]) for i in range(vertices[1][0], vertices[0][0])][::-1]
     return path + get_path(vertices[1:])
 
 
 def get_manhattan_distance(loc):
-    return abs(loc[0])+abs(loc[1])
+    return abs(loc[0]) + abs(loc[1])
 
 
 def get_intersections(wire_1, wire_2):

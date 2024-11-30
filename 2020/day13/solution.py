@@ -3,15 +3,17 @@ Advent of Code 2020
 Day 13: Shuttle Search
 """
 
-from collections import defaultdict
 from math import prod
+
 
 def get_earliest_bus(puzzle_input):
     return int(puzzle_input[0])
 
+
 def get_bus_times(puzzle_input):
     times = puzzle_input[1].split(',')
     return {int(x) for x in times if x != 'x'}
+
 
 def next_bus_time(puzzle_input):
     earliest_bus = get_earliest_bus(puzzle_input)
@@ -20,9 +22,11 @@ def next_bus_time(puzzle_input):
     soonest_bus = min(time_to_wait, key = time_to_wait.get)
     return soonest_bus, time_to_wait[soonest_bus]
 
+
 def get_departure_requirements(puzzle_input):
     times = puzzle_input[1].split(',')
     return {(i, int(times[i])) for i in range(len(times)) if times[i] != 'x'}
+
 
 def get_earliest_timestamp(puzzle_input):
     requirements = get_departure_requirements(puzzle_input)
@@ -34,8 +38,10 @@ def get_earliest_timestamp(puzzle_input):
         inc *= bus
     return time
 
+
 def part_1(puzzle_input):
     return prod(next_bus_time(puzzle_input))
+
 
 def part_2(puzzle_input):
     return get_earliest_timestamp(puzzle_input)

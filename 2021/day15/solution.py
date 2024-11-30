@@ -4,7 +4,6 @@ Day 15: Chiton
 """
 
 import sys
-from collections import deque
 import heapq
 
 
@@ -40,12 +39,15 @@ class Graph:
 
     def get_neighbors(self, node):
         i, j = node
-        left, right, up, down = ((i-1, j), (i+1, j), (i, j-1), (i, j+1))
         locs = set()
-        if i != 0: locs.add(left)
-        if i != self.width: locs.add(right)
-        if j != 0: locs.add(up)
-        if j != self.height: locs.add(down)
+        if i != 0:
+            locs.add((i - 1, j))  # left
+        if i != self.width:
+            locs.add((i + 1, j))  # right
+        if j != 0:
+            locs.add((i, j - 1))  # up
+        if j != self.height:
+            locs.add((i, j + 1))  # down
         return locs
 
     def get_nodes(self):
@@ -57,14 +59,15 @@ class Graph:
     def end_node(self):
         return (self.height, self.width)
 
+
 def dijkstra(graph, start_node):
-    min_risk = {} # maps (i, j) to min risk so far
+    min_risk = {}  # maps (i, j) -> min risk so far
     max_value = sys.maxsize
     for node in graph.get_nodes():
         min_risk[node] = max_value
     min_risk[start_node] = 0
 
-    q = [(0, start_node)] # min priority queue
+    q = [(0, start_node)]  # min priority queue
     while q:
         risk, node = heapq.heappop(q)
         if risk <= min_risk[node]:
@@ -76,15 +79,18 @@ def dijkstra(graph, start_node):
 
     return min_risk
 
+
 def min_risk(risk_levels):
     graph = Graph(risk_levels)
     start_node = (0,0)
     end_node = graph.end_node()
     return dijkstra(graph, start_node)[end_node]
 
+
 def part_1(puzzle_input):
     risk_levels = get_risk_levels(puzzle_input, False)
     return min_risk(risk_levels)
+
 
 def part_2(puzzle_input):
     risk_levels = get_risk_levels(puzzle_input, True)

@@ -6,6 +6,7 @@ Day 19: Not Enough Minerals
 import re
 from collections import deque
 
+
 class Blueprint:
     def __init__(self, row):
         values = re.match("Blueprint (\d+): Each ore robot costs (\d+) ore. Each clay robot costs (\d+) ore. Each obsidian robot costs (\d+) ore and (\d+) clay. Each geode robot costs (\d+) ore and (\d+) obsidian.", row).groups()
@@ -106,7 +107,8 @@ def part_1(puzzle_input):
         max_geodes, _ = max_num_geodes(blueprint, (0, 0, 0, 0), (1, 0, 0, 0), 24)
         quality.append(max_geodes * blueprint.id)
     return sum(quality)
-    
+
+
 def part_2(puzzle_input):
     product = 1
     for blueprint in parse(puzzle_input[:3]):

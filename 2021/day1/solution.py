@@ -6,8 +6,14 @@ Day 1: Sonar Sweep
 def get_measurements(puzzle_input):
 	return [int(n) for n in puzzle_input]
 
-increasing = lambda x, y: y > x
-three_sum = lambda x, y, z: x + y + z
+
+def increasing(x, y):
+	return y > x
+
+
+def three_sum(x, y, z):
+	return x + y + z
+
 
 def part_1(puzzle_input):
 	measurements = get_measurements(puzzle_input)

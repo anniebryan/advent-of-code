@@ -10,6 +10,7 @@ def get_instructions(puzzle_input):
         instructions[i] = (vals[0], int(vals[1]))
     return instructions
 
+
 def process_instruction(instructions, i, acc, override = None):
     if override is not None and override[0] == i:
         instruction = (override[1], instructions[i][1])
@@ -19,34 +20,38 @@ def process_instruction(instructions, i, acc, override = None):
     new_acc = acc + instruction[1] if instruction[0] == 'acc' else acc
     return next_i, new_acc
 
+
 def run_sequence(instructions, override = None):
     seen = {0}
     i, acc = 0, 0
     while True:
         i, acc = process_instruction(instructions, i, acc, override)
-        if i in seen: # found cycle
+        if i in seen:  # found cycle
             return (False, acc)
-        elif i == len(instructions): # properly terminated
+        elif i == len(instructions):  # properly terminated
             return (True, acc)
         else:
             seen.add(i)
 
+
 def try_all_sequences(instructions):
     for i in instructions:
-        if instructions[i][0] == 'nop': # change to 'jmp'
+        if instructions[i][0] == 'nop':  # change to 'jmp'
             override = (i, 'jmp')
             result = run_sequence(instructions, override)
             if result[0]:
                 return result[1]
-        elif instructions[i][0] == 'jmp': # change to 'nop'
+        elif instructions[i][0] == 'jmp':  # change to 'nop'
             override = (i, 'nop')
             result = run_sequence(instructions, override)
             if result[0]:
                 return result[1]
 
+
 def part_1(puzzle_input):
     instructions = get_instructions(puzzle_input)
     return run_sequence(instructions)[1]
+
 
 def part_2(puzzle_input):
     instructions = get_instructions(puzzle_input)

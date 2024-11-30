@@ -3,6 +3,17 @@ Advent of Code 2022
 Day 20: Grove Positioning System
 """
 
+class Node:
+    def __init__(self, val):
+        self.val = val
+        self.next = None
+        self.prev = None
+
+    def link(self, node):
+        self.next = node
+        node.prev = self
+
+
 class LinkedList:
     def __init__(self, decryption_key):
         self.nodes = []
@@ -48,17 +59,6 @@ class LinkedList:
         return node.val
 
 
-class Node:
-    def __init__(self, val):
-        self.val = val
-        self.next = None
-        self.prev = None
-
-    def link(self, node):
-        self.next = node
-        node.prev = self
-
-
 def parse(puzzle_input, decryption_key):
     ls = LinkedList(decryption_key)
     for row in puzzle_input:
@@ -77,6 +77,7 @@ def solve(puzzle_input, decryption_key, num_times):
 
 def part_1(puzzle_input):
     return solve(puzzle_input, 1, 1)
-    
+
+
 def part_2(puzzle_input):
     return solve(puzzle_input, 811589153, 10)

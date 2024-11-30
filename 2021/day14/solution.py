@@ -10,9 +10,11 @@ def get_template(puzzle_input):
     template = puzzle_input[0].strip()
     return template
 
+
 def get_rules(puzzle_input):
     rules = [tuple(rule.strip().split(' -> ')) for rule in puzzle_input[2:]]
     return rules
+
 
 def execute_rules(rules, text):
     new_text = deque()
@@ -45,6 +47,7 @@ def n_steps(rules, text, n):
             text.append((char, True))
     return text
 
+
 def difference(text):
     counts = defaultdict(int)
     for s in text:
@@ -55,6 +58,7 @@ def difference(text):
 
     return counts[most_common] - counts[least_common]
 
+
 def part_1(puzzle_input):
     template = get_template(puzzle_input)
     rules = get_rules(puzzle_input)
@@ -64,6 +68,8 @@ def part_1(puzzle_input):
     text = n_steps(rules, text, 10)
     return difference(text)
 
+
+# TODO speedup
 def part_2(puzzle_input):
     template = get_template(puzzle_input)
     rules = get_rules(puzzle_input)
@@ -72,4 +78,3 @@ def part_2(puzzle_input):
         text.append((s, True))
     text = n_steps(rules, text, 40)
     return difference(text)
-    # code is too slow TODO

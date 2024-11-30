@@ -13,6 +13,7 @@ def get_passwords(puzzle_input):
         passwords.append((int(low), int(high), char, password))
     return passwords
 
+
 def get_password_char_count(password, c):
     count = 0
     for char in password:
@@ -20,8 +21,10 @@ def get_password_char_count(password, c):
             count += 1
     return count
 
+
 def get_chars_at(password, i, j):
-    return {password[i-1], password[j-1]}
+    return {password[i - 1], password[j - 1]}
+
 
 def count_valid_passwords(puzzle_input, policy_one):
     """
@@ -44,8 +47,10 @@ def count_valid_passwords(puzzle_input, policy_one):
                 num_valid_passwords += 1
     return num_valid_passwords
 
+
 def part_1(puzzle_input):
     return count_valid_passwords(puzzle_input, True)
+
 
 def part_2(puzzle_input):
     return count_valid_passwords(puzzle_input, False)

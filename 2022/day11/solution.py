@@ -41,15 +41,17 @@ class Monkey:
                 self.memo[item] = (throw_to, worry_level)
             yield self.memo[item]
 
+
 def create_monkeys(puzzle_input):
-    monkeys = {i: Monkey(puzzle_input[i*7:(i*7)+6]) for i in range(len(puzzle_input) // 7)}
+    monkeys = {i: Monkey(puzzle_input[i * 7 : (i * 7) + 6]) for i in range(len(puzzle_input) // 7)}
     for i in range(0, len(puzzle_input), 7):
-        monkeys[i/7] = Monkey(puzzle_input[i:i+6])
+        monkeys[i / 7] = Monkey(puzzle_input[i:i + 6])
     return monkeys
+
 
 def n_rounds(puzzle_input, n, part_2):
     monkeys = create_monkeys(puzzle_input)
-    product = reduce(lambda x, y: x*y, map(lambda i: monkeys[i].divisible_by, monkeys))
+    product = reduce(lambda x, y: x * y, map(lambda i: monkeys[i].divisible_by, monkeys))
 
     for _ in range(n):
         for i in sorted(monkeys.keys()):
@@ -58,14 +60,17 @@ def n_rounds(puzzle_input, n, part_2):
                 monkeys[thrown_to].append_item(worry_level)
     return monkeys
 
+
 def monkey_business(monkeys):
     num_inspections = map(lambda i: monkeys[i].num_times_inspected, monkeys)
     most_active = sorted(num_inspections, reverse=True)
     return most_active[0] * most_active[1]
 
+
 def part_1(puzzle_input):
     monkeys = n_rounds(puzzle_input, 20, False)
     return monkey_business(monkeys)
+
 
 def part_2(puzzle_input):
     monkeys = n_rounds(puzzle_input, 10000, True)

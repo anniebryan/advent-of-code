@@ -5,24 +5,28 @@ Day 9: Encoding Error
 
 from collections import deque
 
+
 def get_numbers(puzzle_input):
     numbers = [int(n) for n in puzzle_input]
     return numbers
+
 
 def init_preamble(numbers, consider_prev):
     last_numbers = deque()
     for i in range(consider_prev):
         last_numbers.append(numbers[i])
-    return last_numbers, numbers[consider_prev+1:]
+    return last_numbers, numbers[consider_prev:]
+
 
 def exists_sum(last_numbers, n):
     seen = set()
     for i in last_numbers:
-        if n-i in seen:
+        if n - i in seen:
             return True
         else:
             seen.add(i)
     return False
+
 
 def find_first_invalid(numbers, consider_prev):
     last_numbers, remaining = init_preamble(numbers, consider_prev)
@@ -31,6 +35,7 @@ def find_first_invalid(numbers, consider_prev):
         last_numbers.append(remaining[0])
         remaining = remaining[1:]
     return remaining[0]
+
 
 def contiguous_sequence(numbers, target):
     sequence = deque()
@@ -42,18 +47,21 @@ def contiguous_sequence(numbers, target):
             i += 1
             sequence.append(n)
             current_sum += n
-        else: # current sum > target
+        else:  # current sum > target
             n = sequence.popleft()
             current_sum -= n
     return sequence
+
 
 def encryption_weakness(numbers, target):
     sequence = contiguous_sequence(numbers, target)
     return max(sequence) + min(sequence)
 
+
 def part_1(puzzle_input):
     numbers = get_numbers(puzzle_input)
     return find_first_invalid(numbers, 25)
+
 
 def part_2(puzzle_input):
     numbers = get_numbers(puzzle_input)

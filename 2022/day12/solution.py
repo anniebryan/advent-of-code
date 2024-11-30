@@ -21,6 +21,7 @@ def create_map(puzzle_input):
                 map[(i, j)] = ord(val) - 96
     return (map, map_size, start_loc, end_loc)
 
+
 def is_valid_neighbor(map, map_size, current_height, neighbor):
     i, j = neighbor
     if 0 <= i <= map_size[0]:
@@ -28,6 +29,7 @@ def is_valid_neighbor(map, map_size, current_height, neighbor):
             if current_height + 1 >= map[(i, j)]:
                 return True
     return False
+
 
 def bfs(map, map_size, start_loc, end_loc):
     queue = [start_loc]
@@ -39,7 +41,7 @@ def bfs(map, map_size, start_loc, end_loc):
         x, y = loc
         current_height = map[loc]
 
-        for neighbor in [(x+1, y), (x-1, y), (x, y+1), (x, y-1)]:
+        for neighbor in [(x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)]:
             if is_valid_neighbor(map, map_size, current_height, neighbor):
                 if neighbor not in visited:
                     visited.add(neighbor)
@@ -50,11 +52,13 @@ def bfs(map, map_size, start_loc, end_loc):
                         return dist
     return None
 
+
 def min_distances(map, map_size, start_locs, end_loc):
     for start_loc in start_locs:
         dist = bfs(map, map_size, start_loc, end_loc)
         if dist is not None:
             yield dist[end_loc]
+
 
 def part_1(puzzle_input):
     map, map_size, start_loc, end_loc = create_map(puzzle_input)
@@ -63,11 +67,12 @@ def part_1(puzzle_input):
         return dist[end_loc]
     return "Unable to get to E from S"
 
+
 def part_2(puzzle_input):
     map, map_size, _, end_loc = create_map(puzzle_input)
     d = {}
     for start_loc in map:
-        if map[start_loc] == 1: # valid start location
+        if map[start_loc] == 1:  # valid start location
             dist = bfs(map, map_size, start_loc, end_loc)
             if dist is not None:
                 d[start_loc] = dist[end_loc]

@@ -17,6 +17,7 @@ def get_sides(cube):
         ('yz', x, y - 1, z - 1)
     }
 
+
 def get_all_sides(cubes):
     all_sides = defaultdict(int)
     for cube in cubes:
@@ -72,6 +73,7 @@ def unreachable_air_space(cubes):
 def part_1(puzzle_input):
     cubes = [tuple(int(x) for x in row.split(",")) for row in puzzle_input]
     return len(unique_sides(cubes))
+
 
 def part_2(puzzle_input):
     cubes = [tuple(int(x) for x in row.split(",")) for row in puzzle_input]

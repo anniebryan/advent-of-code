@@ -3,9 +3,10 @@ Advent of Code 2018
 Day 7: The Sum of Its Parts
 """
 
-import re
+import regex as re
 import copy
 from collections import defaultdict
+
 
 def parse_requirements(puzzle_input):
     requirements = {re.findall(r'Step ([A-Z]) must be finished before step ([A-Z]) can begin', i)[0] for i in puzzle_input}

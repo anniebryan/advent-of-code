@@ -16,6 +16,7 @@ class Valve:
     def __repr__(self):
         return f"Valve({self.name}, {self.flow_rate}, {self.tunnels})"
 
+
 def parse_puzzle_input(puzzle_input):
     valves = {}
     for row in puzzle_input:
@@ -74,7 +75,6 @@ def part_1(puzzle_input):
     dist = get_dist_graph(valves)
     unvisited = {v for v in valves if valves[v].flow_rate != 0}
     best_path, max_pressure = get_max_pressure(valves, dist, unvisited, "AA", 30, {})
-    # print(best_path)
     return max_pressure
 
 

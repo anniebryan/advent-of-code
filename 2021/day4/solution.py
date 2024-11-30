@@ -6,6 +6,7 @@ Day 4: Giant Squid
 def get_input_numbers(puzzle_input):
     return [int(n) for n in puzzle_input[0].split(',')]
 
+
 def get_input_boards(puzzle_input):
     boards = []
     current_board = []
@@ -26,10 +27,12 @@ def get_input_boards(puzzle_input):
         boards_dict[i] = board_dict
     return boards_dict
 
+
 size = 5
 row = lambda marked: any([all([(i, j) in marked for j in range(size)]) for i in range(size)])
 col = lambda marked: any([all([(i, j) in marked for i in range(size)]) for j in range(size)])
 wins = lambda marked: row(marked) or col(marked)
+
 
 def part_1(puzzle_input):
     input_numbers = get_input_numbers(puzzle_input)
@@ -48,6 +51,7 @@ def part_1(puzzle_input):
             all_spaces = {(i,j) for i in range(size) for j in range(size)}
             unmarked = [winning_board[s] for s in all_spaces if s not in marked_spaces[winning_board_num]]
             return sum(unmarked) * num
+
 
 def part_2(puzzle_input):
     input_numbers = get_input_numbers(puzzle_input)

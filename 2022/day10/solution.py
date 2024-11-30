@@ -17,7 +17,7 @@ def execute_program(puzzle_input):
             cycle += 1
 
             # yield cycle number and register value
-            yield (cycle, register)
+            yield cycle, register
 
             # add value to register
             if prev_cycle_instr is not None:
@@ -38,20 +38,21 @@ def execute_program(puzzle_input):
 def part_1(puzzle_input):
     cycles_of_interest = {20, 60, 100, 140, 180, 220}
     total = 0
-    for (cycle, register) in execute_program(puzzle_input):
+    for cycle, register in execute_program(puzzle_input):
         if cycle in cycles_of_interest:
             total += cycle * register
     return total
 
+
 def part_2(puzzle_input):
-    s = "\n"
-    for (cycle, register) in execute_program(puzzle_input):
+    s = ["\n"]
+    for cycle, register in execute_program(puzzle_input):
         sprite = {register - 1, register, register + 1}
         ix = (cycle - 1) % 40
         if ix in sprite:
-            s += "#"
+            s.append("#")
         else:
-            s += "."
+            s.append(".")
         if cycle % 40 == 0:
-            s += "\n"
-    return s
+            s.append("\n")
+    return "".join(s)

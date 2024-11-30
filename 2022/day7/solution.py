@@ -8,6 +8,7 @@ class File:
         self.name = name
         self.size = int(size)
 
+
 class Directory:
     def __init__(self, name, parent):
         self.name = name
@@ -42,13 +43,15 @@ class Directory:
             if isinstance(child, Directory) and child.name == directory_name:
                 return child
 
+
 def stringify(directory, level=0):
-    print("     "*level + f"- {directory.name} (dir, total size={directory.total_size()})")
+    print("     " * level + f"- {directory.name} (dir, total size={directory.total_size()})")
     for child in directory.contents:
         if isinstance(child, File):
-            print("     "*(level+1) + f"- {child.name} (file, size={child.size})")
+            print("     " * (level + 1) + f"- {child.name} (file, size={child.size})")
         else:
-            stringify(child, level+1)
+            stringify(child, level + 1)
+
 
 def get_filesystem(puzzle_input):
     root_directory = Directory("/", None)
@@ -56,16 +59,16 @@ def get_filesystem(puzzle_input):
     listing_files = False
     for row in puzzle_input[1:]:
         args = row.split(" ")
-        if args[0] == "$": # is a command
+        if args[0] == "$":  # is a command
             command = args[1]
-            if command == "cd": # change directory
+            if command == "cd":  # change directory
                 directory_name = args[2]
-                if directory_name == "..": # move to parent
+                if directory_name == "..":  # move to parent
                     current_directory = current_directory.parent
                 else:
                     assert(current_directory.has_child_directory(directory_name))
                     current_directory = current_directory.get_child_directory(directory_name)
-            elif command == "ls": # list contents
+            elif command == "ls":  # list contents
                 listing_files = True
             else:
                 print(f"unknown command: {command} not in cd, ls")
@@ -80,14 +83,17 @@ def get_filesystem(puzzle_input):
                 current_directory.add_file(file_name, file_size)
     return root_directory
 
+
 def all_directory_sizes(directory):
     yield directory.total_size()
     for child in directory.contents:
         if isinstance(child, Directory):
             yield from all_directory_sizes(child)
 
+
 def remaining_space_needed(directory, disk_space, total_needed):
     return directory.total_size() - (disk_space - total_needed)
+
 
 def part_1(puzzle_input):
     filesystem = get_filesystem(puzzle_input)

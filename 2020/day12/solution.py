@@ -3,11 +3,9 @@ Advent of Code 2020
 Day 12: Rain Risk
 """
 
-from collections import defaultdict
-
-
 def get_instructions(puzzle_input):
     return [(line[0], int(line[1:])) for line in puzzle_input]
+
 
 def process_instruction(instruction, direction, x, y):
     action, val = instruction[0], instruction[1]
@@ -23,6 +21,7 @@ def process_instruction(instruction, direction, x, y):
         return (direction + val) % 360, x, y
     elif action == 'R':
         return (direction - val) % 360, x, y
+
 
 def process_waypoint(instruction, x, y, way_x, way_y):
     action, val = instruction[0], instruction[1]
@@ -41,7 +40,8 @@ def process_waypoint(instruction, x, y, way_x, way_y):
     elif (action == 'L' or action == 'R') and val == 180:
         return x, y, -way_x, -way_y
     elif action == 'F':
-        return x + way_x*val, y + way_y*val, way_x, way_y
+        return x + way_x * val, y + way_y * val, way_x, way_y
+
 
 def process_all_instructions(puzzle_input, part_one):
     instructions = get_instructions(puzzle_input)
@@ -56,12 +56,15 @@ def process_all_instructions(puzzle_input, part_one):
             x, y, way_x, way_y = process_waypoint(instruction, x, y, way_x, way_y)
     return x, y
 
+
 def manhattan_distance(x, y):
     return abs(x) + abs(y)
+
 
 def part_1(puzzle_input):
     final_x, final_y = process_all_instructions(puzzle_input, True)
     return manhattan_distance(final_x, final_y)
+
 
 def part_2(puzzle_input):
     final_x, final_y = process_all_instructions(puzzle_input, False)

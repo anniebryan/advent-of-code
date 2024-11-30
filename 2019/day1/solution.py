@@ -16,7 +16,7 @@ def get_fuel(mass: int) -> int:
     >>> get_fuel(100756)
     33583
     """
-    return int(mass/3) - 2
+    return int(mass / 3) - 2
 
 
 def get_total_fuel(mass: int) -> int:
@@ -27,7 +27,7 @@ def get_total_fuel(mass: int) -> int:
     >>> get_total_fuel(100756)
     50346
     """
-    initial_fuel = int(mass/3) - 2
+    initial_fuel = int(mass / 3) - 2
     if initial_fuel <= 0:
         return 0
     return initial_fuel + get_total_fuel(initial_fuel)

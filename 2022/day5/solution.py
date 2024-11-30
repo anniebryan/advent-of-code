@@ -13,19 +13,20 @@ def get_crates_and_instructions(puzzle_input):
     is_instruction = False
     for row in puzzle_input:
         if row == "":
-            is_instruction = True # switch
+            is_instruction = True  # switch
         elif is_instruction:
             items = row.split()
-            instructions.append(tuple([int(items[i]) for i in [1,3,5]]))
-        else: # crate
+            instructions.append(tuple([int(items[i]) for i in [1, 3, 5]]))
+        else:  # crate
             for i, ch in enumerate(row):
                 if i % 4 == 1 and ch != ' ' and not re.match('\d+', ch):
                     crates[(i // 4) + 1].append(ch)
     crates = {i: crates[i][::-1] for i in crates}
     return crates, instructions
 
+
 def execute_instruction(instruction, crates, part_2):
-    (a, b, c) = instruction
+    a, b, c = instruction
     elems = [crates[b].pop() for _ in range(a)]
     if part_2:
         elems = elems[::-1]
@@ -33,19 +34,23 @@ def execute_instruction(instruction, crates, part_2):
         crates[c].append(elem)
     return crates
 
+
 def execute_instructions(puzzle_input, part_2):
     crates, instructions = get_crates_and_instructions(puzzle_input)
     for instruction in instructions:
         crates = execute_instruction(instruction, crates, part_2)
     return crates
 
+
 def topmost_crates(crates):
     topmost = [crates[i][-1] for i in sorted(crates.keys())]
     return "".join(topmost)
 
+
 def part_1(puzzle_input):
     crates = execute_instructions(puzzle_input, False)
     return topmost_crates(crates)
+
 
 def part_2(puzzle_input):
     crates = execute_instructions(puzzle_input, True)

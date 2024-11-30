@@ -5,9 +5,6 @@ Day 8: Seven Segment Search
 
 from collections import defaultdict
 
-def get_lines(puzzle_input):
-    return [[[val.strip() for val in x.split(' ')] for x in line.split(' | ')] for line in puzzle_input]
-
 TOP = 'top'
 TOP_LEFT = 'top left'
 TOP_RIGHT = 'top right'
@@ -16,9 +13,9 @@ BOTTOM_LEFT = 'bottom left'
 BOTTOM_RIGHT = 'bottom right'
 BOTTOM = 'bottom'
 
-segments = {TOP, TOP_LEFT, TOP_RIGHT, MIDDLE, BOTTOM_LEFT, BOTTOM_RIGHT, BOTTOM}
+SEGMENTS = {TOP, TOP_LEFT, TOP_RIGHT, MIDDLE, BOTTOM_LEFT, BOTTOM_RIGHT, BOTTOM}
 
-nums = {
+NUMS = {
     0: {TOP, TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT, BOTTOM},
     1: {TOP_RIGHT, BOTTOM_RIGHT},
     2: {TOP, TOP_RIGHT, MIDDLE, BOTTOM_LEFT, BOTTOM},
@@ -31,12 +28,19 @@ nums = {
     9: {TOP, TOP_LEFT, TOP_RIGHT, MIDDLE, BOTTOM_RIGHT, BOTTOM}
 }
 
+
+def get_lines(puzzle_input):
+    return [[[val.strip() for val in x.split(' ')] for x in line.split(' | ')] for line in puzzle_input]
+
+
 def get_count(letter_counts, loc):
-    segment_counts = {segment: len(list(filter(lambda num: segment in nums[num], nums))) for segment in segments}
+    segment_counts = {segment: len(list(filter(lambda num: segment in NUMS[num], NUMS))) for segment in SEGMENTS}
     return filter(lambda l: letter_counts[l] == segment_counts[loc], letter_counts).__next__()
+
 
 def get_signal(signals, length):
     return [signal for signal in signals if len(signal) == length][0]
+
 
 def get_output_number(line):
     signals, output = line
@@ -48,9 +52,9 @@ def get_output_number(line):
     top_left = get_count(letter_counts, TOP_LEFT)
     bottom_left = get_count(letter_counts, BOTTOM_LEFT)
     bottom_right = get_count(letter_counts, BOTTOM_RIGHT)
-    top_right = filter(lambda l: l != bottom_right, get_signal(signals, len(nums[1]))).__next__()
-    top = filter(lambda l: l not in {top_right, bottom_right}, get_signal(signals, len(nums[7]))).__next__()
-    middle = filter(lambda l: l not in {top_left, top_right, bottom_right}, get_signal(signals, len(nums[4]))).__next__()
+    top_right = filter(lambda l: l != bottom_right, get_signal(signals, len(NUMS[1]))).__next__()
+    top = filter(lambda l: l not in {top_right, bottom_right}, get_signal(signals, len(NUMS[7]))).__next__()
+    middle = filter(lambda l: l not in {top_left, top_right, bottom_right}, get_signal(signals, len(NUMS[4]))).__next__()
     bottom = filter(lambda l: l not in {top_left, bottom_left, bottom_right, top_right, top, middle}, letter_counts).__next__()
     
     mapping = {
@@ -63,11 +67,13 @@ def get_output_number(line):
         bottom: BOTTOM
     }
     
-    return int(''.join([str(filter(lambda n: nums[n] == {mapping[letter] for letter in val}, nums).__next__()) for val in output]))
+    return int(''.join([str(filter(lambda n: NUMS[n] == {mapping[letter] for letter in val}, NUMS).__next__()) for val in output]))
+
 
 def part_1(puzzle_input):
     lines = get_lines(puzzle_input)
-    return sum([sum([1*(len(item) in {2,3,4,7}) for item in line[1]]) for line in lines])
+    return sum([sum([1 * (len(item) in {2, 3, 4, 7}) for item in line[1]]) for line in lines])
+
 
 def part_2(puzzle_input):
     lines = get_lines(puzzle_input)
