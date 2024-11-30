@@ -1,5 +1,7 @@
-# Day 12: Subterranean Sustainability
-
+"""
+Advent of Code 2018
+Day 12: Subterranean Sustainability
+"""
 
 def get_initial_plant_indices(puzzle_input):
     initial_state = puzzle_input[0].split()[-1]

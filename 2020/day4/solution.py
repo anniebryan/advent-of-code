@@ -1,3 +1,8 @@
+"""
+Advent of Code 2020
+Day 4: Passport Processing
+"""
+
 REQUIRED_FIELDS = {'byr', 'iyr', 'eyr', 'hgt', 'hcl', 'ecl', 'pid'}
 
 def get_all_passports(puzzle_input):

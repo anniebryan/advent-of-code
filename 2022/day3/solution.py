@@ -1,3 +1,8 @@
+"""
+Advent of Code 2022
+Day 3: Rucksack Reorganization
+"""
+
 def letter_in_common(row):
     n = len(row)//2
     left = set()

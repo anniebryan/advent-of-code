@@ -1,3 +1,8 @@
+"""
+Advent of Code 2020
+Day 16: Ticket Translation
+"""
+
 from math import prod
 
 def process_input(puzzle_input):

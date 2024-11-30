@@ -1,3 +1,8 @@
+"""
+Advent of Code 2022
+Day 15: Beacon Exclusion Zone
+"""
+
 import re
 from collections import defaultdict
 

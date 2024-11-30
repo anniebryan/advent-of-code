@@ -1,3 +1,8 @@
+"""
+Advent of Code 2020
+Day 6: Custom Customs
+"""
+
 from collections import defaultdict
 
 def get_all_groups(puzzle_input):

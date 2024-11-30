@@ -1,3 +1,8 @@
+"""
+Advent of Code 2022
+Day 5: Supply Stacks
+"""
+
 from collections import defaultdict
 import re
 

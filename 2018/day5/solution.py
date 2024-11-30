@@ -1,3 +1,8 @@
+"""
+Advent of Code 2018
+Day 5: Alchemical Reduction
+"""
+
 import string
 from functools import reduce
 

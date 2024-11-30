@@ -1,3 +1,8 @@
+"""
+Advent of Code 2021
+Day 7: The Threachery of Whales
+"""
+
 def get_positions(puzzle_input):
     return [int(val) for val in puzzle_input[0].split(',')]
 

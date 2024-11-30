@@ -1,6 +1,7 @@
-############################
-# Advent of Code 2022 Day 20
-############################
+"""
+Advent of Code 2022
+Day 20: Grove Positioning System
+"""
 
 class LinkedList:
     def __init__(self, decryption_key):

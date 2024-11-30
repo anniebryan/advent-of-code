@@ -1,3 +1,8 @@
+"""
+Advent of Code 2022
+Day 12: Hill Climbing Algorithm
+"""
+
 def create_map(puzzle_input):
     map = {}
     map_size = (0, 0)

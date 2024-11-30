@@ -1,3 +1,8 @@
+"""
+Advent of Code 2020
+Day 21: Allergen Assessment
+"""
+
 def get_all_foods(puzzle_input):
     all_ingredients = set()
     all_allergens = set()

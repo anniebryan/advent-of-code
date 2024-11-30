@@ -1,3 +1,8 @@
+"""
+Advent of Code 2018
+Day 1: Chronal Calibration
+"""
+
 def part_1(puzzle_input):
     return sum([int(x) for x in puzzle_input])
 

@@ -1,3 +1,8 @@
+"""
+Advent of Code 2021
+Day 2: Dive!
+"""
+
 def get_commands(puzzle_input):
     return [(n.split(' ')[0], int(n.split(' ')[1])) for n in puzzle_input]
 

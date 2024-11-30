@@ -1,8 +1,10 @@
+"""
+Advent of Code 2022
+Day 18: Boiling Boulders
+"""
+
 from collections import defaultdict, deque
 
-############################
-# Advent of Code 2022 Day 18
-############################
 
 def get_sides(cube):
     x, y, z = cube

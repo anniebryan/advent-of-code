@@ -1,3 +1,8 @@
+"""
+Advent of Code 2021
+Day 10: Syntax Scoring
+"""
+
 from collections import deque
 from statistics import median
 

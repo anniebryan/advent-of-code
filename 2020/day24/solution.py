@@ -1,3 +1,8 @@
+"""
+Advent of Code 2020
+Day 24: Lobby Layout
+"""
+
 from collections import defaultdict
 
 def get_instructions(puzzle_input):

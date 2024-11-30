@@ -1,3 +1,8 @@
+"""
+Advent of Code 2021
+Day 6: Lanternfish
+"""
+
 from collections import defaultdict
 
 def get_initial_timers(puzzle_input):

@@ -1,6 +1,7 @@
-############################
-# Advent of Code 2022 Day 19
-############################
+"""
+Advent of Code 2022
+Day 19: Not Enough Minerals
+"""
 
 import re
 from collections import deque

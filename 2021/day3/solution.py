@@ -1,3 +1,8 @@
+"""
+Advent of Code 2021
+Day 3: Binary Diagnostic
+"""
+
 def get_report(puzzle_input):
     return [n.split('\n')[0] for n in puzzle_input]
 

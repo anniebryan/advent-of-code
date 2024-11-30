@@ -1,3 +1,8 @@
+"""
+Advent of Code 2018
+Day 6: Chronal Coordinatesw
+"""
+
 import re
 from collections import defaultdict
 

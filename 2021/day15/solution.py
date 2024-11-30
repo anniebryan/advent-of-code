@@ -1,3 +1,8 @@
+"""
+Advent of Code 2021
+Day 15: Chiton
+"""
+
 import sys
 from collections import deque
 import heapq

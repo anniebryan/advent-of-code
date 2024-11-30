@@ -1,3 +1,8 @@
+"""
+Advent of Code 2021
+Day 5: Hydrothermal Venture
+"""
+
 from collections import defaultdict
 
 def get_point_pairs(puzzle_input):

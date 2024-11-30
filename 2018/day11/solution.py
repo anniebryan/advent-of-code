@@ -1,4 +1,8 @@
-# Day 11: Chronal Charge
+"""
+Advent of Code 2018
+Day 11: Chronal Charge
+"""
+
 
 import numpy as np
 

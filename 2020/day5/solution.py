@@ -1,3 +1,8 @@
+"""
+Advent of Code 2020
+Day 5: Binary Boarding
+"""
+
 def binary_search(s, low_c, high_val):
     low, high = 0, high_val
     for c in s:

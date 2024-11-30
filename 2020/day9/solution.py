@@ -1,3 +1,8 @@
+"""
+Advent of Code 2020
+Day 9: Encoding Error
+"""
+
 from collections import deque
 
 def get_numbers(puzzle_input):

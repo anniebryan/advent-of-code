@@ -1,3 +1,8 @@
+"""
+Advent of Code 2021
+Day 1: Sonar Sweep
+"""
+
 def get_measurements(puzzle_input):
 	return [int(n) for n in puzzle_input]
 

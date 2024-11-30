@@ -1,3 +1,8 @@
+"""
+Advent of Code 2020
+Day 19: Monster Messages
+"""
+
 import regex
 from itertools import count
 

@@ -1,3 +1,8 @@
+"""
+Advent of Code 2020
+Day 11: Seating System
+"""
+
 from collections import defaultdict
 
 def get_area_dimensions(puzzle_input):

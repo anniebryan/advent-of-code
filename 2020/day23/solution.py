@@ -1,3 +1,8 @@
+"""
+Advent of Code 2020
+Day 23: Crab Cups
+"""
+
 from math import prod
 
 def get_initial_cups(puzzle_input, num_cups):

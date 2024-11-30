@@ -1,8 +1,10 @@
+"""
+Advent of Code 2022
+Day 17: Pyroclastic Flow
+"""
+
 from itertools import cycle
 
-############################
-# Advent of Code 2022 Day 17
-############################
 
 def get_rocks():
     # in a function rather than a constant so that cycle resets after each call

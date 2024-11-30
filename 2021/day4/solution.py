@@ -1,3 +1,8 @@
+"""
+Advent of Code 2021
+Day 4: Giant Squid
+"""
+
 def get_input_numbers(puzzle_input):
     return [int(n) for n in puzzle_input[0].split(',')]
 

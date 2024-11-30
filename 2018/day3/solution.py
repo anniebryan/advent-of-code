@@ -1,3 +1,8 @@
+"""
+Advent of Code 2018
+Day 3: No Matter How You Slice It
+"""
+
 import re
 
 def get_claims(puzzle_input):

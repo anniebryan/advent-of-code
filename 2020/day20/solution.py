@@ -1,3 +1,8 @@
+"""
+Advent of Code 2020
+Day 20: Jurassic Jigsaw
+"""
+
 from collections import deque
 from math import prod
 

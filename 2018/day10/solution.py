@@ -1,3 +1,8 @@
+"""
+Advent of Code 2018
+Day 10: The Stars Align
+"""
+
 from re import findall
 
 def get_data(puzzle_input):

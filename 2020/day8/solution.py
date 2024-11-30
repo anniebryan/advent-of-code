@@ -1,3 +1,8 @@
+"""
+Advent of Code 2020
+Day 8: Handheld Halting
+"""
+
 def get_instructions(puzzle_input):
     instructions = {}
     for i in range(len(puzzle_input)):

@@ -1,3 +1,8 @@
+"""
+Advent of Code 2018
+Day 4: Repose Record
+"""
+
 import re
 from collections import defaultdict
 

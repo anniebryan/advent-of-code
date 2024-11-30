@@ -1,3 +1,8 @@
+"""
+Advent of Code 2021
+Day 8: Seven Segment Search
+"""
+
 from collections import defaultdict
 
 def get_lines(puzzle_input):

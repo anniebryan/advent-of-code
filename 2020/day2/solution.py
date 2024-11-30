@@ -1,3 +1,8 @@
+"""
+Advent of Code 2020
+Day 2: Password Philosophy
+"""
+
 def get_passwords(puzzle_input):
     passwords = []
     for line in puzzle_input:

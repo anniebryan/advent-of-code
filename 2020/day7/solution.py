@@ -1,3 +1,8 @@
+"""
+Advent of Code 2020
+Day 7: Handy Haversacks
+"""
+
 import re
 from collections import defaultdict
 from collections import deque

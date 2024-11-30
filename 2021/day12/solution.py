@@ -1,3 +1,8 @@
+"""
+Advent of Code 2021
+Day 12: Passage Pathing
+"""
+
 from collections import defaultdict, deque
 
 def get_edges(puzzle_input):

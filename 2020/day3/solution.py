@@ -1,3 +1,8 @@
+"""
+Advent of Code 2020
+Day 3: Toboggan Trajectory
+"""
+
 from math import prod
 
 def num_trees(puzzle_input, right, down):

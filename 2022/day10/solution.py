@@ -1,3 +1,8 @@
+"""
+Advent of Code 2022
+Day 10: Cathode-Ray Tube
+"""
+
 import re
 
 

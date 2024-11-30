@@ -1,6 +1,7 @@
-############################
-# Advent of Code 2022 Day 21
-############################
+"""
+Advent of Code 2022
+Day 21: Monkey Math
+"""
 
 import re
 import operator

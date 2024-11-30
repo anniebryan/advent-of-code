@@ -1,3 +1,8 @@
+"""
+Advent of Code 2020
+Day 22: Crab Combat
+"""
+
 from collections import deque
 
 def get_initial_decks(puzzle_input):

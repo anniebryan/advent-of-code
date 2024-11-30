@@ -1,3 +1,8 @@
+"""
+Advent of Code 2020
+Day 1: Report Repair
+"""
+
 from collections import defaultdict
 from math import prod
 

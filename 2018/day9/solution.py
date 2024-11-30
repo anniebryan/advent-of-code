@@ -1,3 +1,8 @@
+"""
+Advent of Code 2018
+Day 9: Marble Mania
+"""
+
 import re
 from collections import deque, defaultdict
 

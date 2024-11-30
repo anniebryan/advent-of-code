@@ -1,9 +1,11 @@
+"""
+Advent of Code 2022
+Day 16: Proboscidea Volcanium
+"""
+
 from itertools import combinations
 import re
 
-############################
-# Advent of Code 2022 Day 16
-############################
 
 class Valve:
     def __init__(self, name, flow_rate, tunnels):

@@ -1,3 +1,8 @@
+"""
+Advent of Code 2021
+Day 9: Smoke Basin
+"""
+
 from functools import reduce
 
 def get_heightmap_dict(puzzle_input):

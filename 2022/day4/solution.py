@@ -1,3 +1,8 @@
+"""
+Advent of Code 2022
+Day 4: Camp Cleanup
+"""
+
 def get_sections(puzzle_input):
     for r in puzzle_input:
         elf_one, elf_two = r.split(',')
