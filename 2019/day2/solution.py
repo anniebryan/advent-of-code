@@ -1,8 +1,6 @@
-import csv
-
-file = open('2019/day2/puzzle.txt')
-csv_reader = csv.reader(file, delimiter=',')
-ints = [int(i) for i in [row for row in csv_reader][0]]
+def get_ints(puzzle_input):
+    ints = [int(i) for i in puzzle_input[0].split(",")]
+    return ints
 
 
 def handle_opcode(i: int, ints: list):
@@ -42,13 +40,15 @@ def run_until_halt(ints: list):
         return 'something went wrong'
 
 
-def part_1():
+def part_1(puzzle_input):
+    ints = get_ints(puzzle_input)
     ints[1] = 12
     ints[2] = 2
     return run_until_halt(ints)[0]
 
 
-def part_2():
+def part_2(puzzle_input):
+    ints = get_ints(puzzle_input)
     desired_output = 19690720
     for noun in range(100):
         for verb in range(100):
@@ -58,7 +58,3 @@ def part_2():
             if type(new_ints) is not str:
                 if new_ints[0] == desired_output:
                     return 100 * noun + verb
-
-
-print("Part 1: {}".format(part_1()))
-print("Part 2: {}".format(part_2()))

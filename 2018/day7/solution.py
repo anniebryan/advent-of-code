@@ -2,14 +2,15 @@ import re
 import copy
 from collections import defaultdict
 
-instructions = open('2018/day7/puzzle.txt').readlines()
-requirements = {re.findall(r'Step ([A-Z]) must be finished before step ([A-Z]) can begin', i)[0] for i in instructions}
-all_steps = {r[i] for r in requirements for i in [0, 1]}
-all_prerequisites = defaultdict(set)
-all_dependencies = defaultdict(set)
-for s1, s2 in requirements:
-    all_prerequisites[s2].add(s1)
-    all_dependencies[s1].add(s2)
+def parse_requirements(puzzle_input):
+    requirements = {re.findall(r'Step ([A-Z]) must be finished before step ([A-Z]) can begin', i)[0] for i in puzzle_input}
+    all_steps = {r[i] for r in requirements for i in [0, 1]}
+    all_prerequisites = defaultdict(set)
+    all_dependencies = defaultdict(set)
+    for s1, s2 in requirements:
+        all_prerequisites[s2].add(s1)
+        all_dependencies[s1].add(s2)
+    return all_steps, all_prerequisites, all_dependencies
 
 
 def get_available(steps, completed, prerequisites):
@@ -35,11 +36,12 @@ def update_prerequisites(prerequisites, dependencies, step):
     return updated
 
 
-def part_1():
+def part_1(puzzle_input):
     """
     returns an order for steps to be completed satisfying all prerequisites as given in day7.txt
     ties are broken alphabetically
     """
+    all_steps, all_prerequisites, all_dependencies = parse_requirements(puzzle_input)
     steps, prerequisites = copy.deepcopy(all_steps), copy.deepcopy(all_prerequisites)
     completed = set()
     order = []
@@ -62,7 +64,7 @@ def get_required_duration(c):
     return ord(c) - 4
 
 
-def timestep(workers, completed, prerequisites):
+def timestep(workers, completed, prerequisites, all_steps, all_dependencies):
     """
     symbolizes the passage of one step of time
     """
@@ -86,23 +88,21 @@ def timestep(workers, completed, prerequisites):
     return workers, completed, prerequisites
 
 
-def part_2(w = 5):
+def part_2(puzzle_input):
     """
     returns the amount of time required to complete all the steps
-    given w workers and durations as described in get_required_duration
+    given durations as described in get_required_duration
     ties are broken alphabetically
     """
+    all_steps, all_prerequisites, all_dependencies = parse_requirements(puzzle_input)
+    num_workers = 5
     # maps worker -> None if idle
     # maps worker -> (step, time remaining) otherwise
-    workers = dict.fromkeys(range(w))
+    workers = dict.fromkeys(range(num_workers))
     completed = set()
     time = 0
     _, prerequisites = copy.deepcopy(all_steps), copy.deepcopy(all_prerequisites)
     while len(completed) < len(all_steps):
-        workers, completed, prerequisites = timestep(workers, completed, prerequisites)
+        workers, completed, prerequisites = timestep(workers, completed, prerequisites, all_steps, all_dependencies)
         time += 1
     return time - 1
-
-
-print("Part 1: {}".format(part_1()))
-print("Part 2: {}".format(part_2()))

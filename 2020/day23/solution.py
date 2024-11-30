@@ -1,11 +1,8 @@
 from math import prod
 
-filename = '2020/day23/puzzle.txt'
-puzzle_input = open(filename).read()
-
-def get_initial_cups(num_cups):
-    if num_cups is None: num_cups = len(puzzle_input)
-    vals = [int(n) for n in puzzle_input]
+def get_initial_cups(puzzle_input, num_cups):
+    if num_cups is None: num_cups = len(puzzle_input[0])
+    vals = [int(n) for n in puzzle_input[0]]
     cups = {}
     for i in range(len(vals)-1):
         cups[vals[i]] = vals[i+1]
@@ -37,8 +34,8 @@ def make_move(cups, current_cup):
     current_cup = cups[current_cup]
     return cups, current_cup
 
-def make_n_moves(num_rounds, num_cups=None):
-    cups, current_cup = get_initial_cups(num_cups)
+def make_n_moves(puzzle_input, num_rounds, num_cups=None):
+    cups, current_cup = get_initial_cups(puzzle_input, num_cups)
     for _ in range(num_rounds):
         cups, current_cup = make_move(cups, current_cup)
     return cups
@@ -56,13 +53,10 @@ def get_clockwise(cups, start):
     b = cups[a]
     return (a, b)
 
-def part_1():
-    cups = make_n_moves(100)
+def part_1(puzzle_input):
+    cups = make_n_moves(puzzle_input, 100)
     return list_starting_at(cups, 1)
 
-def part_2():
-    cups = make_n_moves(10000000, 1000000)
+def part_2(puzzle_input):
+    cups = make_n_moves(puzzle_input, 10000000, 1000000)
     return prod(get_clockwise(cups, 1))
-
-print("Part 1: {}".format(part_1()))
-print("Part 2: {}".format(part_2()))

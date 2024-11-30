@@ -1,15 +1,12 @@
 from collections import defaultdict
 
-filename = '2020/day11/puzzle.txt'
-puzzle_input = open(filename).readlines()
-
-def get_area_dimensions():
+def get_area_dimensions(puzzle_input):
     width = len(puzzle_input)
-    height = len(puzzle_input[0])-1
+    height = len(puzzle_input[0])
     return width, height
 
-def get_seat_locations():
-    width, height = get_area_dimensions()
+def get_seat_locations(puzzle_input):
+    width, height = get_area_dimensions(puzzle_input)
     seats = set()
     for i in range(width):
         for j in range(height):
@@ -17,8 +14,8 @@ def get_seat_locations():
                 seats.add((i, j))
     return seats
 
-def get_visible_seats(seats, i, j, adjacent):
-    width, height = get_area_dimensions()
+def get_visible_seats(puzzle_input, seats, i, j, adjacent):
+    width, height = get_area_dimensions(puzzle_input)
     visible_seats = set()
     for d_i in {-1, 0, 1}:
         for d_j in {-1, 0, 1}:
@@ -33,40 +30,37 @@ def get_visible_seats(seats, i, j, adjacent):
                     visible_seats.add((x, y))
     return visible_seats
 
-def get_num_occupied(seats, occupied, seat, adjacent):
+def get_num_occupied(puzzle_input, seats, occupied, seat, adjacent):
     i, j = seat
-    visible_seats = get_visible_seats(seats, i, j, adjacent)
+    visible_seats = get_visible_seats(puzzle_input, seats, i, j, adjacent)
     n = 0
     for a in visible_seats:
         if a in occupied:
             n += 1
     return n
 
-def timestep(seats, occupied, adjacent, threshold):
+def timestep(puzzle_input, seats, occupied, adjacent, threshold):
     new_occupied = set()
     for seat in seats:
         if seat not in occupied: # empty
-            if get_num_occupied(seats, occupied, seat, adjacent) == 0:
+            if get_num_occupied(puzzle_input, seats, occupied, seat, adjacent) == 0:
                 new_occupied.add(seat)
         else: # occupied
-            if get_num_occupied(seats, occupied, seat, adjacent) < threshold:
+            if get_num_occupied(puzzle_input, seats, occupied, seat, adjacent) < threshold:
                 new_occupied.add(seat)
     return new_occupied
 
-def run_until_steady_state(adjacent, threshold):
-    seats = get_seat_locations()
+def run_until_steady_state(puzzle_input, adjacent, threshold):
+    seats = get_seat_locations(puzzle_input)
     occupied = set()
-    new_occupied = timestep(seats, occupied, adjacent, threshold)
+    new_occupied = timestep(puzzle_input, seats, occupied, adjacent, threshold)
     while occupied != new_occupied:
         occupied = new_occupied
-        new_occupied = timestep(seats, occupied, adjacent, threshold)
+        new_occupied = timestep(puzzle_input, seats, occupied, adjacent, threshold)
     return new_occupied
 
-def part_1():
-    return len(run_until_steady_state(True, 4))
+def part_1(puzzle_input):
+    return len(run_until_steady_state(puzzle_input, True, 4))
 
-def part_2():
-    return len(run_until_steady_state(False, 5))
-
-print("Part 1: {}".format(part_1()))
-print("Part 2: {}".format(part_2()))
+def part_2(puzzle_input):
+    return len(run_until_steady_state(puzzle_input, False, 5))

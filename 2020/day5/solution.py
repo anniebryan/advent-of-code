@@ -1,6 +1,3 @@
-filename = '2020/day5/puzzle.txt'
-puzzle_input = open(filename).readlines()
-
 def binary_search(s, low_c, high_val):
     low, high = 0, high_val
     for c in s:
@@ -16,22 +13,22 @@ def get_seat_id(boarding_pass):
     col = binary_search(boarding_pass[7:10], 'L', 7)
     return 8*row + col
 
-def highest_seat_id():
+def highest_seat_id(puzzle_input):
     highest = 0
     for boarding_pass in puzzle_input:
         seat_id = get_seat_id(boarding_pass)
         highest = max(highest, seat_id)
     return highest
 
-def all_seat_ids():
+def all_seat_ids(puzzle_input):
     ids = set()
     for boarding_pass in puzzle_input:
         seat_id = get_seat_id(boarding_pass)
         ids.add(seat_id)
     return sorted(list(ids))
 
-def find_missing_id():
-    ids = all_seat_ids()
+def find_missing_id(puzzle_input):
+    ids = all_seat_ids(puzzle_input)
     i, j = 0, len(ids) - 1
     while j > i+1:
         mid = int((i+j)/2)
@@ -41,11 +38,8 @@ def find_missing_id():
             i = mid
     return ids[mid] - 1
 
-def part_1():
-    return highest_seat_id()
+def part_1(puzzle_input):
+    return highest_seat_id(puzzle_input)
 
-def part_2():
-    return find_missing_id()
-
-print("Part 1: {}".format(part_1()))
-print("Part 2: {}".format(part_2()))
+def part_2(puzzle_input):
+    return find_missing_id(puzzle_input)

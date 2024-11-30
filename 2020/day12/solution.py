@@ -1,9 +1,7 @@
 from collections import defaultdict
 
-filename = '2020/day12/puzzle.txt'
-puzzle_input = open(filename).readlines()
 
-def get_instructions():
+def get_instructions(puzzle_input):
     return [(line[0], int(line[1:])) for line in puzzle_input]
 
 def process_instruction(instruction, direction, x, y):
@@ -40,8 +38,8 @@ def process_waypoint(instruction, x, y, way_x, way_y):
     elif action == 'F':
         return x + way_x*val, y + way_y*val, way_x, way_y
 
-def process_all_instructions(part_one):
-    instructions = get_instructions()
+def process_all_instructions(puzzle_input, part_one):
+    instructions = get_instructions(puzzle_input)
     x, y = 0, 0
     if part_one:
         direction = 0
@@ -56,13 +54,10 @@ def process_all_instructions(part_one):
 def manhattan_distance(x, y):
     return abs(x) + abs(y)
 
-def part_1():
-    final_x, final_y = process_all_instructions(True)
+def part_1(puzzle_input):
+    final_x, final_y = process_all_instructions(puzzle_input, True)
     return manhattan_distance(final_x, final_y)
 
-def part_2():
-    final_x, final_y = process_all_instructions(False)
+def part_2(puzzle_input):
+    final_x, final_y = process_all_instructions(puzzle_input, False)
     return manhattan_distance(final_x, final_y)
-
-print("Part 1: {}".format(part_1()))
-print("Part 2: {}".format(part_2()))

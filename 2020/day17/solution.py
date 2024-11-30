@@ -1,10 +1,7 @@
-filename = '2020/day17/puzzle.txt'
-puzzle_input = open(filename).readlines()
-
-def initial_active(num_dim):
+def initial_active(puzzle_input, num_dim):
     active = set()
     for i in range(len(puzzle_input)):
-        row = puzzle_input[i][:-1]
+        row = puzzle_input[i]
         for j in range(len(row)):
             if row[j] == '#':
                 if num_dim == 3:
@@ -61,17 +58,14 @@ def run_cycle(active, num_dim):
                     
     return new_active
 
-def run_n_cycles(n, num_dim):
-    active = initial_active(num_dim)
+def run_n_cycles(puzzle_input, n, num_dim):
+    active = initial_active(puzzle_input, num_dim)
     for _ in range(n):
         active = run_cycle(active, num_dim)
     return active
 
-def part_1():
-    return len(run_n_cycles(6, 3))
+def part_1(puzzle_input):
+    return len(run_n_cycles(puzzle_input, 6, 3))
 
-def part_2():
-    return len(run_n_cycles(6, 4))
-
-print("Part 1: {}".format(part_1()))
-print("Part 2: {}".format(part_2()))
+def part_2(puzzle_input):
+    return len(run_n_cycles(puzzle_input, 6, 4))

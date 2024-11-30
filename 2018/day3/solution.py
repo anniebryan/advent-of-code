@@ -1,8 +1,9 @@
 import re
 
-claims = open('2018/day3/puzzle.txt').read()
-pattern = r'#(\d+) @ (\d+),(\d+): (\d+)x(\d+)'
-claims = [[int(y) for y in x] for x in re.findall(pattern,claims)]
+def get_claims(puzzle_input):
+    pattern = r'#(\d+) @ (\d+),(\d+): (\d+)x(\d+)'
+    claims = [[int(y) for y in re.match(pattern, row).groups()] for row in puzzle_input]
+    return claims
            
 def generate_fabric():
     areas = dict.fromkeys(range(1000)) # keys are columns (left and right)
@@ -11,7 +12,8 @@ def generate_fabric():
     return areas
     
 
-def part_1():
+def part_1(puzzle_input):
+    claims = get_claims(puzzle_input)
     areas = generate_fabric()
     s = 0
     for c in claims:
@@ -25,7 +27,8 @@ def part_1():
     return s
     
 
-def part_2():
+def part_2(puzzle_input):
+    claims = get_claims(puzzle_input)
     areas = generate_fabric()
     for c in claims:
         claim_id = c[0]
@@ -46,7 +49,3 @@ def part_2():
             for v in val:
                 claimed[v] = True
     return list(claimed.keys())[list(claimed.values()).index(False)]
-    
-
-print("Part 1: {}".format(part_1()))
-print("Part 2: {}".format(part_2()))

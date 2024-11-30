@@ -1,13 +1,12 @@
 # Day 12: Subterranean Sustainability
 
-puzzle_input = open('2018/day12/puzzle.txt').readlines()
 
-def get_initial_plant_indices():
+def get_initial_plant_indices(puzzle_input):
     initial_state = puzzle_input[0].split()[-1]
     indices = {i for i in range(len(initial_state)) if initial_state[i] == '#'}
     return indices
 
-def get_rules():
+def get_rules(puzzle_input):
     rules = puzzle_input[2:]
     rule_map = {}
     for rule in rules:
@@ -28,20 +27,16 @@ def time_step(indices, rules):
             new_indices.add(i)
     return new_indices
 
-def run_n_generations(n):
-    indices = get_initial_plant_indices()
-    rules = get_rules()
+def run_n_generations(puzzle_input, n):
+    indices = get_initial_plant_indices(puzzle_input)
+    rules = get_rules(puzzle_input)
     for _ in range(n):
         indices = time_step(indices, rules)
     return indices
 
-def part_1():
-    return sum(run_n_generations(20))
+def part_1(puzzle_input):
+    return sum(run_n_generations(puzzle_input, 20))
 
 
-def part_2():
-    return sum(run_n_generations(2000)) + (50000000000-2000)*75
-
-
-print("Part 1: {}".format(part_1()))
-print("Part 2: {}".format(part_2()))
+def part_2(puzzle_input):
+    return sum(run_n_generations(puzzle_input, 2000)) + (50000000000-2000)*75

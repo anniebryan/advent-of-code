@@ -1,13 +1,10 @@
 from math import prod
 
-filename = '2020/day16/puzzle.txt'
-puzzle_input = open(filename).readlines()
-
-def process_input():
-    i = puzzle_input.index('\n')
+def process_input(puzzle_input):
+    i = puzzle_input.index("")
     fields = process_fields(puzzle_input[:i])
     tickets = puzzle_input[i+1:]
-    i = tickets.index('\n')
+    i = tickets.index("")
     my_ticket = process_tickets(tickets[1:i])[0]
     nearby_tickets = process_tickets(tickets[i+2:])
     return fields, my_ticket, nearby_tickets
@@ -32,21 +29,21 @@ def all_valid(ticket, all_values):
             return False
     return True
 
-def get_invalid_values():
-    fields, _, nearby_tickets = process_input()
+def get_invalid_values(puzzle_input):
+    fields, _, nearby_tickets = process_input(puzzle_input)
     all_values = {n for s in fields.values() for n in s}
     for ticket in nearby_tickets:
         for val in ticket:
             if val not in all_values:
                 yield val
 
-def get_valid_tickets():
-    fields, _, nearby_tickets = process_input()
+def get_valid_tickets(puzzle_input):
+    fields, _, nearby_tickets = process_input(puzzle_input)
     all_values = {n for s in fields.values() for n in s}
     return fields, [ticket for ticket in nearby_tickets if all_valid(ticket, all_values)]
 
-def get_potential_order():
-    fields, valid_tickets = get_valid_tickets()
+def get_potential_order(puzzle_input):
+    fields, valid_tickets = get_valid_tickets(puzzle_input)
     field_names = set(fields.keys())
     potential_orders = {i: field_names for i in range(len(valid_tickets[0]))}
     for ticket in valid_tickets:
@@ -54,9 +51,9 @@ def get_potential_order():
             potential_orders[i] = {name for name in potential_orders[i] if ticket[i] in fields[name]}
     return potential_orders
 
-def get_field_order():
+def get_field_order(puzzle_input):
     final_order = {}
-    potential_orders = get_potential_order()
+    potential_orders = get_potential_order(puzzle_input)
     while potential_orders:
         removed_i = set()
         fields_to_remove = set()
@@ -73,9 +70,9 @@ def get_field_order():
             potential_orders[i] = {field for field in potential_orders[i] if field not in fields_to_remove}
     return final_order
 
-def get_values_starting_with(word):
-    final_order = get_field_order()
-    fields, my_ticket, _ = process_input()
+def get_values_starting_with(puzzle_input, word):
+    final_order = get_field_order(puzzle_input)
+    fields, my_ticket, _ = process_input(puzzle_input)
     field_names = fields.keys()
     n = len(word)
     field_names_starting = {name for name in field_names if name[:n] == word}
@@ -83,11 +80,8 @@ def get_values_starting_with(word):
         if final_order[i] in field_names_starting:
             yield my_ticket[i]
 
-def part_1():
-    return sum(get_invalid_values())
+def part_1(puzzle_input):
+    return sum(get_invalid_values(puzzle_input))
 
-def part_2():
-    return prod(get_values_starting_with('departure'))
-
-print("Part 1: {}".format(part_1()))
-print("Part 2: {}".format(part_2()))
+def part_2(puzzle_input):
+    return prod(get_values_starting_with(puzzle_input, 'departure'))

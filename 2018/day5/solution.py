@@ -1,8 +1,6 @@
 import string
 from functools import reduce
 
-s = open('2018/day5/puzzle.txt').read()
-
 def destroy(p, c):
     # p: previous
     # c: current
@@ -18,12 +16,14 @@ def destroy(p, c):
         return p + c
 
 
-def part_1():
+def part_1(puzzle_input):
+    s = puzzle_input[0]
     s2 = reduce(destroy, s)
     return len(s2)
 
 
-def part_2():
+def part_2(puzzle_input):
+    s = puzzle_input[0]
     lengths = {}
     for letter in string.ascii_lowercase:
         s_ = s[:] # copies to avoid mutating
@@ -32,7 +32,3 @@ def part_2():
         lengths[len(s_)] = letter
     num = min(lengths.keys())
     return str('Removing the letter ' + str(lengths[num]) + ' yields a string of length ' + str(num))
-    
-
-print("Part 1: {}".format(part_1()))
-print("Part 2: {}".format(part_2()))

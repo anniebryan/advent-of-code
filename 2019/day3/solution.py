@@ -1,8 +1,6 @@
-import csv
-
-file = open('2019/day3/puzzle.txt')
-csv_reader = csv.reader(file, delimiter=',')
-wire_1, wire_2 = [[(i[0], int(i[1:])) for i in row] for row in csv_reader]
+def get_wires(puzzle_input):
+    wire_1, wire_2 = [[(i[0], int(i[1:])) for i in row.split(",")] for row in puzzle_input]
+    return wire_1, wire_2
 
 
 def combine(loc, dir):
@@ -39,15 +37,16 @@ def get_manhattan_distance(loc):
     return abs(loc[0])+abs(loc[1])
 
 
-def get_intersections():
+def get_intersections(wire_1, wire_2):
     path_1 = set(get_path(get_vertices(wire_1)))
     path_2 = set(get_path(get_vertices(wire_2)))
     intersections = path_1 & path_2
     return intersections
 
 
-def part_1():
-    distances = {get_manhattan_distance(i):i for i in get_intersections()}
+def part_1(puzzle_input):
+    wire_1, wire_2 = get_wires(puzzle_input)
+    distances = {get_manhattan_distance(i):i for i in get_intersections(wire_1, wire_2)}
     return min(distances)
 
 
@@ -55,12 +54,9 @@ def get_steps_so_far(path1, path2, loc):
     return path1.index(loc) + path2.index(loc) + 2
 
 
-def part_2():
+def part_2(puzzle_input):
+    wire_1, wire_2 = get_wires(puzzle_input)
     v1 = get_path(get_vertices(wire_1))
     v2 = get_path(get_vertices(wire_2))
-    steps_so_far = {get_steps_so_far(v1,v2,i):i for i in get_intersections()}
+    steps_so_far = {get_steps_so_far(v1,v2,i):i for i in get_intersections(wire_1, wire_2)}
     return min(steps_so_far)
-
-
-print("Part 1: {}".format(part_1()))
-print("Part 2: {}".format(part_2()))

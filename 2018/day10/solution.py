@@ -1,9 +1,10 @@
 from re import findall
 
-text = open('2018/day10/puzzle.txt').readlines()
-data = [[int(x) for x in findall(r'-?\d+', i)] for i in text]
+def get_data(puzzle_input):
+    data = [[int(x) for x in findall(r'-?\d+', i)] for i in puzzle_input]
+    return data
 
-def get_boxes():
+def get_boxes(data):
     boxes = []
     for i in range(20000):
         minx, maxx, miny, maxy = 10000, 0, 10000, 0
@@ -32,8 +33,9 @@ def get_smallest_box(boxes):
         if answer_box == maxx - minx + maxy - miny:
             return i, box
 
-def part_1():
-    boxes = get_boxes()
+def part_1(puzzle_input):
+    data = get_data(puzzle_input)
+    boxes = get_boxes(data)
     i, box = get_smallest_box(boxes)
     maxx, minx, maxy, miny = box
 
@@ -49,11 +51,8 @@ def part_1():
     return output
 
 
-def part_2():
-    boxes = get_boxes()
+def part_2(puzzle_input):
+    data = get_data(puzzle_input)
+    boxes = get_boxes(data)
     i, _ = get_smallest_box(boxes)
     return i
-
-
-print("Part 1: {}".format(part_1()))
-print("Part 2: {}".format(part_2()))

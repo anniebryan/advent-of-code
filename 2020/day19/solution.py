@@ -1,13 +1,13 @@
 import regex
 from itertools import count
 
-filename = '2020/day19/puzzle.txt'
-puzzle_input = open(filename).read()
 
-def process_input():
-    rules, messages = puzzle_input.split('\n\n')
+def process_input(puzzle_input):
+    ix = puzzle_input.index("")
+    rules = puzzle_input[:ix]
+    messages = puzzle_input[ix+1:]
     new_rules = {}
-    for rule in rules.split('\n'):
+    for rule in rules:
         n, d = rule.split(': ')
         new_rules[int(n)] = d
     return new_rules, messages
@@ -27,16 +27,17 @@ def build_regex(rules, n, part_2):
     pattern = pattern[:-1] # remove last "|"
     return f'({pattern})'
 
-def num_that_match(rule, part_2):
-    rules, messages = process_input()
-    matches = regex.findall(f'^{build_regex(rules, rule, part_2)}$', messages, flags=regex.MULTILINE)
-    return len(matches)
+def num_that_match(rules, messages, part_2):
+    num_matches = 0
+    for m in messages:
+        if regex.match(f'^{build_regex(rules, 0, part_2)}$', m):
+            num_matches += 1
+    return num_matches
 
-def part_1():
-    return num_that_match(0, False)
+def part_1(puzzle_input):
+    rules, messages = process_input(puzzle_input)
+    return num_that_match(rules, messages, False)
 
-def part_2():
-    return num_that_match(0, True)
-
-print("Part 1: {}".format(part_1()))
-print("Part 2: {}".format(part_2()))
+def part_2(puzzle_input):
+    rules, messages = process_input(puzzle_input)
+    return num_that_match(rules, messages, True)

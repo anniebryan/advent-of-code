@@ -1,9 +1,6 @@
 from math import prod
 
-filename = '2020/day3/puzzle.txt'
-puzzle_input = open(filename).readlines()
-
-def num_trees(right, down):
+def num_trees(puzzle_input, right, down):
     width = len([i for i in puzzle_input[0] if i == "." or i == "#"])
     num_trees = 0
     y = 0
@@ -15,12 +12,9 @@ def num_trees(right, down):
             y %= width
     return num_trees
 
-def part_1():
-    return num_trees(3,1)
+def part_1(puzzle_input):
+    return num_trees(puzzle_input, 3,1)
 
-def part_2():
+def part_2(puzzle_input):
     all_ways = [(1,1),(3,1),(5,1),(7,1),(1,2)]
-    return prod([num_trees(*way) for way in all_ways])
-
-print("Part 1: {}".format(part_1()))
-print("Part 2: {}".format(part_2()))
+    return prod([num_trees(puzzle_input, *way) for way in all_ways])

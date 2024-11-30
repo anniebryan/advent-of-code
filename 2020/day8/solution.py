@@ -1,7 +1,4 @@
-filename = '2020/day8/puzzle.txt'
-puzzle_input = open(filename).readlines()
-
-def get_instructions():
+def get_instructions(puzzle_input):
     instructions = {}
     for i in range(len(puzzle_input)):
         vals = puzzle_input[i].split()
@@ -29,8 +26,7 @@ def run_sequence(instructions, override = None):
         else:
             seen.add(i)
 
-def try_all_sequences():
-    instructions = get_instructions()
+def try_all_sequences(instructions):
     for i in instructions:
         if instructions[i][0] == 'nop': # change to 'jmp'
             override = (i, 'jmp')
@@ -43,11 +39,10 @@ def try_all_sequences():
             if result[0]:
                 return result[1]
 
-def part_1():
-    return run_sequence(get_instructions())[1]
+def part_1(puzzle_input):
+    instructions = get_instructions(puzzle_input)
+    return run_sequence(instructions)[1]
 
-def part_2():
-    return try_all_sequences()
-
-print("Part 1: {}".format(part_1()))
-print("Part 2: {}".format(part_2()))
+def part_2(puzzle_input):
+    instructions = get_instructions(puzzle_input)
+    return try_all_sequences(instructions)

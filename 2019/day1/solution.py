@@ -1,5 +1,6 @@
-modules = open('2019/day1/puzzle.txt').readlines()
-masses = [int(m) for m in modules]
+def get_masses(puzzle_input):
+    masses = [int(m) for m in puzzle_input]
+    return masses
 
 
 def get_fuel(mass: int) -> int:
@@ -27,13 +28,11 @@ def get_total_fuel(mass: int) -> int:
     return initial_fuel + get_total_fuel(initial_fuel)
 
 
-def part_1():
+def part_1(puzzle_input):
+    masses = get_masses(puzzle_input)
     return sum([get_fuel(m) for m in masses])
 
 
-def part_2():
+def part_2(puzzle_input):
+    masses = get_masses(puzzle_input)
     return sum([get_total_fuel(m) for m in masses])
-
-
-print("Part 1: {}".format(part_1()))
-print("Part 2: {}".format(part_2()))

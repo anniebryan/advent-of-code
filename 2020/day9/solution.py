@@ -1,10 +1,10 @@
 from collections import deque
 
-filename = '2020/day9/puzzle.txt'
-puzzle_input = open(filename).readlines()
-numbers = [int(n) for n in puzzle_input]
+def get_numbers(puzzle_input):
+    numbers = [int(n) for n in puzzle_input]
+    return numbers
 
-def init_preamble(consider_prev):
+def init_preamble(numbers, consider_prev):
     last_numbers = deque()
     for i in range(consider_prev):
         last_numbers.append(numbers[i])
@@ -19,15 +19,15 @@ def exists_sum(last_numbers, n):
             seen.add(i)
     return False
 
-def find_first_invalid(consider_prev):
-    last_numbers, remaining = init_preamble(consider_prev)
+def find_first_invalid(numbers, consider_prev):
+    last_numbers, remaining = init_preamble(numbers, consider_prev)
     while exists_sum(last_numbers, remaining[0]):
         last_numbers.popleft()
         last_numbers.append(remaining[0])
         remaining = remaining[1:]
     return remaining[0]
 
-def contiguous_sequence(target):
+def contiguous_sequence(numbers, target):
     sequence = deque()
     current_sum = 0
     i = 0
@@ -42,15 +42,14 @@ def contiguous_sequence(target):
             current_sum -= n
     return sequence
 
-def encryption_weakness(target):
-    sequence = contiguous_sequence(target)
+def encryption_weakness(numbers, target):
+    sequence = contiguous_sequence(numbers, target)
     return max(sequence) + min(sequence)
 
-def part_1():
-    return find_first_invalid(25)
+def part_1(puzzle_input):
+    numbers = get_numbers(puzzle_input)
+    return find_first_invalid(numbers, 25)
 
-def part_2():
-    return encryption_weakness(part_1())
-
-print("Part 1: {}".format(part_1()))
-print("Part 2: {}".format(part_2()))
+def part_2(puzzle_input):
+    numbers = get_numbers(puzzle_input)
+    return encryption_weakness(numbers, part_1(puzzle_input))

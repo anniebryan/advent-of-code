@@ -2,10 +2,8 @@ import re
 from collections import defaultdict
 from collections import deque
 
-filename = '2020/day7/puzzle.txt'
-puzzle_input = open(filename).readlines()
 
-def get_containers():
+def get_containers(puzzle_input):
     """ returns a dictionary that maps a string to a set of strings
     with all bags that can contain that string """
     containers = defaultdict(set)
@@ -16,7 +14,7 @@ def get_containers():
             containers[bag[1]].add(outer_bag)
     return containers
 
-def get_num_containing():
+def get_num_containing(puzzle_input):
     """ returns a dictionary that maps a string to a set of tuples (n, b)
     such that the key must contain n bags of type b """
     containing = {}
@@ -26,8 +24,8 @@ def get_num_containing():
         containing[outer_bag] = {(int(t[0]), t[1]) for t in inner_bags}
     return containing
 
-def get_all_possible_containers(color):
-    containers = get_containers()
+def get_all_possible_containers(puzzle_input, color):
+    containers = get_containers(puzzle_input)
     possible = set()
     seen = set()
     queue = deque()
@@ -47,11 +45,8 @@ def get_total_num_containing(color, containing):
         num_containing += t[0]*(1 + get_total_num_containing(t[1], containing))
     return num_containing
 
-def part_1():
-    return len(get_all_possible_containers('shiny gold'))
+def part_1(puzzle_input):
+    return len(get_all_possible_containers(puzzle_input, 'shiny gold'))
 
-def part_2():
-    return get_total_num_containing('shiny gold', get_num_containing())
-
-print("Part 1: {}".format(part_1()))
-print("Part 2: {}".format(part_2()))
+def part_2(puzzle_input):
+    return get_total_num_containing('shiny gold', get_num_containing(puzzle_input))

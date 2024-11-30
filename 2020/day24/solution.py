@@ -1,9 +1,6 @@
 from collections import defaultdict
 
-filename = '2020/day24/puzzle.txt'
-puzzle_input = open(filename).readlines()
-
-def get_instructions():
+def get_instructions(puzzle_input):
     instructions = []
     for line in puzzle_input:
         instruction = []
@@ -30,8 +27,8 @@ def flip_tile(instruction):
         elif step in {'sw', 'se'}: j -= 1
     return i, j
 
-def process_all_instructions():
-    instructions = get_instructions()
+def process_all_instructions(puzzle_input):
+    instructions = get_instructions(puzzle_input)
     flipped_tiles = defaultdict(int)
     for instruction in instructions:
         i, j = flip_tile(instruction)
@@ -41,8 +38,8 @@ def process_all_instructions():
 def get_black_tiles(flipped_tiles):
     return {tile for tile in flipped_tiles if flipped_tiles[tile]%2 == 1}
 
-def get_num_black_tiles():
-    flipped_tiles = process_all_instructions()
+def get_num_black_tiles(puzzle_input):
+    flipped_tiles = process_all_instructions(puzzle_input)
     return len(get_black_tiles(flipped_tiles))
 
 def get_adjacent_tiles(tile):
@@ -72,8 +69,8 @@ def wait_day(black_tiles):
             tiles_to_flip.add(white_tile)
     return tiles_to_flip
 
-def wait_n_days(n):
-    flipped_tiles = process_all_instructions()
+def wait_n_days(puzzle_input, n):
+    flipped_tiles = process_all_instructions(puzzle_input)
     black_tiles = get_black_tiles(flipped_tiles)
     for _ in range(n):
         tiles_to_flip = wait_day(black_tiles)
@@ -82,11 +79,8 @@ def wait_n_days(n):
         black_tiles = get_black_tiles(flipped_tiles)
     return len(black_tiles)
 
-def part_1():
-    return get_num_black_tiles()
+def part_1(puzzle_input):
+    return get_num_black_tiles(puzzle_input)
 
-def part_2():
-    return wait_n_days(100)
-
-print("Part 1: {}".format(part_1()))
-print("Part 2: {}".format(part_2()))
+def part_2(puzzle_input):
+    return wait_n_days(puzzle_input, 100)

@@ -1,9 +1,9 @@
 from collections import defaultdict
 from math import prod
 
-filename = '2020/day10/puzzle.txt'
-puzzle_input = open(filename).readlines()
-numbers = [int(n) for n in puzzle_input]
+def get_numbers(puzzle_input):
+    numbers = [int(n) for n in puzzle_input]
+    return numbers
 
 def get_differences(numbers):
     numbers = sorted(numbers + [0, max(numbers) + 3])
@@ -24,11 +24,10 @@ def num_arrangements(numbers, last, memo={}):
         memo[(n, last)] = ways
     return memo[(n, last)]
 
-def part_1():
+def part_1(puzzle_input):
+    numbers = get_numbers(puzzle_input)
     return prod(get_differences(numbers))
 
-def part_2():
+def part_2(puzzle_input):
+    numbers = get_numbers(puzzle_input)
     return num_arrangements(sorted(numbers), 0)
-
-print("Part 1: {}".format(part_1()))
-print("Part 2: {}".format(part_2()))

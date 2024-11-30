@@ -1,7 +1,5 @@
 import random
 
-filename = '2020/day14/puzzle.txt'
-puzzle_input = open(filename).readlines()
 
 def binary(n):
     return str(bin(int(n)))[2:]
@@ -48,7 +46,7 @@ def get_all_addresses(s):
         addresses = new_addresses
     return {base_10(a) for a in addresses}
 
-def process_program(part_one):
+def process_program(puzzle_input, part_one):
     memory = {}
     mask = {}
     for line in puzzle_input:
@@ -63,11 +61,8 @@ def process_program(part_one):
                     memory[k] = val
     return memory
 
-def part_1():
-    return sum(process_program(True).values())
+def part_1(puzzle_input):
+    return sum(process_program(puzzle_input, True).values())
 
-def part_2():
-    return sum(process_program(False).values())
-
-print("Part 1: {}".format(part_1()))
-print("Part 2: {}".format(part_2()))
+def part_2(puzzle_input):
+    return sum(process_program(puzzle_input, False).values())

@@ -1,15 +1,17 @@
 import re
 from collections import defaultdict
 
-coords = open('2018/day6/puzzle.txt').readlines()
-points = [tuple(map(int, re.findall(r'\d+', x))) for x in coords]
+def get_points(puzzle_input):
+    return [tuple(map(int, re.findall(r'\d+', x))) for x in puzzle_input]
 
-# get min and max bounds
-x_min = min(points, key = lambda a: a[0])[0]
-x_max = max(points, key = lambda a: a[0])[0]
-y_min = min(points, key = lambda a: a[1])[1]
-y_max = max(points, key = lambda a: a[1])[1]
-    
+
+def get_min_max_bounds(points):
+    x_min = min(points, key = lambda a: a[0])[0]
+    x_max = max(points, key = lambda a: a[0])[0]
+    y_min = min(points, key = lambda a: a[1])[1]
+    y_max = max(points, key = lambda a: a[1])[1]
+    return x_min, x_max, y_min, y_max
+
 def manhattan(p1, p2):
     '''
     returns manhattan distance between p1 and p2
@@ -30,7 +32,9 @@ def distances(p1, points):
     return sorted(d)
 
 
-def part_1():
+def part_1(puzzle_input):
+    points = get_points(puzzle_input)
+    x_min, x_max, y_min, y_max = get_min_max_bounds(points)
     closest = defaultdict(int)
     extend_to_inf = set()
     for x in range(x_min, x_max + 1):
@@ -47,7 +51,9 @@ def part_1():
     return max(closest.values())
 
 
-def part_2():
+def part_2(puzzle_input):
+    points = get_points(puzzle_input)
+    x_min, x_max, y_min, y_max = get_min_max_bounds(points)
     region = set()
     for x in range(x_min, x_max + 1):
         for y in range(y_min, y_max + 1):
@@ -56,7 +62,3 @@ def part_2():
             if total_d < 10000:
                 region.add((x, y))
     return len(region)
-
-
-print("Part 1: {}".format(part_1()))
-print("Part 2: {}".format(part_2()))

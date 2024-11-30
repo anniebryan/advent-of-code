@@ -1,31 +1,35 @@
 import re
 from collections import defaultdict
 
-records = open('2018/day4/puzzle.txt').read()
-pattern = r'\[(\d+)-(\d+)-(\d+) (\d+):(\d+)\] (.+)'
-records = re.findall(pattern,records)
+def parse_records(puzzle_input):
+    pattern = r'\[(\d+)-(\d+)-(\d+) (\d+):(\d+)\] (.+)'
+    records = [re.match(pattern, row).groups() for row in puzzle_input]
 
-total_minutes = defaultdict(int) # maps guard ID --> total minutes asleep
-ind_minutes = defaultdict(lambda: defaultdict(int)) # maps guard ID --> dict which maps minute --> instances asleep
+    total_minutes = defaultdict(int) # maps guard ID --> total minutes asleep
+    ind_minutes = defaultdict(lambda: defaultdict(int)) # maps guard ID --> dict which maps minute --> instances asleep
 
-for line in sorted(records):
-    if 'Guard' in line[5]:
-        guard_id = int(re.findall(r'\d+', line[5])[0])
-    elif 'asleep' in line[5]:
-        min_0 = int(line[4])
-    elif 'wakes' in line[5]:
-        min_1 = int(line[4])
-        total_minutes[guard_id] += min_1 - min_0
-        for m in range(min_0, min_1):
-            ind_minutes[guard_id][m] += 1
+    for line in sorted(records):
+        if 'Guard' in line[5]:
+            guard_id = int(re.findall(r'\d+', line[5])[0])
+        elif 'asleep' in line[5]:
+            min_0 = int(line[4])
+        elif 'wakes' in line[5]:
+            min_1 = int(line[4])
+            total_minutes[guard_id] += min_1 - min_0
+            for m in range(min_0, min_1):
+                ind_minutes[guard_id][m] += 1
 
-def part_1():
+    return total_minutes, ind_minutes
+
+def part_1(puzzle_input):
+    total_minutes, ind_minutes = parse_records(puzzle_input)
     max_guard = max(total_minutes, key = total_minutes.get) # guard who sleeps the most
     max_minute = max(ind_minutes[max_guard], key = ind_minutes[max_guard].get)
     return str(str(max_guard) + ' * ' + str(max_minute) + ' = ' + str(max_guard*max_minute))
 
 
-def part_2():
+def part_2(puzzle_input):
+    _, ind_minutes = parse_records(puzzle_input)
     common_minutes = {}
     for guard in ind_minutes:
         most_common_minute = max(ind_minutes[guard], key = ind_minutes[guard].get)
@@ -34,7 +38,3 @@ def part_2():
     final_guard = max(common_minutes, key = lambda x: common_minutes[x][1])
     final_min = common_minutes[final_guard][0]
     return str(str(final_guard) + ' * ' + str(final_min) + ' = ' + str(final_guard*final_min))
-
-
-print("Part 1: {}".format(part_1()))
-print("Part 2: {}".format(part_2()))

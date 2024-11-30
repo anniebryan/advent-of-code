@@ -1,19 +1,18 @@
 from collections import defaultdict
 
-filename = '2020/day6/puzzle.txt'
-puzzle_input = open(filename).readlines()
-
-def get_groups():
-    groups = []
-    group = ''
+def get_all_groups(puzzle_input):
+    all_groups = []
+    group = []
     for line in puzzle_input:
-        if line == '\n': # break between groups
-            groups.append(group.replace('\n', ' ').split())
-            group = ''
-        else: # continuation of current group
-            group += line
-    groups.append(group.replace('\n', ' ').split())
-    return groups
+        if line == "":
+            # break between groups
+            all_groups.append(group)
+            group = []
+        else:
+            # continuation of current group
+            group.extend(line.split())
+    all_groups.append(group)
+    return all_groups
 
 def get_questions_at_least_one_yes(group):
     return {char for person in group for char in person}
@@ -25,14 +24,11 @@ def get_questions_all_yes(group):
             d[char] += 1
     return {key for key in d if d[key] == len(group)}
 
-def get_sum_counts(fn):
-    return sum([len(fn(group)) for group in get_groups()])
+def get_sum_counts(puzzle_input, fn):
+    return sum([len(fn(group)) for group in get_all_groups(puzzle_input)])
 
-def part_1():
-    return get_sum_counts(get_questions_at_least_one_yes)
+def part_1(puzzle_input):
+    return get_sum_counts(puzzle_input, get_questions_at_least_one_yes)
 
-def part_2():
-    return get_sum_counts(get_questions_all_yes)
-
-print("Part 1: {}".format(part_1()))
-print("Part 2: {}".format(part_2()))
+def part_2(puzzle_input):
+    return get_sum_counts(puzzle_input, get_questions_all_yes)

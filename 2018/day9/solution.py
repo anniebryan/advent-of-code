@@ -1,10 +1,9 @@
 import re
 from collections import deque, defaultdict
 
-def get_info():
-    text = open('2018/day9/puzzle.txt').read()
+def get_info(puzzle_input):
     pattern = r'([\d]+) players; last marble is worth ([\d]+) points'
-    num_players, last_marble = map(lambda x: int(x), re.findall(pattern, text)[0])
+    num_players, last_marble = map(lambda x: int(x), re.findall(pattern, puzzle_input[0])[0])
     return num_players, last_marble
 
 def take_turn(current_marble_index, marble_to_place, player, circle, scores):
@@ -38,15 +37,12 @@ def run_game(num_players, last_marble):
     return max(scores.values())
 
 
-def part_1():
-    num_players, last_marble = get_info()
+def part_1(puzzle_input):
+    num_players, last_marble = get_info(puzzle_input)
     return run_game(num_players, last_marble)
 
 
-def part_2():
-    num_players, last_marble = get_info()
+def part_2(puzzle_input):
+    num_players, last_marble = get_info(puzzle_input)
     last_marble *= 100
     return run_game(num_players, last_marble)
-
-print("Part 1: {}".format(part_1()))
-print("Part 2: {}".format(part_2()))

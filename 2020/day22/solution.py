@@ -1,16 +1,16 @@
 from collections import deque
 
-filename = '2020/day22/puzzle.txt'
-puzzle_input = open(filename).read()
-
-def get_initial_decks():
-    player_1, player_2 = puzzle_input.split('\n\n')
-    p1 = deque()
-    for card in player_1.split('\n')[1:]:
-        p1.append(int(card))
-    p2 = deque()
-    for card in player_2.split('\n')[1:]:
-        p2.append(int(card))
+def get_initial_decks(puzzle_input):
+    p1, p2 = deque(), deque()
+    current_player = None
+    for row in puzzle_input:
+        if "Player" in row:
+            current_player = int(row.split()[1][:-1])
+        elif row != "":
+            if current_player == 1:
+                p1.append(int(row))
+            elif current_player == 2:
+                p2.append(int(row))
     return p1, p2
 
 def play_round(p1, p2):
@@ -64,25 +64,21 @@ def score(queue):
         i += 1
     return s
 
-def play_game():
-    p1, p2 = get_initial_decks()
+def play_game(p1, p2):
     while len(p1) > 0 and len(p2) > 0:
         p1, p2 = play_round(p1, p2)
     return score(p1), score(p2)
 
-def play_recursive_game(p1=None, p2=None):
-    if p1 is None or p2 is None:
-        p1, p2 = get_initial_decks()
+def play_recursive_game(p1, p2):
     seen = set()
     while len(p1) > 0 and len(p2) > 0:
         p1, p2, seen = play_recursive_round(p1, p2, seen)
     return score(p1), score(p2)
 
-def part_1():
-    return max(play_game())
+def part_1(puzzle_input):
+    p1, p2 = get_initial_decks(puzzle_input)
+    return max(play_game(p1, p2))
 
-def part_2():
-    return max(play_recursive_game())
-
-print("Part 1: {}".format(part_1()))
-print("Part 2: {}".format(part_2()))
+def part_2(puzzle_input):
+    p1, p2 = get_initial_decks(puzzle_input)
+    return max(play_recursive_game(p1, p2))

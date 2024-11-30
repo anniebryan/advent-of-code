@@ -1,10 +1,8 @@
-filename = '2020/day15/puzzle.txt'
-puzzle_input = open(filename).read().split(',')
-
-def process_input():
-    history = {int(n): i+1 for i, n in enumerate(puzzle_input[:-1])}
-    last_turn = int(puzzle_input[-1])
-    i = len(puzzle_input) + 1
+def process_input(puzzle_input):
+    numbers = puzzle_input[0].split(",")
+    history = {int(n): i+1 for i, n in enumerate(numbers)}
+    last_turn = int(numbers[-1])
+    i = len(numbers) + 1
     return history, last_turn, i
 
 def take_turn(history, last_turn, i):
@@ -18,17 +16,14 @@ def take_turn(history, last_turn, i):
     history[last_turn] = i-1
     return history, spoken, i+1
 
-def nth_number_spoken(n):
-    history, last_turn, i = process_input()
+def nth_number_spoken(puzzle_input, n):
+    history, last_turn, i = process_input(puzzle_input)
     while i <= n:
         history, last_turn, i = take_turn(history, last_turn, i)
     return last_turn
 
-def part_1():
-    return nth_number_spoken(2020)
+def part_1(puzzle_input):
+    return nth_number_spoken(puzzle_input, 2020)
 
-def part_2():
-    return nth_number_spoken(30000000)
-
-print("Part 1: {}".format(part_1()))
-print("Part 2: {}".format(part_2()))
+def part_2(puzzle_input):
+    return nth_number_spoken(puzzle_input, 30000000)

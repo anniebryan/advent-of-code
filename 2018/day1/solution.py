@@ -1,11 +1,8 @@
-frequencies = open('2018/day1/puzzle.txt').readlines()
+def part_1(puzzle_input):
+    return sum([int(x) for x in puzzle_input])
 
-def part_1():
-    return sum([int(x) for x in frequencies])
-
-
-def part_2():
-    nums = [int(x) for x in frequencies]
+def part_2(puzzle_input):
+    nums = [int(x) for x in puzzle_input]
     sums = set()
     s = 0 # current running sum
     i = 0 # current index
@@ -16,7 +13,3 @@ def part_2():
             i += 1
         else:
             return s
-
-
-print("Part 1: {}".format(part_1()))
-print("Part 2: {}".format(part_2()))

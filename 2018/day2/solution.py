@@ -1,11 +1,9 @@
 import string
 
-boxes = open('2018/day2/puzzle.txt').readlines()
-
-def part_1():
+def part_1(puzzle_input):
     num_2 = 0
     num_3 = 0
-    for box in boxes:
+    for box in puzzle_input:
         counts = []
         for letter in string.ascii_lowercase:
             count = box.count(letter)
@@ -17,10 +15,10 @@ def part_1():
     return num_2*num_3
 
 
-def part_2():
-    for i in range(len(boxes)):
-        box1 = boxes[i]
-        remaining = boxes[i+1:]
+def part_2(puzzle_input):
+    for i in range(len(puzzle_input)):
+        box1 = puzzle_input[i]
+        remaining = puzzle_input[i+1:]
         for j in range(len(remaining)):
             box2 = remaining[j]
             different = 0
@@ -30,7 +28,3 @@ def part_2():
                     letter = l
             if different == 1:
                 return box1[0:letter]+box1[letter+1:]
-
-
-print("Part 1: {}".format(part_1()))
-print("Part 2: {}".format(part_2()))

@@ -1,15 +1,23 @@
 from collections import deque
 from math import prod
 
-filename = '2020/day20/puzzle.txt'
-puzzle_input = open(filename).read().split('\n\n')
 
-def process_input():
+def process_input(puzzle_input):
     tiles = {}
-    for tile in puzzle_input:
-        lines = tile.split('\n')
-        tile_id = int(lines[0].split()[1][:-1])
-        tiles[tile_id] = lines[1:]
+    tile_id = None
+    tile = []
+    for line in puzzle_input:
+        if line == "":
+            if tile_id is not None:
+                tiles[tile_id] = tile
+            tile_id = None
+            tile = []
+        elif tile_id is None:
+            tile_id = int(line.split()[1][:-1])
+        else:
+            tile.append(line)
+    if tile_id is not None:
+        tiles[tile_id] = tile
     return tiles
 
 def get_edge(tiles, tile, edge):
@@ -68,8 +76,7 @@ def add_tile(tiles, ids_used, right_edge, bottom_edge):
                 for (r, f) in match_tile_vertical(tiles, bottom_edge, tile_id):
                     yield (tile_id, r, f)
 
-def build_square(top_left_tile_id, rotation, flipped):
-    tiles = process_input()
+def build_square(tiles, top_left_tile_id, rotation, flipped):
     square = [(top_left_tile_id, rotation, flipped)]
     width = int(len(tiles)**0.5)
     q = deque()
@@ -86,19 +93,17 @@ def build_square(top_left_tile_id, rotation, flipped):
             q.append(square + [tile])
     return None
 
-def find_top_left_tile():
-    tiles = process_input()
+def find_top_left_tile(tiles):
     for tile_id in tiles:
         for rotation in {0, 1, 2, 3}:
             for flipped in {True, False}:
-                square = build_square(tile_id, rotation, flipped)
+                square = build_square(tiles, tile_id, rotation, flipped)
                 if square is not None:
                     return square
     return None
 
-def get_corners():
-    tiles = process_input()
-    square = find_top_left_tile()
+def get_corners(tiles):
+    square = find_top_left_tile(tiles)
     width = int(len(tiles)**0.5)
     return {square[0][0], square[width-1][0], square[len(square)-width][0], square[-1][0]}
 
@@ -119,9 +124,8 @@ def get_tile_image(tiles, tile, borderless):
     elif rotation == 2: return [row[::-1] for row in tile_image[::-1]]
     else: return [''.join(tile_image[j][width-i-1] for j in range(width)) for i in range(width)]
 
-def get_image():
-    tiles = process_input()
-    square = find_top_left_tile()
+def get_image(tiles):
+    square = find_top_left_tile(tiles)
     width = int(len(tiles)**0.5)
     image = []
     for i in range(width):
@@ -130,8 +134,8 @@ def get_image():
             image.append(''.join(col[k] for col in image_row))
     return image
 
-def get_squares(char):
-    image = get_image()
+def get_squares(tiles, char):
+    image = get_image(tiles)
     for i, row in enumerate(image):
         for j, c in enumerate(row):
             if c == char:
@@ -144,11 +148,11 @@ def get_pattern(rotation, flipped, pattern):
     elif rotation == 3: pattern = {(j, i) for (i, j) in pattern}
     return pattern
 
-def fits_pattern(image, char, rotation, flipped, pattern):
+def fits_pattern(tiles, image, char, rotation, flipped, pattern):
     dim = (2, 18) if rotation % 2 == 0 else (18, 2)
     pattern = get_pattern(rotation, flipped, pattern)
 
-    locs = set(get_squares(char))
+    locs = set(get_squares(tiles, char))
     num_pattern_matches = 0
 
     width = len(image)
@@ -158,20 +162,19 @@ def fits_pattern(image, char, rotation, flipped, pattern):
                 num_pattern_matches += 1
     return num_pattern_matches
     
-def num_char_not_in_pattern(char, pattern):
-    image = get_image()
+def num_char_not_in_pattern(tiles, char, pattern):
+    image = get_image(tiles)
     max_matches = 0
     for rotation in {0, 1, 2, 3}:
         for flipped in {True, False}:
-            max_matches = max(fits_pattern(image, char, rotation, flipped, pattern), max_matches)
-    return len(set(get_squares(char))) - len(pattern)*max_matches
+            max_matches = max(fits_pattern(tiles, image, char, rotation, flipped, pattern), max_matches)
+    return len(set(get_squares(tiles, char))) - len(pattern)*max_matches
 
-def part_1():
-    return prod(get_corners())
+def part_1(puzzle_input):
+    tiles = process_input(puzzle_input)
+    return prod(get_corners(tiles))
 
-def part_2():
+def part_2(puzzle_input):
+    tiles = process_input(puzzle_input)
     pattern = {(0,18),(1,0),(1,5),(1,6),(1,11),(1,12),(1,17),(1,18),(1,19),(2,1),(2,4),(2,7),(2,10),(2,13),(2,16)}
-    return num_char_not_in_pattern('#', pattern)
-
-print("Part 1: {}".format(part_1()))
-print("Part 2: {}".format(part_2()))
+    return num_char_not_in_pattern(tiles, '#', pattern)

@@ -1,8 +1,8 @@
 import re
 
-file = open('2019/day4/puzzle.txt')
-given_range = file.readlines()
-min_r, max_r = (int(x) for x in re.findall('(\d+)-(\d+)', given_range[0])[0])
+def get_min_max_r(puzzle_input):
+    min_r, max_r = (int(x) for x in re.findall('(\d+)-(\d+)', puzzle_input[0])[0])
+    return min_r, max_r
 
 
 def adjacent_digits(n):
@@ -31,15 +31,13 @@ def contains_double(n):
     return 2 in lengths
 
 
-def part_1():
+def part_1(puzzle_input):
+    min_r, max_r = get_min_max_r(puzzle_input)
     valid_passwords = [n for n in range(min_r, max_r + 1) if adjacent_digits(n) and never_decreases(n)]
     return len(valid_passwords)
 
 
-def part_2():
+def part_2(puzzle_input):
+    min_r, max_r = get_min_max_r(puzzle_input)
     valid_passwords = [n for n in range(min_r, max_r + 1) if contains_double(n) and never_decreases(n)]
-    return(len(valid_passwords))
-
-
-print("Part 1: {}".format(part_1()))
-print("Part 2: {}".format(part_2()))
+    return len(valid_passwords)
