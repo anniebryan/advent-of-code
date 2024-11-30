@@ -24,7 +24,7 @@ def main(year: str, day: str) -> None:
             print("Input file not found.")
             continue
         with open(input_filepath) as file:
-            puzzle_input = [line.strip() for line in file]
+            puzzle_input = [line.strip("\n") for line in file]
             print(f"Part 1: {part_1(puzzle_input)}")
             print(f"Part 2: {part_2(puzzle_input)}")
 
