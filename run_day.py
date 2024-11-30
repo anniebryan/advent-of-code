@@ -24,7 +24,6 @@ def run_solution(base_dir: Path, input_filename: str, display_name: str, part_1:
 @click.option("-se", "--skip_example", is_flag=True, default=False)
 @click.option("-sp", "--skip_puzzle", is_flag=True, default=False)
 def main(year: str, day: str, skip_example: bool = False, skip_puzzle: bool = False) -> None:
-    print(f"{year=} {day=}")
     base_dir = Path(f"{year}/day{day}")
     file_path = base_dir / "solution.py"
 
