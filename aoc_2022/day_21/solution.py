@@ -87,11 +87,11 @@ def set_equal(monkeys):
     return target_value
 
 
-def part_1(puzzle_input):
+def solve_part_1(puzzle_input):
     monkeys = parse(puzzle_input)
     return monkeys["root"].get_number(monkeys)
 
     
-def part_2(puzzle_input):
+def solve_part_2(puzzle_input):
     monkeys = parse(puzzle_input)
     return set_equal(monkeys)

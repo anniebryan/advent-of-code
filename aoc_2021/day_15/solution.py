@@ -87,11 +87,11 @@ def min_risk(risk_levels):
     return dijkstra(graph, start_node)[end_node]
 
 
-def part_1(puzzle_input):
+def solve_part_1(puzzle_input):
     risk_levels = get_risk_levels(puzzle_input, False)
     return min_risk(risk_levels)
 
 
-def part_2(puzzle_input):
+def solve_part_2(puzzle_input):
     risk_levels = get_risk_levels(puzzle_input, True)
     return min_risk(risk_levels)

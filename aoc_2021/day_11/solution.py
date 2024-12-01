@@ -83,11 +83,11 @@ def run_until_all_flashed(octopus_dict, num_rows, num_cols, num_octopuses):
             return i
 
 
-def part_1(puzzle_input):
+def solve_part_1(puzzle_input):
     octopus_dict, num_rows, num_cols, _ = get_octopus_dict(puzzle_input)
     return n_timesteps(octopus_dict, num_rows, num_cols, 100)
 
 
-def part_2(puzzle_input):
+def solve_part_2(puzzle_input):
     octopus_dict, num_rows, num_cols, num_octopuses = get_octopus_dict(puzzle_input)
     return run_until_all_flashed(octopus_dict, num_rows, num_cols, num_octopuses)

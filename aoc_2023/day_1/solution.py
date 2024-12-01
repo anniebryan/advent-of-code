@@ -33,13 +33,13 @@ def get_all_calibration_values(puzzle_input: list[str], part_2: bool) -> list[in
     return calibration_values
 
 
-def part_1(puzzle_input: list[str]) -> int:
+def solve_part_1(puzzle_input: list[str]) -> int:
     if puzzle_input[0] == "part 2 only":
         return "Not supported"
     return sum(get_all_calibration_values(puzzle_input[1:], False))
 
 
-def part_2(puzzle_input: list[str]) -> int:
+def solve_part_2(puzzle_input: list[str]) -> int:
     if puzzle_input[0] == "part 1 only":
         return "Not supported"
     return sum(get_all_calibration_values(puzzle_input[1:], True))

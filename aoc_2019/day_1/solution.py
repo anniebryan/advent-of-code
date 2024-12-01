@@ -33,11 +33,11 @@ def get_total_fuel(mass: int) -> int:
     return initial_fuel + get_total_fuel(initial_fuel)
 
 
-def part_1(puzzle_input):
+def solve_part_1(puzzle_input):
     masses = get_masses(puzzle_input)
     return sum([get_fuel(m) for m in masses])
 
 
-def part_2(puzzle_input):
+def solve_part_2(puzzle_input):
     masses = get_masses(puzzle_input)
     return sum([get_total_fuel(m) for m in masses])

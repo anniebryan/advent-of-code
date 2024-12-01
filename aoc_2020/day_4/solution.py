@@ -102,9 +102,9 @@ def count_valid_passports(puzzle_input, constraints):
     return valid_passports
 
 
-def part_1(puzzle_input):
+def solve_part_1(puzzle_input):
     return count_valid_passports(puzzle_input, False)
 
 
-def part_2(puzzle_input):
+def solve_part_2(puzzle_input):
     return count_valid_passports(puzzle_input, True)

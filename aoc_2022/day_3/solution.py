@@ -28,7 +28,7 @@ def priority(ch):
     return ord(ch) - 38
 
 
-def part_1(puzzle_input):
+def solve_part_1(puzzle_input):
     tot = 0
     for row in puzzle_input:
         ch = letter_in_common(row)
@@ -36,7 +36,7 @@ def part_1(puzzle_input):
     return tot
 
 
-def part_2(puzzle_input):
+def solve_part_2(puzzle_input):
     tot = 0
     for i in range(0, len(puzzle_input), 3):
         ch = letter_in_common_3(*puzzle_input[i:i + 3])

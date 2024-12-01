@@ -39,11 +39,11 @@ def generate_diagram(puzzle_input, diagonals):
     return diagram
 
 
-def part_1(puzzle_input):
+def solve_part_1(puzzle_input):
     diagram = generate_diagram(puzzle_input, False)
     return len([key for key in diagram if diagram[key] >= 2])
 
 
-def part_2(puzzle_input):
+def solve_part_2(puzzle_input):
     diagram = generate_diagram(puzzle_input, True)
     return len([key for key in diagram if diagram[key] >= 2])

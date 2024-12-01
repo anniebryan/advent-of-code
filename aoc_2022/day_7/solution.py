@@ -95,13 +95,13 @@ def remaining_space_needed(directory, disk_space, total_needed):
     return directory.total_size() - (disk_space - total_needed)
 
 
-def part_1(puzzle_input):
+def solve_part_1(puzzle_input):
     filesystem = get_filesystem(puzzle_input)
     max_size = 100000
     return sum([s for s in all_directory_sizes(filesystem) if s <= max_size])
 
 
-def part_2(puzzle_input):
+def solve_part_2(puzzle_input):
     filesystem = get_filesystem(puzzle_input)
     disk_space = 70000000
     space_needed = 30000000

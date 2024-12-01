@@ -55,11 +55,11 @@ def consider_all_sizes(serial_number):
     return int(best_x[0]), int(best_y[0]), best_size
 
 
-def part_1(puzzle_input):
+def solve_part_1(puzzle_input):
     serial_number = get_serial_number(puzzle_input)
     return find_largest_total_power(3, serial_number)
 
 
-def part_2(puzzle_input):
+def solve_part_2(puzzle_input):
     serial_number = get_serial_number(puzzle_input)
     return consider_all_sizes(serial_number)

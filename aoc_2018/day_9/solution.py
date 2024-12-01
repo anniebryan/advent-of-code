@@ -44,12 +44,12 @@ def run_game(num_players, last_marble):
     return max(scores.values())
 
 
-def part_1(puzzle_input):
+def solve_part_1(puzzle_input):
     num_players, last_marble = get_info(puzzle_input)
     return run_game(num_players, last_marble)
 
 
-def part_2(puzzle_input):
+def solve_part_2(puzzle_input):
     num_players, last_marble = get_info(puzzle_input)
     last_marble *= 100
     return run_game(num_players, last_marble)

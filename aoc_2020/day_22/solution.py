@@ -91,11 +91,11 @@ def play_recursive_game(p1, p2):
     return score(p1), score(p2)
 
 
-def part_1(puzzle_input):
+def solve_part_1(puzzle_input):
     p1, p2 = get_initial_decks(puzzle_input)
     return max(play_game(p1, p2))
 
 
-def part_2(puzzle_input):
+def solve_part_2(puzzle_input):
     p1, p2 = get_initial_decks(puzzle_input)
     return max(play_recursive_game(p1, p2))

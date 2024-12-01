@@ -93,11 +93,11 @@ def drop_n_rocks(jet_queue, n):
     return height
 
 
-def part_1(puzzle_input):
+def solve_part_1(puzzle_input):
     jet_queue = cycle(puzzle_input[0])
     return drop_n_rocks(jet_queue, 2022)
 
 
-def part_2(puzzle_input):
+def solve_part_2(puzzle_input):
     jet_queue = cycle(puzzle_input[0])
     return drop_n_rocks(jet_queue, 1000000000000)

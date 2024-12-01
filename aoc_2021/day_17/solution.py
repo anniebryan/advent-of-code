@@ -86,12 +86,12 @@ def num_distinct_init_velocities(target_area):
     return num_velocities
 
 
-def part_1(puzzle_input):
+def solve_part_1(puzzle_input):
     target_area = get_target_area(puzzle_input)
     ans = max_y_pos_hits_target(target_area)
     return ans[0]
 
 
-def part_2(puzzle_input):
+def solve_part_2(puzzle_input):
     target_area = get_target_area(puzzle_input)
     return num_distinct_init_velocities(target_area)

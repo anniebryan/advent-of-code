@@ -41,7 +41,7 @@ def get_smallest_box(boxes):
             return i, box
 
 
-def part_1(puzzle_input):
+def solve_part_1(puzzle_input):
     data = get_data(puzzle_input)
     boxes = get_boxes(data)
     i, box = get_smallest_box(boxes)
@@ -57,7 +57,7 @@ def part_1(puzzle_input):
     return "\n".join(output)
 
 
-def part_2(puzzle_input):
+def solve_part_2(puzzle_input):
     data = get_data(puzzle_input)
     boxes = get_boxes(data)
     i, _ = get_smallest_box(boxes)

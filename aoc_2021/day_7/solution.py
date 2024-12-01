@@ -12,11 +12,11 @@ def min_distance(puzzle_input, distance_fn):
     return min([distance_fn(i, positions) for i in range(max(positions))])
 
 
-def part_1(puzzle_input):
+def solve_part_1(puzzle_input):
     abs_distance = lambda i, positions: int(sum([abs(p - i) for p in positions]))
     return min_distance(puzzle_input, abs_distance)
 
 
-def part_2(puzzle_input):
+def solve_part_2(puzzle_input):
     distance = lambda i, positions: int(sum([abs(p - i) * (abs(p - i) + 1) / 2 for p in positions]))
     return min_distance(puzzle_input, distance)

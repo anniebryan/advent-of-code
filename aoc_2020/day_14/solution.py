@@ -70,9 +70,9 @@ def process_program(puzzle_input, part_one):
     return memory
 
 
-def part_1(puzzle_input):
+def solve_part_1(puzzle_input):
     return sum(process_program(puzzle_input, True).values())
 
 
-def part_2(puzzle_input):
+def solve_part_2(puzzle_input):
     return sum(process_program(puzzle_input, False).values())

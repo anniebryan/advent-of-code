@@ -64,7 +64,7 @@ def get_adjacent_numbers(adjacent_num_ids: set[int], num_id_map: dict[int, int])
     return adjacent_numbers
 
 
-def part_1(puzzle_input: list[str]) -> int:
+def solve_part_1(puzzle_input: list[str]) -> int:
     loc_to_num_id_map, num_id_map = get_number_map(puzzle_input)
 
     all_adjacent_num_ids = set()
@@ -75,7 +75,7 @@ def part_1(puzzle_input: list[str]) -> int:
     return sum(adjacent_numbers)
             
 
-def part_2(puzzle_input: list[str]) -> int:
+def solve_part_2(puzzle_input: list[str]) -> int:
     loc_to_num_id_map, num_id_map = get_number_map(puzzle_input)
 
     all_gear_ratios = []

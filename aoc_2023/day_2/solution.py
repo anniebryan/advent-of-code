@@ -43,7 +43,7 @@ def determine_min_cubes_needed(game_records: list[dict[str, int]]) -> tuple[int,
     return max_red_seen, max_green_seen, max_blue_seen
 
 
-def part_1(puzzle_input: list[str]) -> int:
+def solve_part_1(puzzle_input: list[str]) -> int:
     game_map = parse_input(puzzle_input)
     all_possible_game_ids = []
     for game_id, game_records in game_map.items():
@@ -52,7 +52,7 @@ def part_1(puzzle_input: list[str]) -> int:
     return sum(all_possible_game_ids)
 
 
-def part_2(puzzle_input: list[str]) -> int:
+def solve_part_2(puzzle_input: list[str]) -> int:
     game_map = parse_input(puzzle_input)
     all_powers = []
     for game_records in game_map.values():

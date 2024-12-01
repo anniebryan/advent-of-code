@@ -48,7 +48,7 @@ def get_intersections(wire_1, wire_2):
     return intersections
 
 
-def part_1(puzzle_input):
+def solve_part_1(puzzle_input):
     wire_1, wire_2 = get_wires(puzzle_input)
     distances = {get_manhattan_distance(i):i for i in get_intersections(wire_1, wire_2)}
     return min(distances)
@@ -58,7 +58,7 @@ def get_steps_so_far(path1, path2, loc):
     return path1.index(loc) + path2.index(loc) + 2
 
 
-def part_2(puzzle_input):
+def solve_part_2(puzzle_input):
     wire_1, wire_2 = get_wires(puzzle_input)
     v1 = get_path(get_vertices(wire_1))
     v2 = get_path(get_vertices(wire_2))

@@ -70,12 +70,12 @@ def unreachable_air_space(cubes):
     return [cube for cube in air_space if not air_space[cube]]
 
 
-def part_1(puzzle_input):
+def solve_part_1(puzzle_input):
     cubes = [tuple(int(x) for x in row.split(",")) for row in puzzle_input]
     return len(unique_sides(cubes))
 
 
-def part_2(puzzle_input):
+def solve_part_2(puzzle_input):
     cubes = [tuple(int(x) for x in row.split(",")) for row in puzzle_input]
     internal = set().union(side for cube in unreachable_air_space(cubes) for side in get_sides(cube))
     return len([side for side in unique_sides(cubes) if side not in internal])

@@ -47,11 +47,11 @@ def execute_moves(moves, num_tails):
     return tail_locations
 
 
-def part_1(puzzle_input):
+def solve_part_1(puzzle_input):
     moves = get_moves(puzzle_input)
     return len(execute_moves(moves, 1))
 
 
-def part_2(puzzle_input):
+def solve_part_2(puzzle_input):
     moves = get_moves(puzzle_input)
     return len(execute_moves(moves, 9))

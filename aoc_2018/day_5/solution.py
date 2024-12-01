@@ -22,13 +22,13 @@ def destroy(p, c):
         return p + c
 
 
-def part_1(puzzle_input):
+def solve_part_1(puzzle_input):
     s = puzzle_input[0]
     s2 = reduce(destroy, s)
     return len(s2)
 
 
-def part_2(puzzle_input):
+def solve_part_2(puzzle_input):
     s = puzzle_input[0]
     lengths = {}
     for letter in string.ascii_lowercase:

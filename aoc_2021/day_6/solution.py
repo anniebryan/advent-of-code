@@ -28,9 +28,9 @@ def simulate_n_days(puzzle_input, n):
     return timers
 
 
-def part_1(puzzle_input):
+def solve_part_1(puzzle_input):
     return sum(simulate_n_days(puzzle_input, 80).values())
 
 
-def part_2(puzzle_input):
+def solve_part_2(puzzle_input):
     return sum(simulate_n_days(puzzle_input, 256).values())

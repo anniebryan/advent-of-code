@@ -67,12 +67,12 @@ def find_remaining_sensor(puzzle_input, max_to_search):
             max_found = max(max_found, range_2[1])
 
 
-def part_1(puzzle_input):
+def solve_part_1(puzzle_input):
     row = int(puzzle_input[0])
     return len(find_impossible_positions(puzzle_input[2:], row))
 
 
-def part_2(puzzle_input):
+def solve_part_2(puzzle_input):
     max_to_search = int(puzzle_input[1])
     x, y = find_remaining_sensor(puzzle_input[2:], max_to_search)
     return x * 4000000 + y

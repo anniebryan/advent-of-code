@@ -61,11 +61,11 @@ def manhattan_distance(x, y):
     return abs(x) + abs(y)
 
 
-def part_1(puzzle_input):
+def solve_part_1(puzzle_input):
     final_x, final_y = process_all_instructions(puzzle_input, True)
     return manhattan_distance(final_x, final_y)
 
 
-def part_2(puzzle_input):
+def solve_part_2(puzzle_input):
     final_x, final_y = process_all_instructions(puzzle_input, False)
     return manhattan_distance(final_x, final_y)

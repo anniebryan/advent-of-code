@@ -60,7 +60,7 @@ def min_distances(map, map_size, start_locs, end_loc):
             yield dist[end_loc]
 
 
-def part_1(puzzle_input):
+def solve_part_1(puzzle_input):
     map, map_size, start_loc, end_loc = create_map(puzzle_input)
     dist = bfs(map, map_size, start_loc, end_loc)
     if dist is not None:
@@ -68,7 +68,7 @@ def part_1(puzzle_input):
     return "Unable to get to E from S"
 
 
-def part_2(puzzle_input):
+def solve_part_2(puzzle_input):
     map, map_size, _, end_loc = create_map(puzzle_input)
     d = {}
     for start_loc in map:

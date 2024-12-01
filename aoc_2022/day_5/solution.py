@@ -47,11 +47,11 @@ def topmost_crates(crates):
     return "".join(topmost)
 
 
-def part_1(puzzle_input):
+def solve_part_1(puzzle_input):
     crates = execute_instructions(puzzle_input, False)
     return topmost_crates(crates)
 
 
-def part_2(puzzle_input):
+def solve_part_2(puzzle_input):
     crates = execute_instructions(puzzle_input, True)
     return topmost_crates(crates)

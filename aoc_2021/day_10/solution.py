@@ -46,7 +46,7 @@ def get_score(completion_string):
     return score
 
 
-def part_1(puzzle_input):
+def solve_part_1(puzzle_input):
     total = 0
     for line in puzzle_input:
         if (char := find_first_illegal_char(line)) is not None:
@@ -54,7 +54,7 @@ def part_1(puzzle_input):
     return total
 
 
-def part_2(puzzle_input):
+def solve_part_2(puzzle_input):
     scores = []
     for line in puzzle_input:
         if (completion_string := fill_incomplete(line)) is not None:

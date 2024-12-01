@@ -75,9 +75,9 @@ def solve(puzzle_input, decryption_key, num_times):
     return sum([ls.num_after_zero(i) for i in [1000, 2000, 3000]])
 
 
-def part_1(puzzle_input):
+def solve_part_1(puzzle_input):
     return solve(puzzle_input, 1, 1)
 
 
-def part_2(puzzle_input):
+def solve_part_2(puzzle_input):
     return solve(puzzle_input, 811589153, 10)

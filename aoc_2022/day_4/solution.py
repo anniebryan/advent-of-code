@@ -11,7 +11,7 @@ def get_sections(puzzle_input):
         yield int(a), int(b), int(c), int(d)
 
 
-def part_1(puzzle_input):
+def solve_part_1(puzzle_input):
     num_overlap = 0
     for a, b, c, d in get_sections(puzzle_input):
         if a <= c <= d <= b:
@@ -21,7 +21,7 @@ def part_1(puzzle_input):
     return num_overlap
 
 
-def part_2(puzzle_input):
+def solve_part_2(puzzle_input):
     num_overlap = 0
     for a, b, c, d in get_sections(puzzle_input):
         if a <= c <= b:

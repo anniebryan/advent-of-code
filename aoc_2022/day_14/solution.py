@@ -95,12 +95,12 @@ def pour_sand(rock, y_max, sand_start, verbose=False):
     return num_sand_dropped
         
 
-def part_1(input):
+def solve_part_1(input):
     rock, _, y_range = get_rock(input)
     y_max = y_range[1]
     return pour_sand(rock, y_max, (500, 0))
 
-def part_2(input):  # TODO speedup
+def solve_part_2(input):  # TODO speedup
     rock, x_range, y_range = get_rock(input)
     x_min, x_max = x_range
     y_min, y_max = y_range

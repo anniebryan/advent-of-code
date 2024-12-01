@@ -17,9 +17,9 @@ def get_score(row, part_1):
     return move_score + outcome_score
 
 
-def part_1(puzzle_input):
+def solve_part_1(puzzle_input):
     return sum([get_score(row, True) for row in puzzle_input])
 
 
-def part_2(puzzle_input):
+def solve_part_2(puzzle_input):
     return sum([get_score(row, False) for row in puzzle_input])

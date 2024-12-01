@@ -39,9 +39,9 @@ def get_earliest_timestamp(puzzle_input):
     return time
 
 
-def part_1(puzzle_input):
+def solve_part_1(puzzle_input):
     return prod(next_bus_time(puzzle_input))
 
 
-def part_2(puzzle_input):
+def solve_part_2(puzzle_input):
     return get_earliest_timestamp(puzzle_input)

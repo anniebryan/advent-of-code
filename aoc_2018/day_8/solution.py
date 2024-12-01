@@ -14,7 +14,7 @@ def process_data(data):
     return children, metadata
 
 
-def part_1(puzzle_input):
+def solve_part_1(puzzle_input):
     # returns sum of metadata values for all nodes
     def sum_metadata(node):
         children, metadata = node
@@ -25,7 +25,7 @@ def part_1(puzzle_input):
     return sum_metadata(root)
 
 
-def part_2(puzzle_input):
+def solve_part_2(puzzle_input):
     # returns value of root node
     def value(node):
         children, metadata = node

@@ -16,14 +16,14 @@ bin_to_dec = lambda bin: sum([2 ** i * int(bin[-i - 1]) for i in range(len(bin))
 remove = lambda i, fn, iterable: filter(lambda n: n[i] == fn(i, iterable), iterable)
 
 
-def part_1(puzzle_input):
+def solve_part_1(puzzle_input):
     report = get_report(puzzle_input)
     gamma_rate = ''.join([most_common(i, report) for i in range(len(report[0]))])
     epsilon_rate = ''.join([least_common(i, report) for i in range(len(report[0]))])
     return bin_to_dec(gamma_rate) * bin_to_dec(epsilon_rate)
 
 
-def part_2(puzzle_input):
+def solve_part_2(puzzle_input):
     report = get_report(puzzle_input)
     keep_most_common, keep_least_common = report, report
     

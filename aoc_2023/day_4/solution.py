@@ -19,7 +19,7 @@ def parse_card(line: str) -> tuple[int, set[int], set[int]]:
     return card_num, winning_numbers, numbers_you_have
 
 
-def part_1(puzzle_input):
+def solve_part_1(puzzle_input):
     points = []
     for line in puzzle_input:
         _, winning_numbers, numbers_you_have = parse_card(line)
@@ -29,7 +29,7 @@ def part_1(puzzle_input):
     return sum(points)
 
 
-def part_2(puzzle_input):
+def solve_part_2(puzzle_input):
     all_card_nums = set()
     for line in puzzle_input:
         card_num, _, _ = parse_card(line)

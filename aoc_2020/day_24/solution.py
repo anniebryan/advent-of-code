@@ -101,9 +101,9 @@ def wait_n_days(puzzle_input, n):
     return len(black_tiles)
 
 
-def part_1(puzzle_input):
+def solve_part_1(puzzle_input):
     return get_num_black_tiles(puzzle_input)
 
 
-def part_2(puzzle_input):
+def solve_part_2(puzzle_input):
     return wait_n_days(puzzle_input, 100)

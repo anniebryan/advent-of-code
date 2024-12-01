@@ -27,11 +27,11 @@ def other_key(keys, key):
     return keys[0]
 
 
-def part_1(puzzle_input):
+def solve_part_1(puzzle_input):
     keys = get_public_keys(puzzle_input)
     loop_size, key = get_loop_size(keys, 7, 10000000)
     return list(transform(other_key(keys, key), loop_size))[-1][1]
 
 
-def part_2(puzzle_input):
+def solve_part_2(puzzle_input):
     return

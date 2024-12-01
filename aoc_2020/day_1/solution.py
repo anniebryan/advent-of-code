@@ -40,11 +40,11 @@ def find_three_that_sum(expense_report, n):
     return (0, 0, 0)  # no three entries sum to n
 
 
-def part_1(puzzle_input):
+def solve_part_1(puzzle_input):
     expense_report = get_expense_report(puzzle_input)
     return prod(find_two_that_sum(expense_report, 2020))
 
 
-def part_2(puzzle_input):
+def solve_part_2(puzzle_input):
     expense_report = get_expense_report(puzzle_input)
     return prod(find_three_that_sum(expense_report, 2020))
