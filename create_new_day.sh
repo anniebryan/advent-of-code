@@ -12,7 +12,7 @@ fi
 # Variables
 year=$1
 day=$2
-filename="${year}/day${day}/solution.py"
+filename="aoc_${year}/day_${day}/solution.py"
 directory="$(dirname "$filename")"
 
 # Create directory if it doesn't exist
