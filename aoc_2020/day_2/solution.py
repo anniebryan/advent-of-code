@@ -48,9 +48,9 @@ def count_valid_passwords(puzzle_input, policy_one):
     return num_valid_passwords
 
 
-def solve_part_1(puzzle_input):
+def solve_part_1(puzzle_input: list[str]):
     return count_valid_passwords(puzzle_input, True)
 
 
-def solve_part_2(puzzle_input):
+def solve_part_2(puzzle_input: list[str]):
     return count_valid_passwords(puzzle_input, False)

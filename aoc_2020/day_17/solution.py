@@ -75,9 +75,9 @@ def run_n_cycles(puzzle_input, n, num_dim):
     return active
 
 
-def solve_part_1(puzzle_input):
+def solve_part_1(puzzle_input: list[str]):
     return len(run_n_cycles(puzzle_input, 6, 3))
 
 
-def solve_part_2(puzzle_input):
+def solve_part_2(puzzle_input: list[str]):
     return len(run_n_cycles(puzzle_input, 6, 4))

@@ -101,7 +101,7 @@ def max_num_geodes(blueprint: Blueprint, init_materials, init_robots, total_time
     return max_geodes, best_path
 
 
-def solve_part_1(puzzle_input):
+def solve_part_1(puzzle_input: list[str]):
     quality = []
     for blueprint in parse(puzzle_input):
         max_geodes, _ = max_num_geodes(blueprint, (0, 0, 0, 0), (1, 0, 0, 0), 24)
@@ -109,7 +109,7 @@ def solve_part_1(puzzle_input):
     return sum(quality)
 
 
-def solve_part_2(puzzle_input):
+def solve_part_2(puzzle_input: list[str]):
     product = 1
     for blueprint in parse(puzzle_input[:3]):
         max_geodes, _ = max_num_geodes(blueprint, (0, 0, 0, 0), (1, 0, 0, 0), 32)

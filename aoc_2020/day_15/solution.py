@@ -30,9 +30,9 @@ def nth_number_spoken(puzzle_input, n):
     return last_turn
 
 
-def solve_part_1(puzzle_input):
+def solve_part_1(puzzle_input: list[str]):
     return nth_number_spoken(puzzle_input, 2020)
 
 
-def solve_part_2(puzzle_input):
+def solve_part_2(puzzle_input: list[str]):
     return nth_number_spoken(puzzle_input, 30000000)

@@ -6,7 +6,7 @@ Day 2: Inventory Management System
 import string
 
 
-def solve_part_1(puzzle_input):
+def solve_part_1(puzzle_input: list[str]):
     num_2, num_3 = 0, 0
     for box in puzzle_input:
         counts = []
@@ -20,7 +20,7 @@ def solve_part_1(puzzle_input):
     return num_2 * num_3
 
 
-def solve_part_2(puzzle_input):
+def solve_part_2(puzzle_input: list[str]):
     for i in range(len(puzzle_input)):
         box_1 = puzzle_input[i]
         remaining = puzzle_input[i + 1:]

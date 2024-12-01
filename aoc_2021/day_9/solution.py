@@ -85,13 +85,13 @@ def get_low_points(heightmap_dict, num_rows, num_cols):
     return [loc for loc in heightmap_dict.keys() if is_low_point(heightmap_dict, num_rows, num_cols, *loc)]
 
 
-def solve_part_1(puzzle_input):
+def solve_part_1(puzzle_input: list[str]):
     heightmap_dict, num_rows, num_cols = get_heightmap_dict(puzzle_input)
     low_points = get_low_points(heightmap_dict, num_rows, num_cols)
     return sum([1 + heightmap_dict[loc] for loc in low_points])
 
 
-def solve_part_2(puzzle_input):
+def solve_part_2(puzzle_input: list[str]):
     heightmap_dict, num_rows, num_cols = get_heightmap_dict(puzzle_input)
     low_points = get_low_points(heightmap_dict, num_rows, num_cols)
     basin_sizes = [len(create_basin(heightmap_dict, num_rows, num_cols, *loc)) for loc in low_points]

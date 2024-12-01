@@ -34,11 +34,11 @@ def num_arrangements(numbers, last, memo={}):
     return memo[(n, last)]
 
 
-def solve_part_1(puzzle_input):
+def solve_part_1(puzzle_input: list[str]):
     numbers = get_numbers(puzzle_input)
     return prod(get_differences(numbers))
 
 
-def solve_part_2(puzzle_input):
+def solve_part_2(puzzle_input: list[str]):
     numbers = get_numbers(puzzle_input)
     return num_arrangements(sorted(numbers), 0)

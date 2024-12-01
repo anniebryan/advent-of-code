@@ -25,9 +25,9 @@ def max_three_elves(puzzle_input):
     return get_max_three(a, b, c, current_elf)
 
 
-def solve_part_1(puzzle_input):
+def solve_part_1(puzzle_input: list[str]):
     return max_three_elves(puzzle_input)[0]
 
 
-def solve_part_2(puzzle_input):
+def solve_part_2(puzzle_input: list[str]):
     return sum(max_three_elves(puzzle_input))

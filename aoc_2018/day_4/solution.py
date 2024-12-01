@@ -28,14 +28,14 @@ def parse_records(puzzle_input):
     return total_minutes, ind_minutes
 
 
-def solve_part_1(puzzle_input):
+def solve_part_1(puzzle_input: list[str]):
     total_minutes, ind_minutes = parse_records(puzzle_input)
     max_guard = max(total_minutes, key = total_minutes.get)  # guard who sleeps the most
     max_minute = max(ind_minutes[max_guard], key = ind_minutes[max_guard].get)
     return f"{max_guard} * {max_minute} = {max_guard * max_minute}"
 
 
-def solve_part_2(puzzle_input):
+def solve_part_2(puzzle_input: list[str]):
     _, ind_minutes = parse_records(puzzle_input)
     common_minutes = {}
     for guard in ind_minutes:

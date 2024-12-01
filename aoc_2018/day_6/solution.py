@@ -39,7 +39,7 @@ def distances(p1, points):
     return sorted(d)
 
 
-def solve_part_1(puzzle_input):
+def solve_part_1(puzzle_input: list[str]):
     points = get_points(puzzle_input)
     x_min, x_max, y_min, y_max = get_min_max_bounds(points)
     closest = defaultdict(int)
@@ -56,7 +56,7 @@ def solve_part_1(puzzle_input):
     return max(closest.values())
 
 
-def solve_part_2(puzzle_input):
+def solve_part_2(puzzle_input: list[str]):
     max_total_distance = int(puzzle_input[0])
     points = get_points(puzzle_input[1:])
     x_min, x_max, y_min, y_max = get_min_max_bounds(points)

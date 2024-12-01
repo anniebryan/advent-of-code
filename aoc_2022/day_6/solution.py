@@ -17,9 +17,9 @@ def find_marker(puzzle_input, n):
             last_n = last_n[1:] + (ch,)
 
 
-def solve_part_1(puzzle_input):
+def solve_part_1(puzzle_input: list[str]):
     return find_marker(puzzle_input, 4)
 
 
-def solve_part_2(puzzle_input):
+def solve_part_2(puzzle_input: list[str]):
     return find_marker(puzzle_input, 14)

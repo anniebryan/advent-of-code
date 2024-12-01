@@ -42,7 +42,7 @@ def update_prerequisites(prerequisites, dependencies, step):
     return updated
 
 
-def solve_part_1(puzzle_input):
+def solve_part_1(puzzle_input: list[str]):
     """
     returns an order for steps to be completed satisfying all prerequisites as given in day7.txt
     ties are broken alphabetically
@@ -94,7 +94,7 @@ def timestep(workers, completed, prerequisites, all_steps, all_dependencies, sec
     return workers, completed, prerequisites
 
 
-def solve_part_2(puzzle_input):
+def solve_part_2(puzzle_input: list[str]):
     """
     returns the amount of time required to complete all the steps
     given durations as described in get_required_duration

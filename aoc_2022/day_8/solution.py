@@ -39,7 +39,7 @@ class Forest:
         return score
 
 
-def solve_part_1(puzzle_input):
+def solve_part_1(puzzle_input: list[str]):
     forest = Forest(puzzle_input)
     visible_trees = 0
     for i in range(forest.height):
@@ -49,7 +49,7 @@ def solve_part_1(puzzle_input):
     return visible_trees
 
 
-def solve_part_2(puzzle_input):
+def solve_part_2(puzzle_input: list[str]):
     forest = Forest(puzzle_input)
     max_scenic_score = 0
     for i in range(forest.height):

@@ -48,9 +48,9 @@ def sum_all(puzzle_input, add_first):
     return sum([int(evaluate_expression(line, add_first)) for line in puzzle_input])
 
 
-def solve_part_1(puzzle_input):
+def solve_part_1(puzzle_input: list[str]):
     return sum_all(puzzle_input, False)
 
 
-def solve_part_2(puzzle_input):
+def solve_part_2(puzzle_input: list[str]):
     return sum_all(puzzle_input, True)

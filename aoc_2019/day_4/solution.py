@@ -37,13 +37,13 @@ def contains_double(n):
     return 2 in lengths
 
 
-def solve_part_1(puzzle_input):
+def solve_part_1(puzzle_input: list[str]):
     min_r, max_r = get_min_max_r(puzzle_input)
     valid_passwords = [n for n in range(min_r, max_r + 1) if adjacent_digits(n) and never_decreases(n)]
     return len(valid_passwords)
 
 
-def solve_part_2(puzzle_input):
+def solve_part_2(puzzle_input: list[str]):
     min_r, max_r = get_min_max_r(puzzle_input)
     valid_passwords = [n for n in range(min_r, max_r + 1) if contains_double(n) and never_decreases(n)]
     return len(valid_passwords)

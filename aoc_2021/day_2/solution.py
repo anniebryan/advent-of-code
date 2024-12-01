@@ -13,14 +13,14 @@ down = lambda x: x[0] == 'down'
 amount = lambda x: x[1]
 
 
-def solve_part_1(puzzle_input):
+def solve_part_1(puzzle_input: list[str]):
     commands = get_commands(puzzle_input)
     horiz = sum(map(amount, filter(forward, commands)))
     depth = sum(map(amount, filter(down, commands))) - sum(map(amount, filter(up, commands)))
     return horiz * depth
 
 
-def solve_part_2(puzzle_input):
+def solve_part_2(puzzle_input: list[str]):
     commands = get_commands(puzzle_input)
     horiz = sum(map(amount, filter(forward, commands)))
     depth, aim = 0, 0

@@ -41,13 +41,13 @@ def visualize(dots):
     return "\n".join(s)
 
 
-def solve_part_1(puzzle_input):
+def solve_part_1(puzzle_input: list[str]):
     dots, instructions = get_dots_instructions(puzzle_input)
     dir, val = instructions[0]
     return len(fold(dots, dir, val))
 
 
-def solve_part_2(puzzle_input):
+def solve_part_2(puzzle_input: list[str]):
     dots, instructions = get_dots_instructions(puzzle_input)
     for instruction in instructions:
         dir, val = instruction

@@ -70,11 +70,11 @@ def get_output_number(line):
     return int(''.join([str(filter(lambda n: NUMS[n] == {mapping[letter] for letter in val}, NUMS).__next__()) for val in output]))
 
 
-def solve_part_1(puzzle_input):
+def solve_part_1(puzzle_input: list[str]):
     lines = get_lines(puzzle_input)
     return sum([sum([1 * (len(item) in {2, 3, 4, 7}) for item in line[1]]) for line in lines])
 
 
-def solve_part_2(puzzle_input):
+def solve_part_2(puzzle_input: list[str]):
     lines = get_lines(puzzle_input)
     return sum(list(map(get_output_number, lines)))

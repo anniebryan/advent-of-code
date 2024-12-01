@@ -19,7 +19,7 @@ def generate_fabric():
     return areas
     
 
-def solve_part_1(puzzle_input):
+def solve_part_1(puzzle_input: list[str]):
     claims = get_claims(puzzle_input)
     areas = generate_fabric()
     s = 0
@@ -34,7 +34,7 @@ def solve_part_1(puzzle_input):
     return s
 
 
-def solve_part_2(puzzle_input):
+def solve_part_2(puzzle_input: list[str]):
     claims = get_claims(puzzle_input)
     areas = generate_fabric()
     for c in claims:

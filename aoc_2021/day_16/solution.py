@@ -77,11 +77,11 @@ def decode_packet(s):
             return decode_num_subpackets_type(version, s, op)
 
 
-def solve_part_1(puzzle_input):
+def solve_part_1(puzzle_input: list[str]):
     hex_str = puzzle_input[0]
     return decode_packet(bit_str(hex_str))[0]
 
 
-def solve_part_2(puzzle_input):
+def solve_part_2(puzzle_input: list[str]):
     hex_str = puzzle_input[0]
     return decode_packet(bit_str(hex_str))[1]

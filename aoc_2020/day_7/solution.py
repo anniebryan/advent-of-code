@@ -59,9 +59,9 @@ def get_total_num_containing(color, containing):
     return num_containing
 
 
-def solve_part_1(puzzle_input):
+def solve_part_1(puzzle_input: list[str]):
     return len(get_all_possible_containers(puzzle_input, SHINY_GOLD))
 
 
-def solve_part_2(puzzle_input):
+def solve_part_2(puzzle_input: list[str]):
     return get_total_num_containing(SHINY_GOLD, get_num_containing(puzzle_input))

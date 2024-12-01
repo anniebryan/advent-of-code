@@ -19,10 +19,10 @@ def num_trees(puzzle_input, right, down):
     return num_trees
 
 
-def solve_part_1(puzzle_input):
+def solve_part_1(puzzle_input: list[str]):
     return num_trees(puzzle_input, 3,1)
 
 
-def solve_part_2(puzzle_input):
+def solve_part_2(puzzle_input: list[str]):
     all_ways = [(1, 1), (3, 1), (5, 1), (7, 1), (1, 2)]
     return prod([num_trees(puzzle_input, *way) for way in all_ways])

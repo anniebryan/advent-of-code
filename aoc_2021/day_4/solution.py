@@ -34,7 +34,7 @@ col = lambda marked: any([all([(i, j) in marked for i in range(size)]) for j in 
 wins = lambda marked: row(marked) or col(marked)
 
 
-def solve_part_1(puzzle_input):
+def solve_part_1(puzzle_input: list[str]):
     input_numbers = get_input_numbers(puzzle_input)
     input_boards = get_input_boards(puzzle_input)
     num_boards = len(input_boards)
@@ -53,7 +53,7 @@ def solve_part_1(puzzle_input):
             return sum(unmarked) * num
 
 
-def solve_part_2(puzzle_input):
+def solve_part_2(puzzle_input: list[str]):
     input_numbers = get_input_numbers(puzzle_input)
     input_boards = get_input_boards(puzzle_input)
     num_boards = len(input_boards)

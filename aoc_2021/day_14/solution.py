@@ -59,7 +59,7 @@ def difference(text):
     return counts[most_common] - counts[least_common]
 
 
-def solve_part_1(puzzle_input):
+def solve_part_1(puzzle_input: list[str]):
     template = get_template(puzzle_input)
     rules = get_rules(puzzle_input)
     text = deque()
@@ -70,7 +70,7 @@ def solve_part_1(puzzle_input):
 
 
 # TODO speedup
-def solve_part_2(puzzle_input):
+def solve_part_2(puzzle_input: list[str]):
     template = get_template(puzzle_input)
     rules = get_rules(puzzle_input)
     text = deque()

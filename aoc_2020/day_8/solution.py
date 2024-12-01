@@ -48,11 +48,11 @@ def try_all_sequences(instructions):
                 return result[1]
 
 
-def solve_part_1(puzzle_input):
+def solve_part_1(puzzle_input: list[str]):
     instructions = get_instructions(puzzle_input)
     return run_sequence(instructions)[1]
 
 
-def solve_part_2(puzzle_input):
+def solve_part_2(puzzle_input: list[str]):
     instructions = get_instructions(puzzle_input)
     return try_all_sequences(instructions)

@@ -52,9 +52,9 @@ def cave_generator(puzzle_input, part_2):
                 queue.append((new_path, neighbor, small_caves_visited, small_cave_visited_twice))
 
 
-def solve_part_1(puzzle_input):
+def solve_part_1(puzzle_input: list[str]):
     return len(list(cave_generator(puzzle_input, False)))
 
 
-def solve_part_2(puzzle_input):
+def solve_part_2(puzzle_input: list[str]):
     return len(list(cave_generator(puzzle_input, True)))

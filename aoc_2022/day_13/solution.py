@@ -43,7 +43,7 @@ def compare_pair(left, right):
     return compare_pair(left[1:], right[1:])
 
 
-def solve_part_1(puzzle_input):
+def solve_part_1(puzzle_input: list[str]):
     pairs = [(ast.literal_eval(puzzle_input[i]), ast.literal_eval(puzzle_input[i + 1])) for i in range(0, len(puzzle_input), 3)]
     in_order_idx_sum = 0
     for i, pair in enumerate(pairs):
@@ -53,7 +53,7 @@ def solve_part_1(puzzle_input):
     return in_order_idx_sum
 
 
-def solve_part_2(puzzle_input):
+def solve_part_2(puzzle_input: list[str]):
     packets = [ast.literal_eval(line) for line in puzzle_input if len(line) > 0]
     divider_packets = ([[2]], [[6]])
     for packet in divider_packets:

@@ -95,9 +95,9 @@ def get_values_starting_with(puzzle_input, word):
             yield my_ticket[i]
 
 
-def solve_part_1(puzzle_input):
+def solve_part_1(puzzle_input: list[str]):
     return sum(get_invalid_values(puzzle_input))
 
 
-def solve_part_2(puzzle_input):
+def solve_part_2(puzzle_input: list[str]):
     return prod(get_values_starting_with(puzzle_input, 'departure'))

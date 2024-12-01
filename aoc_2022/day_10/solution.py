@@ -35,7 +35,7 @@ def execute_program(puzzle_input):
             print(f"Cannot parse instruction: {row}")
         
 
-def solve_part_1(puzzle_input):
+def solve_part_1(puzzle_input: list[str]):
     cycles_of_interest = {20, 60, 100, 140, 180, 220}
     total = 0
     for cycle, register in execute_program(puzzle_input):
@@ -44,7 +44,7 @@ def solve_part_1(puzzle_input):
     return total
 
 
-def solve_part_2(puzzle_input):
+def solve_part_2(puzzle_input: list[str]):
     s = ["\n"]
     for cycle, register in execute_program(puzzle_input):
         sprite = {register - 1, register, register + 1}

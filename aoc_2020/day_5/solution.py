@@ -48,9 +48,9 @@ def find_missing_id(puzzle_input):
     return ids[j] - 1
 
 
-def solve_part_1(puzzle_input):
+def solve_part_1(puzzle_input: list[str]):
     return highest_seat_id(puzzle_input)
 
 
-def solve_part_2(puzzle_input):
+def solve_part_2(puzzle_input: list[str]):
     return find_missing_id(puzzle_input)

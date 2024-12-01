@@ -62,9 +62,9 @@ def alphabetize_ingredient_list(puzzle_input):
     return ','.join(assignments[a] for a in alphabetical_allergens)
 
 
-def solve_part_1(puzzle_input):
+def solve_part_1(puzzle_input: list[str]):
     return num_occurrences(puzzle_input)
 
 
-def solve_part_2(puzzle_input):
+def solve_part_2(puzzle_input: list[str]):
     return alphabetize_ingredient_list(puzzle_input)

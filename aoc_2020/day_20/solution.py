@@ -204,13 +204,13 @@ def num_char_not_in_pattern(tiles, char, pattern):
     return len(set(get_squares(tiles, char))) - len(pattern) * max_matches
 
 
-def solve_part_1(puzzle_input):
+def solve_part_1(puzzle_input: list[str]):
     tiles = process_input(puzzle_input)
     corners = list(get_corners(tiles))
     return f"{corners[0]} * {corners[1]} * {corners[2]} * {corners[3]} = {prod(corners)}"
 
 
-def solve_part_2(puzzle_input):
+def solve_part_2(puzzle_input: list[str]):
     tiles = process_input(puzzle_input)
     pattern = {(0, 18), (1, 0), (1, 5), (1, 6), (1, 11), (1, 12), (1, 17), (1, 18), (1, 19), (2, 1), (2, 4), (2, 7), (2, 10), (2, 13), (2, 16)}
     return num_char_not_in_pattern(tiles, '#', pattern)

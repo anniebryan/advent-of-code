@@ -40,9 +40,9 @@ def run_n_generations(puzzle_input, n):
     return indices
 
 
-def solve_part_1(puzzle_input):
+def solve_part_1(puzzle_input: list[str]):
     return sum(run_n_generations(puzzle_input, 20))
 
 
-def solve_part_2(puzzle_input):
+def solve_part_2(puzzle_input: list[str]):
     return sum(run_n_generations(puzzle_input, 2000)) + (50000000000 - 2000) * 75

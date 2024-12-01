@@ -43,11 +43,11 @@ def num_that_match(rules, messages, part_2):
     return num_matches
 
 
-def solve_part_1(puzzle_input):
+def solve_part_1(puzzle_input: list[str]):
     rules, messages = process_input(puzzle_input)
     return num_that_match(rules, messages, False)
 
 
-def solve_part_2(puzzle_input):
+def solve_part_2(puzzle_input: list[str]):
     rules, messages = process_input(puzzle_input)
     return num_that_match(rules, messages, True)

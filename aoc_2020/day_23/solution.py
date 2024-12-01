@@ -61,12 +61,12 @@ def get_clockwise(cups, start):
     return (a, b)
 
 
-def solve_part_1(puzzle_input):
+def solve_part_1(puzzle_input: list[str]):
     cups = make_n_moves(puzzle_input, 100)
     return list_starting_at(cups, 1)
 
 
-def solve_part_2(puzzle_input):
+def solve_part_2(puzzle_input: list[str]):
     cups = make_n_moves(puzzle_input, 10000000, 1000000)
     a, b = get_clockwise(cups, 1)
     return f"{a} * {b} = {a * b}"

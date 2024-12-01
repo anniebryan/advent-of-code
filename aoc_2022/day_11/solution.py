@@ -67,11 +67,11 @@ def monkey_business(monkeys):
     return most_active[0] * most_active[1]
 
 
-def solve_part_1(puzzle_input):
+def solve_part_1(puzzle_input: list[str]):
     monkeys = n_rounds(puzzle_input, 20, False)
     return monkey_business(monkeys)
 
 
-def solve_part_2(puzzle_input):
+def solve_part_2(puzzle_input: list[str]):
     monkeys = n_rounds(puzzle_input, 10000, True)
     return monkey_business(monkeys)

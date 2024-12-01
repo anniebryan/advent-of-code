@@ -68,9 +68,9 @@ def run_until_steady_state(puzzle_input, adjacent, threshold):
     return new_occupied
 
 
-def solve_part_1(puzzle_input):
+def solve_part_1(puzzle_input: list[str]):
     return len(run_until_steady_state(puzzle_input, True, 4))
 
 
-def solve_part_2(puzzle_input):
+def solve_part_2(puzzle_input: list[str]):
     return len(run_until_steady_state(puzzle_input, False, 5))

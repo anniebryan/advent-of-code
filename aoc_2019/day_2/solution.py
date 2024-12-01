@@ -45,7 +45,7 @@ def run_until_halt(ints: list):
         return 'something went wrong'
 
 
-def solve_part_1(puzzle_input):
+def solve_part_1(puzzle_input: list[str]):
     replace = (puzzle_input[0] == "T")
     ints = get_ints(puzzle_input[1])
     if replace:
@@ -54,7 +54,7 @@ def solve_part_1(puzzle_input):
     return run_until_halt(ints)[0]
 
 
-def solve_part_2(puzzle_input):
+def solve_part_2(puzzle_input: list[str]):
     replace = (puzzle_input[0] == "T")
     if not replace:
         return "Not supported"
