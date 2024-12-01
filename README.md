@@ -3,6 +3,16 @@
   <tbody>
     <tr>
       <td>2022</td>
+      <td><a href="https://adventofcode.com/2024">Questions</a></td>
+      <td><a href="https://github.com/anniebryan/advent-of-code/tree/master/2024">Answers</a></td>
+    </tr>
+    <tr>
+      <td>2022</td>
+      <td><a href="https://adventofcode.com/2023">Questions</a></td>
+      <td><a href="https://github.com/anniebryan/advent-of-code/tree/master/2023">Answers</a></td>
+    </tr>
+    <tr>
+      <td>2022</td>
       <td><a href="https://adventofcode.com/2022">Questions</a></td>
       <td><a href="https://github.com/anniebryan/advent-of-code/tree/master/2022">Answers</a></td>
     </tr>
