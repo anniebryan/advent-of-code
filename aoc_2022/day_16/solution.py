@@ -78,7 +78,8 @@ def solve_part_1(puzzle_input: list[str]):
     return max_pressure
 
 
-def solve_part_2(puzzle_input: list[str]):  # TODO speedup
+# TODO speedup
+def solve_part_2(puzzle_input: list[str]):
     valves = parse_puzzle_input(puzzle_input)
     dist = get_dist_graph(valves)
     unvisited = {v for v in valves if valves[v].flow_rate != 0}

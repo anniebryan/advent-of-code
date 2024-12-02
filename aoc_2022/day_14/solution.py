@@ -100,7 +100,9 @@ def solve_part_1(input):
     y_max = y_range[1]
     return pour_sand(rock, y_max, (500, 0))
 
-def solve_part_2(input):  # TODO speedup
+
+# TODO speedup
+def solve_part_2(input):
     rock, x_range, y_range = get_rock(input)
     x_min, x_max = x_range
     y_min, y_max = y_range
