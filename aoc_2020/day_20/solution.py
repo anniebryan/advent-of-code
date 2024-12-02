@@ -3,6 +3,9 @@ Advent of Code 2020
 Day 20: Jurassic Jigsaw
 """
 
+import click
+import os
+import pathlib
 from collections import deque
 from math import prod
 
@@ -214,3 +217,38 @@ def solve_part_2(puzzle_input: list[str]):
     tiles = process_input(puzzle_input)
     pattern = {(0, 18), (1, 0), (1, 5), (1, 6), (1, 11), (1, 12), (1, 17), (1, 18), (1, 19), (2, 1), (2, 4), (2, 7), (2, 10), (2, 13), (2, 16)}
     return num_char_not_in_pattern(tiles, '#', pattern)
+
+
+@click.command()
+@click.option("-se", "--skip_example", is_flag=True, default=False)
+@click.option("-sp", "--skip_puzzle", is_flag=True, default=False)
+def main(skip_example: bool = False, skip_puzzle: bool = False) -> None:
+    base_dir = pathlib.Path(__file__).parent
+    example_files = sorted([fn for fn in os.listdir(base_dir) if fn.endswith(".txt") and "example" in fn])
+
+    def _run_solution(filename: str, display_name: str):
+        print(f"--- {display_name} ---")
+
+        if not (filepath := (base_dir / filename)).exists():
+            print(f"{filename} not found.")
+            return
+
+        with open(filepath) as file:
+            puzzle_input = [line.strip("\n") for line in file]
+            print(f"Part 1: {solve_part_1(puzzle_input)}")
+            print(f"Part 2: {solve_part_2(puzzle_input)}")
+        return
+
+    if not skip_example:
+        if len(example_files) < 2:
+            _run_solution("example.txt", "Example")
+        else:
+            for i, filename in enumerate(example_files):
+                _run_solution(filename, f"Example {i + 1}")
+
+    if not skip_puzzle:
+        _run_solution("puzzle.txt", "Puzzle")
+
+
+if __name__ == "__main__":
+    main()

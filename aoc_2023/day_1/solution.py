@@ -3,6 +3,10 @@ Advent of Code 2023
 Day 1: Trebuchet?!
 """
 
+import click
+import os
+import pathlib
+
 DIGIT_WORDS = {"one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6, "seven": 7, "eight": 8, "nine": 9}
 
 
@@ -43,3 +47,38 @@ def solve_part_2(puzzle_input: list[str]) -> int:
     if puzzle_input[0] == "part 1 only":
         return "Not supported"
     return sum(get_all_calibration_values(puzzle_input[1:], True))
+
+
+@click.command()
+@click.option("-se", "--skip_example", is_flag=True, default=False)
+@click.option("-sp", "--skip_puzzle", is_flag=True, default=False)
+def main(skip_example: bool = False, skip_puzzle: bool = False) -> None:
+    base_dir = pathlib.Path(__file__).parent
+    example_files = sorted([fn for fn in os.listdir(base_dir) if fn.endswith(".txt") and "example" in fn])
+
+    def _run_solution(filename: str, display_name: str):
+        print(f"--- {display_name} ---")
+
+        if not (filepath := (base_dir / filename)).exists():
+            print(f"{filename} not found.")
+            return
+
+        with open(filepath) as file:
+            puzzle_input = [line.strip("\n") for line in file]
+            print(f"Part 1: {solve_part_1(puzzle_input)}")
+            print(f"Part 2: {solve_part_2(puzzle_input)}")
+        return
+
+    if not skip_example:
+        if len(example_files) < 2:
+            _run_solution("example.txt", "Example")
+        else:
+            for i, filename in enumerate(example_files):
+                _run_solution(filename, f"Example {i + 1}")
+
+    if not skip_puzzle:
+        _run_solution("puzzle.txt", "Puzzle")
+
+
+if __name__ == "__main__":
+    main()
