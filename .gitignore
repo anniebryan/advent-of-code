@@ -1,4 +1,6 @@
 puzzle.txt
+config.txt
+
 .venv/
 .vscode/
 *.DS_Store
