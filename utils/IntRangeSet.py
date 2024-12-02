@@ -1,8 +1,3 @@
-"""
-IntRangeSet
-Represents a collection of disjoint, continuous integer ranges.
-"""
-
 from typing import Union
 
 class IntRangeSet:

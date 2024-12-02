@@ -1,8 +1,3 @@
-"""
-IntRangeMap
-Represents a mapping of disjoint, continuous integer ranges to arbitrary values.
-"""
-
 from .IntRangeSet import IntRangeSet
 
 class IntRangeMap:
