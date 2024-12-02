@@ -23,9 +23,9 @@ fi
 # Create example and puzzle files if they don't exist
 touch "$directory/example.txt" "$directory/puzzle.txt"
 
-# Check if render_template.py exists
-if [ ! -f "render_template.py" ]; then
-    echo "Error: render_template.py not found."
+# Check if template.py exists
+if [ ! -f "template.py" ]; then
+    echo "Error: template.py not found."
     exit 1
 fi
 
@@ -34,5 +34,6 @@ if [ -f "$filename" ]; then
     echo "The file $filename already exists."
 else
     echo "Creating files for day $day of year $year..."
-    python3 render_template.py template.j2 "$year" "$day" > "$filename"
+    cp template.py "${filename}"
+    sed -i "" "s/{{ year }}/$year/g; s/{{ day }}/$day/g" "$filename"
 fi
