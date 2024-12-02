@@ -8,12 +8,14 @@ import os
 import pathlib
 
 
+# TODO move to utils
 class File:
     def __init__(self, name, size):
         self.name = name
         self.size = int(size)
 
 
+# TODO move to utils
 class Directory:
     def __init__(self, name, parent):
         self.name = name

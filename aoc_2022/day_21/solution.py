@@ -24,6 +24,7 @@ INVERSE_OPS = {
 }
 
 
+# TODO move to utils
 class Expression:
     def __init__(self, left, right, operation):
         self.left = left

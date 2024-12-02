@@ -8,17 +8,19 @@ import os
 import pathlib
 
 
+# TODO move to utils
 class Node:
     def __init__(self, val):
         self.val = val
         self.next = None
         self.prev = None
 
-    def link(self, node):
+    def link(self, node: "Node") -> None:
         self.next = node
         node.prev = self
 
 
+# TODO move to utils
 class LinkedList:
     def __init__(self, decryption_key):
         self.nodes = []

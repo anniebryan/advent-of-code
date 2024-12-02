@@ -24,6 +24,7 @@ def get_risk_levels(puzzle_input, part_2):
     return risk_levels
 
 
+# TODO move to utils
 class Graph:
     def __init__(self, risk_levels):
         self.nodes = risk_levels.keys()
