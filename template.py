@@ -8,11 +8,17 @@ import os
 import pathlib
 
 
+def parse_input(puzzle_input: list[str], part_2: bool):
+    return
+
+
 def solve_part_1(puzzle_input: list[str]):
+    _ = parse_input(puzzle_input, False)
     return
 
 
 def solve_part_2(puzzle_input: list[str]):
+    _ = parse_input(puzzle_input, True)
     return
 
 
