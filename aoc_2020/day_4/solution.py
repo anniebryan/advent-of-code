@@ -8,9 +8,6 @@ import os
 import pathlib
 
 
-REQUIRED_FIELDS = {'byr', 'iyr', 'eyr', 'hgt', 'hcl', 'ecl', 'pid'}
-
-
 def get_all_passports(puzzle_input):
     all_passports = []
     passport = []
@@ -35,6 +32,7 @@ def get_fields(passport):
 
 
 def contains_all_required_fields(passport):
+    REQUIRED_FIELDS = {'byr', 'iyr', 'eyr', 'hgt', 'hcl', 'ecl', 'pid'}
     fields = get_fields(passport)
     field_types = fields.keys()
     return REQUIRED_FIELDS.issubset(field_types)

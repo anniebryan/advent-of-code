@@ -7,18 +7,15 @@ import click
 import os
 import pathlib
 
-
-def get_report(puzzle_input):
-    return [n.split('\n')[0] for n in puzzle_input]
-
-
 bits = lambda i, iterable: [int(n[i]) for n in iterable]
 most_common = lambda i, iterable: '1' if sum(bits(i, iterable)) >= len(list(iterable)) / 2 else '0'
 least_common = lambda i, iterable: '0' if sum(bits(i, iterable)) >= len(list(iterable)) / 2 else '1'
-
 bin_to_dec = lambda bin: sum([2 ** i * int(bin[-i - 1]) for i in range(len(bin))])
-
 remove = lambda i, fn, iterable: filter(lambda n: n[i] == fn(i, iterable), iterable)
+
+
+def get_report(puzzle_input):
+    return [n.split('\n')[0] for n in puzzle_input]
 
 
 def solve_part_1(puzzle_input: list[str]):

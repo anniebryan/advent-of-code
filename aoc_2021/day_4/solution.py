@@ -7,6 +7,12 @@ import click
 import os
 import pathlib
 
+SIZE = 5
+
+row = lambda marked: any([all([(i, j) in marked for j in range(SIZE)]) for i in range(SIZE)])
+col = lambda marked: any([all([(i, j) in marked for i in range(SIZE)]) for j in range(SIZE)])
+wins = lambda marked: row(marked) or col(marked)
+
 
 def get_input_numbers(puzzle_input):
     return [int(n) for n in puzzle_input[0].split(',')]
@@ -33,12 +39,6 @@ def get_input_boards(puzzle_input):
     return boards_dict
 
 
-size = 5
-row = lambda marked: any([all([(i, j) in marked for j in range(size)]) for i in range(size)])
-col = lambda marked: any([all([(i, j) in marked for i in range(size)]) for j in range(size)])
-wins = lambda marked: row(marked) or col(marked)
-
-
 def solve_part_1(puzzle_input: list[str]):
     input_numbers = get_input_numbers(puzzle_input)
     input_boards = get_input_boards(puzzle_input)
@@ -53,7 +53,7 @@ def solve_part_1(puzzle_input: list[str]):
         if any(has_won):
             winning_board_num = list(filter(lambda tup: tup[1], [(i, board) for i, board in enumerate(has_won)]))[0][0]
             winning_board = {input_boards[winning_board_num][n]: n for n in input_boards[winning_board_num]}
-            all_spaces = {(i,j) for i in range(size) for j in range(size)}
+            all_spaces = {(i,j) for i in range(SIZE) for j in range(SIZE)}
             unmarked = [winning_board[s] for s in all_spaces if s not in marked_spaces[winning_board_num]]
             return sum(unmarked) * num
 
@@ -73,7 +73,7 @@ def solve_part_2(puzzle_input: list[str]):
         if all(has_won) and not all(prev_has_won):
             winning_board_num = list(filter(lambda tup: not tup[1], [(i, board) for i, board in enumerate(prev_has_won)]))[0][0]
             winning_board = {input_boards[winning_board_num][n]: n for n in input_boards[winning_board_num]}
-            all_spaces = {(i,j) for i in range(size) for j in range(size)}
+            all_spaces = {(i,j) for i in range(SIZE) for j in range(SIZE)}
             unmarked = [winning_board[s] for s in all_spaces if s not in marked_spaces[winning_board_num]]
             return sum(unmarked) * num
         else:

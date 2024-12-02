@@ -7,15 +7,14 @@ import click
 import os
 import pathlib
 
-
-def get_commands(puzzle_input):
-    return [(n.split(' ')[0], int(n.split(' ')[1])) for n in puzzle_input]
-
-
 forward = lambda x: x[0] == 'forward'
 up = lambda x: x[0] == 'up'
 down = lambda x: x[0] == 'down'
 amount = lambda x: x[1]
+
+
+def get_commands(puzzle_input):
+    return [(n.split(' ')[0], int(n.split(' ')[1])) for n in puzzle_input]
 
 
 def solve_part_1(puzzle_input: list[str]):
