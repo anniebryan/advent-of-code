@@ -65,6 +65,12 @@ class IntRangeSet:
             repr_str.append(f"[{start}, {start + length}]")
         return f"[{', '.join(repr_str)}]"
 
+    def add_value(self, value: int) -> None:
+        """
+        Adds the value, merging adjacent ranges.
+        """
+        self.add_range(value, 0)
+
     def add_range(self, start: int, length: int) -> None:
         """
         Adds the range [start, start + length], merging overlapping ranges.

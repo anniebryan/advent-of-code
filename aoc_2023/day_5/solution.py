@@ -17,7 +17,7 @@ def get_seeds_to_plant(puzzle_input: list[str], part_2: bool) -> IntRangeSet:
             seeds_to_plant.add_range(values[i], values[i + 1] - 1)
     else:
         for d in values:
-            seeds_to_plant.add_range(d, 0)
+            seeds_to_plant.add_value(d)
     return seeds_to_plant
 
 
