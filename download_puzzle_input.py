@@ -9,7 +9,7 @@ def main(year: int, day: int) -> None:
         session = config_file.readline().strip()
     response = requests.get(f"https://adventofcode.com/{year}/day/{day}/input", cookies={"session": session})
     with open(f"aoc_{year}/day_{day}/puzzle.txt", "w") as puzzle_file:
-        puzzle_file.write(response.text)
+        puzzle_file.write(response.text.strip("\n"))
 
 
 if __name__ == "__main__":
