@@ -24,6 +24,7 @@ class IntRangeMap:
             intersect_range.add_offset(map_dest_start - map_source_start)
             for start, length in intersect_range.ranges:
                 result.add_range(start, length)
+
             unmapped_range = IntRangeSet.difference(unmapped_range, map_source_range)
 
         for start, length in unmapped_range.ranges:
