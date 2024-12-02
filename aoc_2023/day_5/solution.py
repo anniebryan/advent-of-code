@@ -7,49 +7,47 @@ import regex as re
 from utils import IntRangeSet, IntRangeMap
 
 
-def get_seeds_to_plant(puzzle_input: list[str], part_2: bool) -> IntRangeSet:
-    match = re.match(r'seeds: (?P<seeds>.*)', puzzle_input[0])
-    values = [int(d) for d in match.group('seeds').split(" ")]
+def parse_input(puzzle_input: list[str], part_2: bool) -> tuple[IntRangeSet, dict[tuple[str, str], IntRangeMap]]:
 
-    seeds_to_plant = IntRangeSet()
+    seed_values = list(int(t) for t in puzzle_input[0].strip().split()[1:])
+    seeds = IntRangeSet()
     if part_2:
-        for i in range(0, len(values), 2):
-            seeds_to_plant.add_range(values[i], values[i + 1] - 1)
+        for i in range(0, len(seed_values), 2):
+            seeds.add_range(seed_values[i], seed_values[i + 1] - 1)
     else:
-        for d in values:
-            seeds_to_plant.add_value(d)
-    return seeds_to_plant
+        for d in seed_values:
+            seeds.add_value(d)
 
-
-def create_all_maps(puzzle_input: list[str]) -> None:
-    curr_source, curr_dest, curr_map = None, None, None
+    all_maps = {}
+    source_type, dest_type, curr_map = None, None, None
     for line in puzzle_input[2:]:
         if (match := re.match(r'(?P<source>.*)\-to\-(?P<dest>.*) map:', line)) is not None:
-            curr_source = match.group('source')
-            curr_dest = match.group('dest')
-            curr_map = IntRangeMap(curr_source, curr_dest)
+            source_type = match.group('source')
+            dest_type = match.group('dest')
+            curr_map = IntRangeMap(source_type, dest_type)
         elif line != "":
             curr_map.add_line_to_map(line)
+        all_maps[(source_type, dest_type)] = curr_map
+
+    return seeds, all_maps
 
 
-def map_seed_to_location(seed_range: IntRangeSet) -> IntRangeSet:
+def map_seed_to_location(seed_range: IntRangeSet, all_maps: dict[tuple[str, str], IntRangeMap]) -> IntRangeSet:
     MAP_ORDER = ["seed", "soil", "fertilizer", "water", "light", "temperature", "humidity", "location"]
     curr_range = seed_range
     for src, dst in zip(MAP_ORDER[:-1], MAP_ORDER[1:]):
-        gardening_map = IntRangeMap.all_maps[(src, dst)]
+        gardening_map = all_maps[(src, dst)]
         curr_range = gardening_map.apply_to_int_range(curr_range)
     return curr_range
 
 
 def solve_part_1(puzzle_input: list[str]) -> int:
-    seeds_to_plant = get_seeds_to_plant(puzzle_input, False)
-    create_all_maps(puzzle_input)
-    location_range = map_seed_to_location(seeds_to_plant)
+    seeds_to_plant, all_maps = parse_input(puzzle_input, False)
+    location_range = map_seed_to_location(seeds_to_plant, all_maps)
     return location_range.min_value
 
 
 def solve_part_2(puzzle_input: list[str]) -> int:
-    seeds_to_plant = get_seeds_to_plant(puzzle_input, True)
-    create_all_maps(puzzle_input)
-    location_range = map_seed_to_location(seeds_to_plant)
+    seeds_to_plant, all_maps = parse_input(puzzle_input, True)
+    location_range = map_seed_to_location(seeds_to_plant, all_maps)
     return location_range.min_value

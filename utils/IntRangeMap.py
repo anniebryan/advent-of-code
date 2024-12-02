@@ -1,13 +1,11 @@
 from .IntRangeSet import IntRangeSet
 
 class IntRangeMap:
-    all_maps: dict[tuple[str, str], "IntRangeMap"] = {}
 
     def __init__(self, source_type: str, dest_type: str):
         self.source_type = source_type
         self.dest_type = dest_type
         self.lines = []
-        IntRangeMap.all_maps[(source_type, dest_type)] = self
 
     def add_line_to_map(self, line: str) -> None:
         dest_range_start, source_range_start, length = [int(n) for n in line.split()]
