@@ -6,7 +6,7 @@ Day 10: Cathode-Ray Tube
 import click
 import os
 import pathlib
-import re
+import regex as re
 
 
 def execute_program(puzzle_input):

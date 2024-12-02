@@ -6,7 +6,7 @@ Day 19: Monster Messages
 import click
 import os
 import pathlib
-import regex
+import regex as re
 
 
 def process_input(puzzle_input):
@@ -28,7 +28,7 @@ def build_regex(rules, n, part_2):
             return f'(?P<{"r0"}>{build_regex(rules, 42, True)}(?P>{"r0"})?{build_regex(rules, 31, True)})'
 
     rule = rules[n]
-    match = regex.match(r'"(\w)"', rule)
+    match = re.match(r'"(\w)"', rule)
     if match:
         return match.group(1)
     
@@ -41,7 +41,7 @@ def build_regex(rules, n, part_2):
 def num_that_match(rules, messages, part_2):
     num_matches = 0
     for m in messages:
-        if regex.match(f'^{build_regex(rules, 0, part_2)}$', m):
+        if re.match(f'^{build_regex(rules, 0, part_2)}$', m):
             num_matches += 1
     return num_matches
 

@@ -7,7 +7,7 @@ import click
 import os
 import pathlib
 from itertools import combinations
-import re
+import regex as re
 
 
 class Valve:

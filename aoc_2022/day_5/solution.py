@@ -7,7 +7,7 @@ import click
 import os
 import pathlib
 from collections import defaultdict
-import re
+import regex as re
 
 
 def get_crates_and_instructions(puzzle_input):

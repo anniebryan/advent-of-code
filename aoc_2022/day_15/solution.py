@@ -6,7 +6,7 @@ Day 15: Beacon Exclusion Zone
 import click
 import os
 import pathlib
-import re
+import regex as re
 from collections import defaultdict
 
 
