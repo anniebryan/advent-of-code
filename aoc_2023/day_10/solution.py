@@ -1,12 +1,12 @@
 """
 Advent of Code 2023
-Day 10
+Day 10: Pipe Maze
 """
 
 import click
 import os
 import pathlib
-from collections import defaultdict, deque
+from collections import defaultdict
 
 
 class PipeGrid:
