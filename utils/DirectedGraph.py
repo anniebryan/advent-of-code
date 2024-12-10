@@ -7,7 +7,7 @@ class DirectedGraph:
     def insert_edge(self, x: int, y: int):
         self.graph[x].add(y)
 
-    def path_exists(self, nums: list[int]) -> bool:
+    def exact_path_exists(self, nums: list[int]) -> bool:
         for n1, n2 in zip(nums, nums[1:]):
             if n2 not in self.graph[n1]:
                 return False

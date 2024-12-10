@@ -33,7 +33,7 @@ def solve_part_1(puzzle_input: list[str]):
 
     middle_nums = []
     for line in updates:
-        if g.path_exists(line):
+        if g.exact_path_exists(line):
             middle_nums.append(middle_number(line))
 
     return sum(middle_nums)
@@ -45,9 +45,9 @@ def solve_part_2(puzzle_input: list[str]):
 
     middle_nums = []
     for line in updates:
-        if not g.path_exists(line):
+        if not g.exact_path_exists(line):
             ordered_line = g.reorder(line)
-            assert g.path_exists(ordered_line)
+            assert g.exact_path_exists(ordered_line)
             middle_nums.append(middle_number(ordered_line))
 
     return sum(middle_nums)
