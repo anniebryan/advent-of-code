@@ -45,8 +45,17 @@ class IntRangeSet:
         all_values = []
         for (start, length) in sorted(self.ranges):
             for i in range(length + 1):
-                all_values.apoend(start + i)
+                all_values.append(start + i)
         return all_values
+
+    def min_val_with_length(self, length: int) -> int | None:
+        """
+        Returns the minimum value `val` such that [val, val + length] is a subset of self.
+        """
+        for (start, l) in sorted(self.ranges):
+            if l >= length:
+                return start
+        return None
 
     def __repr__(self) -> str:
         """
