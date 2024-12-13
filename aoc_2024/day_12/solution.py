@@ -86,8 +86,20 @@ def get_dir(curr, prev) -> str:
 
 
 def calc_num_sides(region: set[tuple[int, int]]) -> int:
-    # TODO
-    raise NotImplementedError
+    # equivalent to counting the number of corners
+    num_corners = 0
+    vertex_to_edges = defaultdict(set)
+    for (start, end) in get_all_perimeter_edges(region):
+        vertex_to_edges[start].add(end)
+        vertex_to_edges[end].add(start)
+    for s in vertex_to_edges.values():
+        if len(s) == 2:
+            (e1i, e1j), (e2i, e2j) = s
+            if e1i != e2i and e1j != e2j:
+                num_corners += 1
+        elif len(s) == 4:
+            num_corners += 2
+    return num_corners
 
 
 def solve_part_1(puzzle_input: list[str]):
@@ -101,10 +113,10 @@ def solve_part_1(puzzle_input: list[str]):
 
 def solve_part_2(puzzle_input: list[str]):
     tot = 0
-    # for region in get_all_regions(puzzle_input):
-    #     area = len(region)
-    #     num_sides = calc_num_sides(region)
-    #     tot += area * num_sides
+    for region in get_all_regions(puzzle_input):
+        area = len(region)
+        num_sides = calc_num_sides(region)
+        tot += area * num_sides
     return tot
 
 
