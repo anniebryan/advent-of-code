@@ -53,16 +53,22 @@ def get_all_regions(puzzle_input: list[str]) -> Iterator[tuple[int, int]]:
         all_seen |= region
 
 
+UndirectedEdge = tuple[tuple[int, int], tuple[int, int]]
+
+def get_all_perimeter_edges(region: set[tuple[int, int]]) -> Iterator[UndirectedEdge]:
+    for (i, j) in region:
+        for (di, dj) in [(-1, 0), (0, 1), (1, 0), (0, -1)]:
+            if (i + di, j + dj) not in region:
+                # exposed edge
+                si, sj = i + max(di, 0), j + max(dj, 0)
+                ei, ej = si + int(di == 0), sj + int(dj == 0)
+                yield ((si, sj), (ei, ej))
+
+
 def calc_perimeter(region: set[tuple[int, int]]) -> int:
     perim = 0
-    locs_counted = set()
-    for (i, j) in region:
-        num_neighbors_counted = 0
-        for (di, dj) in [(-1, 0), (0, 1), (1, 0), (0, -1)]:
-            if (i + di, j + dj) in locs_counted:
-                num_neighbors_counted += 1
-        perim += 4 - (2 * num_neighbors_counted)
-        locs_counted.add((i, j))
+    for _ in get_all_perimeter_edges(region):
+        perim += 1
     return perim
 
 
