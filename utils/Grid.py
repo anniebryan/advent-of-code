@@ -25,3 +25,12 @@ class Grid:
                 s.append(str(self.values[(i, j)]))
             output.append("".join(s))
         return "\n".join(output)
+    
+    def set(self, i: int, j: int, val: str) -> None:
+        self.values[(i, j)] = val
+
+    def __eq__(self, other) -> bool:
+        if not isinstance(other, Grid):
+            return False
+        return ((self.width == other.width) and (self.height == other.height) and
+                (self.values == other.values))
