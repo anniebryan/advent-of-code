@@ -1,15 +1,20 @@
+import heapq
 from collections import defaultdict, deque
+from typing import Any
 
 class DirectedGraph:
     def __init__(self):
         self.graph = defaultdict(set)
 
-    def insert_edge(self, x: int, y: int):
+    def insert_edge(self, x: Any, y: Any):
         self.graph[x].add(y)
 
-    def exact_path_exists(self, nums: list[int]) -> bool:
-        for n1, n2 in zip(nums, nums[1:]):
-            if n2 not in self.graph[n1]:
+    def neighbors(self, x: Any) -> set[Any]:
+        return self.graph[x]
+
+    def exact_path_exists(self, vals: list[Any]) -> bool:
+        for v1, v2 in zip(vals, vals[1:]):
+            if v2 not in self.graph[v1]:
                 return False
         return True
     
@@ -25,3 +30,18 @@ class DirectedGraph:
                 if r in self.graph[last]:
                     q.append((path + [r], r, remaining - {r}))
         raise ValueError("Could not find a valid order")
+
+    def dijkstra(self, start: Any) -> dict[Any, int]:
+        q = [(0, start)]
+        dists = {start: 0}
+        visited = set()
+
+        while q:
+            dist_so_far, curr = heapq.heappop(q)
+            if curr not in visited:
+                visited.add(curr)
+                for n in self.neighbors(curr):
+                    if n not in dists or dists[n] > dist_so_far + 1:
+                        dists[n] = dist_so_far + 1
+                        heapq.heappush(q, (dist_so_far + 1, n))
+        return dists
