@@ -1,3 +1,5 @@
+import heapq
+
 class Grid:
     def __init__(self, puzzle_input: list[str]):
         self.values = {}
@@ -37,3 +39,20 @@ class Grid:
 
     def where(self, val: str) -> list[tuple[int, int]]:
         return [(i, j) for (i, j), v in self.values.items() if v == val]
+
+    def dijkstra(self, start: tuple[int, int]) -> dict[tuple[int, int], int]:
+        q = [(0, start)]
+        dists = {start: 0}
+        visited = set()
+
+        while q:
+            dist_so_far, curr = heapq.heappop(q)
+            if curr not in visited:
+                visited.add(curr)
+                (i, j) = curr
+                for (ni, nj) in [(i + 1, j), (i - 1, j), (i, j + 1), (i, j - 1)]:
+                    if self.in_bounds(ni, nj) and self.at(ni, nj) != "#":
+                        if (ni, nj) not in dists or dists[(ni, nj)] > dist_so_far + 1:
+                            dists[(ni, nj)] = dist_so_far + 1
+                            heapq.heappush(q, (dist_so_far + 1, (ni, nj)))
+        return dists

@@ -6,7 +6,6 @@ Day 18: RAM Run
 import click
 import os
 import pathlib
-import heapq
 from utils import Grid
 
 
@@ -38,26 +37,8 @@ def coords_to_grid(coords: set[tuple[int, int]]) -> Grid:
     return Grid(grid_input)
 
 
-def dijkstra(grid: Grid, start: tuple[int, int]) -> int:
-    q = [(0, start)]
-    dists = {start: 0}
-    visited = set()
-
-    while q:
-        dist_so_far, curr = heapq.heappop(q)
-        if curr not in visited:
-            visited.add(curr)
-            (i, j) = curr
-            for (ni, nj) in [(i + 1, j), (i - 1, j), (i, j + 1), (i, j - 1)]:
-                if grid.in_bounds(ni, nj) and grid.at(ni, nj) != "#":
-                    if (ni, nj) not in dists or dists[(ni, nj)] > dist_so_far + 1:
-                        dists[(ni, nj)] = dist_so_far + 1
-                        heapq.heappush(q, (dist_so_far + 1, (ni, nj)))
-    return dists
-
-
 def path_exists(grid: Grid, start: tuple[int, int], end: tuple[int, int]) -> bool:
-    dists = dijkstra(grid, start)
+    dists = grid.dijkstra(start)
     return end in dists
 
 
@@ -66,7 +47,7 @@ def solve_part_1(puzzle_input: list[str]):
     grid = coords_to_grid(coords)
     start = (0, 0)
     end = (grid.width - 1, grid.height - 1)
-    return dijkstra(grid, start)[end]
+    return grid.dijkstra(start)[end]
 
 
 def solve_part_2(puzzle_input: list[str]):
