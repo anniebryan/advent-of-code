@@ -6,6 +6,7 @@ Day 21: Keypad Conundrum
 import click
 import os
 import pathlib
+from collections import defaultdict
 from utils import Grid
 
 
@@ -29,20 +30,28 @@ def shortest_path(start_key: str, dest_key: str, keypad: Grid) -> str:
     return f"{vertical}{horizontal}A"
 
 
-def len_shortest_sequence(code: str, num_directional_keypads: int) -> int:
-    ls = []
+def get_adj_pair_counts(code: str) -> dict[tuple[str, str], int]:
+    pair_counts = defaultdict(int)
     for start_key, dest_key in zip("A" + code, code):
-        ls.append(shortest_path(start_key, dest_key, NUMERIC_KEYPAD))
-    seq = "".join(ls)
+        pair_counts[(start_key, dest_key)] += 1
+    return pair_counts
 
+
+def get_next_pairs(pairs: dict[tuple[str, str], int], keypad: Grid) -> dict[tuple[str, str], int]:
+    next_pairs = defaultdict(int)
+    for (start_key, dest_key), num in pairs.items():
+        path = shortest_path(start_key, dest_key, keypad)
+        for k, v in get_adj_pair_counts(path).items():
+            next_pairs[k] += v * num
+    return next_pairs
+
+
+def len_shortest_sequence(code: str, num_directional_keypads: int) -> int:
+    initial_pairs = get_adj_pair_counts(code)
+    next_pairs = get_next_pairs(initial_pairs, NUMERIC_KEYPAD)
     for _ in range(num_directional_keypads):
-        ls = []
-        for start_key, dest_key in zip("A" + seq, seq):
-            ls.append(shortest_path(start_key, dest_key, DIRECTIONAL_KEYPAD))
-        seq = "".join(ls)
-
-    print(f"{code}: {len(seq)}")
-    return len(seq)
+        next_pairs = get_next_pairs(next_pairs, DIRECTIONAL_KEYPAD)
+    return sum(next_pairs.values())
 
 
 def get_total_complexity(puzzle_input: list[str], num_directional_keypads: int):
@@ -57,10 +66,8 @@ def solve_part_1(puzzle_input: list[str]):
     return get_total_complexity(puzzle_input, 2)
 
 
-# TODO speedup
 def solve_part_2(puzzle_input: list[str]):
-    # return get_total_complexity(puzzle_input, 25)
-    return
+    return get_total_complexity(puzzle_input, 25)
 
 
 @click.command()
