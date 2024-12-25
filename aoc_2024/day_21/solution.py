@@ -8,6 +8,7 @@ import os
 import pathlib
 from functools import cache
 from itertools import permutations
+from typing import Callable
 from utils import Grid
 
 
@@ -54,50 +55,41 @@ def get_options(ch: str, start_i: int, start_j: int, is_numeric_keypad: bool) ->
     return options, dest_i, dest_j
 
 
-def get_shortest_sequence(code: str) -> str:
-    i1, j1 = 3, 2
-    ls_1 = []
+@cache
+def get_shortest_sequence(code: str, i: int, j: int, is_numeric_keypad: bool, num_directional_keypads: int) -> str:
+    ls = []
     for ch in code:
-        min_len_1, best_seq_1 = float('inf'), None
-        options_1, i1, j1 = get_options(ch, i1, j1, True)
-        for o1 in options_1:
-            i2, j2 = 0, 2
-            ls_2 = []
-            for ch_1 in o1:
-                min_len_2, best_seq_2 = float('inf'), None
-                options_2, i2, j2 = get_options(ch_1, i2, j2, False)
-                for o2 in options_2:
-                    i3, j3 = 0, 2
-                    ls_3 = []
-                    for ch_2 in o2:
-                        min_len_3, best_seq_3 = float('inf'), None
-                        options_3, i3, j3 = get_options(ch_2, i3, j3, False)
-                        for o3 in options_3:
-                            if len(o3) < min_len_3:
-                                min_len_3, best_seq_3 = len(o3), o3
-                        ls_3.append(best_seq_3)
-                    output_seq_3 = "".join(ls_3)
-                    if len(output_seq_3) < min_len_2:
-                        min_len_2, best_seq_2 = len(output_seq_3), output_seq_3
-                ls_2.append(best_seq_2)
-            output_seq_2 = "".join(ls_2)
-            if len(output_seq_2) < min_len_1:
-                min_len_1, best_seq_1 = len(output_seq_2), output_seq_2
-        ls_1.append(best_seq_1)
-    return "".join(ls_1)
+        min_len, best_seq = float("inf"), None
+        options, i, j = get_options(ch, i, j, is_numeric_keypad)
+        for o in options:
+            if is_numeric_keypad:
+                output_seq = get_shortest_sequence(o, 0, 2, False, num_directional_keypads)
+            elif num_directional_keypads > 1:
+                output_seq = get_shortest_sequence(o, 0, 2, False, num_directional_keypads - 1)
+            else:
+                output_seq = o
+            if len(output_seq) < min_len:
+                min_len, best_seq = len(output_seq), output_seq
+        ls.append(best_seq)
+    return "".join(ls)
 
 
-def solve_part_1(puzzle_input: list[str]):
+def get_total_complexity(puzzle_input: list[str], num_directional_keypads: int):
     res = 0
     for code in puzzle_input:
         numeric_value = int("".join([ch for ch in code if ch != "A"]))
-        seq = get_shortest_sequence(code)
+        seq = get_shortest_sequence(code, 3, 2, True, num_directional_keypads)
         res += numeric_value * len(seq)
     return res
 
 
+def solve_part_1(puzzle_input: list[str]):
+    return get_total_complexity(puzzle_input, 2)
+
+
+# TODO speedup
 def solve_part_2(puzzle_input: list[str]):
-    return
+    return get_total_complexity(puzzle_input, 25)
 
 
 @click.command()
