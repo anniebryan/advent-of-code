@@ -6,9 +6,6 @@ Day 21: Keypad Conundrum
 import click
 import os
 import pathlib
-from functools import cache
-from itertools import permutations
-from typing import Callable
 from utils import Grid
 
 
@@ -16,70 +13,43 @@ NUMERIC_KEYPAD = Grid(["789", "456", "123", ".0A"])
 DIRECTIONAL_KEYPAD = Grid([".^A", "<v>"])
 
 
-@cache
-def p_is_valid(p: tuple[str], i: int, j: int, is_numeric_keypad: bool) -> bool:
-    keypad = NUMERIC_KEYPAD if is_numeric_keypad else DIRECTIONAL_KEYPAD
-    for move in p:
-        di, dj = {"^": (-1, 0), "v": (1, 0), ">": (0, 1), "<": (0, -1)}[move]
-        i += di
-        j += dj
-        if keypad.at(i, j) == ".":
-            return False
-    return True
+def shortest_path(start_key: str, dest_key: str, keypad: Grid) -> str:
+    (start_i, start_j) = keypad.where(start_key)[0]
+    (dest_i, dest_j) = keypad.where(dest_key)[0]
+
+    vertical = "v" * (dest_i - start_i) if dest_i > start_i else "^" * (start_i - dest_i)
+    horizontal = ">" * (dest_j - start_j) if dest_j > start_j else "<" * (start_j - dest_j)
+
+    if dest_j > start_j and keypad.at(dest_i, start_j) != ".":
+        return f"{vertical}{horizontal}A"
+
+    if keypad.at(start_i, dest_j) != ".":
+        return f"{horizontal}{vertical}A"
+
+    return f"{vertical}{horizontal}A"
 
 
-@cache
-def get_options(ch: str, start_i: int, start_j: int, is_numeric_keypad: bool) -> tuple[set[str], int, int]:
-    keypad = NUMERIC_KEYPAD if is_numeric_keypad else DIRECTIONAL_KEYPAD
-    dest_i, dest_j = keypad.where(ch)[0]
-    s = []
-
-    if dest_i > start_i:
-        for _ in range(dest_i - start_i):
-            s.append("v")
-    else:
-        for _ in range(start_i - dest_i):
-            s.append("^")
-
-    if dest_j > start_j:
-        for _ in range(dest_j - start_j):
-            s.append(">")
-    else:
-        for _ in range(start_j - dest_j):
-            s.append("<")
-
-    options = set()
-    for p in permutations(s):
-        if p_is_valid(p, start_i, start_j, is_numeric_keypad):
-            options.add("".join(p) + "A")
-    return options, dest_i, dest_j
-
-
-@cache
-def get_shortest_sequence(code: str, i: int, j: int, is_numeric_keypad: bool, num_directional_keypads: int) -> str:
+def len_shortest_sequence(code: str, num_directional_keypads: int) -> int:
     ls = []
-    for ch in code:
-        min_len, best_seq = float("inf"), None
-        options, i, j = get_options(ch, i, j, is_numeric_keypad)
-        for o in options:
-            if is_numeric_keypad:
-                output_seq = get_shortest_sequence(o, 0, 2, False, num_directional_keypads)
-            elif num_directional_keypads > 1:
-                output_seq = get_shortest_sequence(o, 0, 2, False, num_directional_keypads - 1)
-            else:
-                output_seq = o
-            if len(output_seq) < min_len:
-                min_len, best_seq = len(output_seq), output_seq
-        ls.append(best_seq)
-    return "".join(ls)
+    for start_key, dest_key in zip("A" + code, code):
+        ls.append(shortest_path(start_key, dest_key, NUMERIC_KEYPAD))
+    seq = "".join(ls)
+
+    for _ in range(num_directional_keypads):
+        ls = []
+        for start_key, dest_key in zip("A" + seq, seq):
+            ls.append(shortest_path(start_key, dest_key, DIRECTIONAL_KEYPAD))
+        seq = "".join(ls)
+
+    print(f"{code}: {len(seq)}")
+    return len(seq)
 
 
 def get_total_complexity(puzzle_input: list[str], num_directional_keypads: int):
     res = 0
     for code in puzzle_input:
         numeric_value = int("".join([ch for ch in code if ch != "A"]))
-        seq = get_shortest_sequence(code, 3, 2, True, num_directional_keypads)
-        res += numeric_value * len(seq)
+        res += numeric_value * len_shortest_sequence(code, num_directional_keypads)
     return res
 
 
@@ -89,7 +59,8 @@ def solve_part_1(puzzle_input: list[str]):
 
 # TODO speedup
 def solve_part_2(puzzle_input: list[str]):
-    return get_total_complexity(puzzle_input, 25)
+    # return get_total_complexity(puzzle_input, 25)
+    return
 
 
 @click.command()
