@@ -67,6 +67,25 @@ def run_program(reg_a: int, reg_b: int, reg_c: int, prog: list[int]) -> list[int
     return all_outputs
 
 
+def min_reg_a(reg_a, reg_b, reg_c, prog, prog_ix):
+    if prog_ix < 0:
+        return reg_a
+
+    for digit in range(8):
+        cand_reg_a = reg_a * 8 | digit
+        i = 0
+        while i < len(prog):
+            cand_reg_a, reg_b, reg_c, i, output = execute_instruction(cand_reg_a, reg_b, reg_c, i, prog[i], prog[i + 1])
+            if output is not None:
+                break
+
+        if prog[prog_ix] == output:
+            if (res := min_reg_a(reg_a * 8 | digit, reg_a, reg_b, prog, prog_ix - 1)) is not None:
+                return res
+
+    return None
+
+
 def solve_part_1(puzzle_input: list[str]):
     _, reg_a, reg_b, reg_c, prog = parse_input(puzzle_input)
     return ",".join([str(o) for o in run_program(reg_a, reg_b, reg_c, prog)])
@@ -76,7 +95,7 @@ def solve_part_2(puzzle_input: list[str]):
     run_part_2, _, reg_b, reg_c, prog = parse_input(puzzle_input)
     if not run_part_2:
         return
-    # TODO solve part 2
+    return min_reg_a(0, reg_b, reg_c, prog, len(prog) - 1)
 
 
 @click.command()
