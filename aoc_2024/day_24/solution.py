@@ -15,7 +15,7 @@ def parse_input(puzzle_input: list[str]):
     num_swaps = int(puzzle_input[1])
 
     wire_values = {}
-    gates = set()
+    gates = {}
 
     second_half = False
     for line in puzzle_input[2:]:
@@ -23,7 +23,7 @@ def parse_input(puzzle_input: list[str]):
             second_half = True
         elif second_half:
             [input_1, op, input_2, _, output] = line.split()
-            gates.add((input_1, op, input_2, output))
+            gates[output] = (input_1, op, input_2)
         else:
             wire, val = line.split(": ")
             wire_values[wire] = int(val)
@@ -50,23 +50,23 @@ def calc_binary(wire_values: dict[str, int], first_ch: str) -> int:
     return res
 
 
-def get_all_wire_values(wire_values: dict[str, int], gates: set[tuple[str, str, str, str]]):
+def get_all_wire_values(wire_values: dict[str, int], gates: dict[str, tuple[str, str, str]]):
     q = deque()
-    for g in gates:
+    for g in gates.keys():
         q.append(g)
 
     while q:
         g = q.popleft()
-        (input_1, op, input_2, output) = g
+        (input_1, op, input_2) = gates[g]
         if input_1 in wire_values and input_2 in wire_values:
-            wire_values[output] = calc_output(wire_values[input_1], op, wire_values[input_2])
+            wire_values[g] = calc_output(wire_values[input_1], op, wire_values[input_2])
         else:
             q.append(g)
     return wire_values
 
 
 def get_wires_to_swap(wire_values: dict[str, int],
-                      gates: set[tuple[str, str, str, str]],
+                      gates: dict[set, tuple[str, str, str]],
                       num_swaps: int) -> set[str]:
     raise NotImplementedError  # TODO
 
