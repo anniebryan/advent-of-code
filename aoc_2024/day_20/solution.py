@@ -18,10 +18,10 @@ def neighbors(g: Grid, loc: tuple[int, int]) -> Iterable[tuple[int, int]]:
             yield (ni, nj)
 
 
-def bfs(g: Grid, start: tuple[int, int], cheat_len: int) -> Iterable[tuple[int, int]]:
+def bfs(g: Grid, start: tuple[int, int], max_cheat_len: int) -> Iterable[tuple[int, int]]:
     """Yields locs (i, j) where `g.at(i, j)` is either "." or "E" which can be reached from `start`
-    in at most `cheat_len` steps through a path consisting of only '#' spaces."""
-    q = deque([(start, cheat_len)])
+    in at most `max_cheat_len` steps through a path consisting of only '#' spaces."""
+    q = deque([(start, max_cheat_len)])
     seen = set()
     while q:
         (curr, l) = q.popleft()
@@ -31,15 +31,29 @@ def bfs(g: Grid, start: tuple[int, int], cheat_len: int) -> Iterable[tuple[int, 
                 if g.at(ni, nj) in ".E":
                     yield (ni, nj)
                 if l > 1 and g.at(ni, nj) == "#":
-                    q.append(((ni, nj), cheat_len - 1))
+                    q.append(((ni, nj), max_cheat_len - 1))
 
 
-def get_cheat_candidates(g: Grid, cheat_len: int) -> set[tuple[tuple[int, int], tuple[int, int]]]:
-    cands = set()
-    for start in g.where(".") + g.where("S"):
-        for end in bfs(g, start, cheat_len):
-            cands.add((start, end))
-    return cands
+def get_times_saved(g: Grid, max_cheat_len: int) -> dict[int, int]:
+    start = g.where("S")[0]
+    end = g.where("E")[0]
+
+    dists_from_start = g.dijkstra(start)
+    dists_from_end = g.dijkstra(end)
+    len_without_cheating = dists_from_start[end]
+
+    path = sorted(dists_from_start, key=dists_from_start.get)
+
+    time_saved_dict = defaultdict(int)
+    for start_t, start in enumerate(path):
+        for end_t, end in enumerate(path):
+            if start_t + 3 <= end_t:
+                cheat_len = abs(end[0] - start[0]) + abs(end[1] - start[1])
+                dist_with_cheat = start_t + cheat_len + dists_from_end[end]
+                if cheat_len <= max_cheat_len and start_t + cheat_len < end_t:
+                    time_saved = len_without_cheating - dist_with_cheat
+                    time_saved_dict[time_saved] += 1
+    return time_saved_dict
 
 
 def display_res(time_saved_dict: dict[int, int]) -> None:
@@ -52,22 +66,13 @@ def display_res(time_saved_dict: dict[int, int]) -> None:
                 print(f"There is one cheat that saves {t} picoseconds.")
 
 
-def num_cheats(puzzle_input: list[str], cheat_len: int, picoseconds_saved: int) -> int:
-    g = Grid(puzzle_input)
+def num_cheats(puzzle_input: list[str], max_cheat_len: int, picoseconds_saved: int) -> int:
+    verbose = (puzzle_input[0] == "T")
+    g = Grid(puzzle_input[1:])
+    time_saved_dict = get_times_saved(g, max_cheat_len)
 
-    start = g.where("S")[0]
-    end = g.where("E")[0]
-    dists_from_start = g.dijkstra(start)
-    dists_from_end = g.dijkstra(end)
-    len_without_cheating = dists_from_start[end]
-    cheat_candidates = get_cheat_candidates(g, cheat_len)
-
-    time_saved_dict = defaultdict(int)
-    for (c_s, c_e) in cheat_candidates:
-        if dists_from_start[c_s] < dists_from_start[c_e]:
-            dist_with_cheat = dists_from_start[c_s] + 2 + dists_from_end[c_e]
-            time_saved = len_without_cheating - dist_with_cheat
-            time_saved_dict[time_saved] += 1
+    if verbose:
+        display_res(time_saved_dict)
 
     return sum([v for k, v in time_saved_dict.items() if k >= picoseconds_saved])
 
@@ -76,9 +81,8 @@ def solve_part_1(puzzle_input: list[str]):
     return num_cheats(puzzle_input, 2, 100)
 
 
-# TODO
 def solve_part_2(puzzle_input: list[str]):
-    return
+    return num_cheats(puzzle_input, 20, 100)
 
 
 @click.command()
