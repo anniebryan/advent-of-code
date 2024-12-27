@@ -12,13 +12,11 @@ from collections import deque
 
 def parse_input(puzzle_input: list[str]):
     run_part_2 = (puzzle_input[0] == "T")
-    num_swaps = int(puzzle_input[1])
 
-    wire_values = {}
-    gates = {}
+    wire_values, gates = {}, {}
 
     second_half = False
-    for line in puzzle_input[2:]:
+    for line in puzzle_input[1:]:
         if line == "":
             second_half = True
         elif second_half:
@@ -28,7 +26,7 @@ def parse_input(puzzle_input: list[str]):
             wire, val = line.split(": ")
             wire_values[wire] = int(val)
 
-    return wire_values, gates, run_part_2, num_swaps
+    return wire_values, gates, run_part_2
 
 
 def calc_output(input_1: Literal[0, 1], op: Literal["AND", "OR", "XOR"], input_2: Literal[0, 1]) -> int:
@@ -65,24 +63,35 @@ def get_all_wire_values(wire_values: dict[str, int], gates: dict[str, tuple[str,
     return wire_values
 
 
-def get_wires_to_swap(wire_values: dict[str, int],
-                      gates: dict[set, tuple[str, str, str]],
-                      num_swaps: int) -> set[str]:
-    raise NotImplementedError  # TODO
+def get_wires_to_swap(gates: dict[set, tuple[str, str, str]]) -> set[str]:
+    wires_to_swap = set()
+    for output, (input_1, op, input_2) in gates.items():
+        if output[0] == "z" and output != max(gates) and op != "XOR":
+            wires_to_swap.add(output)
+        if op == "XOR":
+            if output[0] not in "xyz" and input_1[0] not in "xyz" and input_2[0] not in "xyz":
+                wires_to_swap.add(output)
+            for (inner_input_1, inner_op, inner_input_2) in gates.values():
+                if inner_op == "OR" and (output in {inner_input_1, inner_input_2}):
+                    wires_to_swap.add(output)
+        if op == "AND" and  input_1 != "x00" and input_2 != "x00":
+            for (inner_input_1, inner_op, inner_input_2) in gates.values():
+                if inner_op != "OR" and (output in {inner_input_1, inner_input_2}):
+                    wires_to_swap.add(output)
+    return wires_to_swap
 
 
 def solve_part_1(puzzle_input: list[str]):
-    wire_values, gates, _, _ = parse_input(puzzle_input)
+    wire_values, gates, _ = parse_input(puzzle_input)
     wire_values = get_all_wire_values(wire_values, gates)
     return calc_binary(wire_values, "z")
 
 
 def solve_part_2(puzzle_input: list[str]):
-    wire_values, gates, run_part_2, num_swaps = parse_input(puzzle_input)
+    _, gates, run_part_2 = parse_input(puzzle_input)
     if not run_part_2:
         return
-    wire_values = get_all_wire_values(wire_values, gates)
-    return ",".join(sorted(get_wires_to_swap(wire_values, gates, num_swaps)))
+    return ",".join(sorted(get_wires_to_swap(gates)))
 
 
 @click.command()
