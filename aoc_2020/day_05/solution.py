@@ -3,9 +3,10 @@ Advent of Code 2020
 Day 5: Binary Boarding
 """
 
-import click
 import os
 from pathlib import Path
+
+import click
 
 
 def binary_search(s, low_c, high_val):

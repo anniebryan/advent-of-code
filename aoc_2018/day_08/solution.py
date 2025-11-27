@@ -3,9 +3,10 @@ Advent of Code 2018
 Day 8: Memory Maneuver
 """
 
-import click
 import os
 from pathlib import Path
+
+import click
 import regex as re
 
 

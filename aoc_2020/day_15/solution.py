@@ -3,9 +3,10 @@ Advent of Code 2020
 Day 15: Rambunctious Recitation
 """
 
-import click
 import os
 from pathlib import Path
+
+import click
 
 
 def process_input(puzzle_input):

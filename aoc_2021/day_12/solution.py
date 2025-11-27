@@ -3,10 +3,11 @@ Advent of Code 2021
 Day 12: Passage Pathing
 """
 
-import click
 import os
-from pathlib import Path
 from collections import defaultdict, deque
+from pathlib import Path
+
+import click
 
 
 def get_edges(puzzle_input):

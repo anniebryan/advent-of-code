@@ -3,11 +3,12 @@ Advent of Code 2020
 Day 1: Report Repair
 """
 
-import click
 import os
-from pathlib import Path
 from collections import defaultdict
 from math import prod
+from pathlib import Path
+
+import click
 
 
 def get_expense_report(puzzle_input):

@@ -1,5 +1,6 @@
 from typing import Union
 
+
 class IntRangeSet:
     """
     A class that represents several disjoint, continuous ranges of integers.

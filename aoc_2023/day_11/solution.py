@@ -3,9 +3,10 @@ Advent of Code 2023
 Day 11: Cosmic Expansion
 """
 
-import click
 import os
 from pathlib import Path
+
+import click
 
 
 class Loc:

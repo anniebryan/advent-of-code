@@ -3,11 +3,12 @@ Advent of Code 2018
 Day 4: Repose Record
 """
 
-import click
 import os
-from pathlib import Path
-import regex as re
 from collections import defaultdict
+from pathlib import Path
+
+import click
+import regex as re
 
 
 def parse_records(puzzle_input):

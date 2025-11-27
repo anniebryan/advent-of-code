@@ -3,10 +3,11 @@ Advent of Code 2021
 Day 9: Smoke Basin
 """
 
-import click
 import os
-from pathlib import Path
 from math import prod
+from pathlib import Path
+
+import click
 
 
 def get_heightmap_dict(puzzle_input):

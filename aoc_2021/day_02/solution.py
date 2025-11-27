@@ -3,9 +3,10 @@ Advent of Code 2021
 Day 2: Dive!
 """
 
-import click
 import os
 from pathlib import Path
+
+import click
 
 forward = lambda x: x[0] == 'forward'
 up = lambda x: x[0] == 'up'

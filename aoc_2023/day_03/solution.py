@@ -3,10 +3,11 @@ Advent of Code 2023
 Day 3: Gear Ratios
 """
 
-import click
 import os
-from pathlib import Path
 from math import prod
+from pathlib import Path
+
+import click
 
 ADJACENT_OFFSETS = [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)]
 

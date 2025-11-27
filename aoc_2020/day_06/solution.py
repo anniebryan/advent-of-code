@@ -3,10 +3,11 @@ Advent of Code 2020
 Day 6: Custom Customs
 """
 
-import click
 import os
-from pathlib import Path
 from collections import defaultdict
+from pathlib import Path
+
+import click
 
 
 def get_all_groups(puzzle_input):

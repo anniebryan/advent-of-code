@@ -1,5 +1,6 @@
 import heapq
 
+
 class Grid:
     def __init__(self, puzzle_input: list[str]):
         self.values = {}

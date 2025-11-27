@@ -4,12 +4,14 @@ Day 14: Parabolic Reflector Dish
 """
 
 import copy
-from enum import Enum
-import click
 import os
+from enum import Enum
 from pathlib import Path
-from utils import Grid
 from typing import Literal
+
+import click
+
+from utils import Grid
 
 
 def tilt(g: Grid, direction: Literal["N", "S", "E", "W"]) -> Grid:

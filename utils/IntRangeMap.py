@@ -1,5 +1,6 @@
 from .IntRangeSet import IntRangeSet
 
+
 class IntRangeMap:
 
     def __init__(self, source_type: str, dest_type: str):

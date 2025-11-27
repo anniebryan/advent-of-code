@@ -3,10 +3,11 @@ Advent of Code 2024
 Day 8: Resonant Collinearity
 """
 
-import click
 import os
-from pathlib import Path
 from collections import defaultdict
+from pathlib import Path
+
+import click
 
 
 def parse_input(puzzle_input: list[str]):

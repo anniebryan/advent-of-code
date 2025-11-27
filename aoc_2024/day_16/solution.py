@@ -3,11 +3,13 @@ Advent of Code 2024
 Day 16: Reindeer Maze
 """
 
-import click
 import os
+from collections import defaultdict, deque
 from pathlib import Path
+
+import click
+
 from utils import Grid
-from collections import deque, defaultdict
 
 
 def all_possible_scores(grid: Grid) -> set[int]:

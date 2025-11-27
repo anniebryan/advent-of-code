@@ -3,9 +3,10 @@ Advent of Code 2018
 Day 1: Chronal Calibration
 """
 
-import click
 import os
 from pathlib import Path
+
+import click
 
 
 def solve_part_1(puzzle_input: list[str]):
