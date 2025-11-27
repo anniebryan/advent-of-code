@@ -43,7 +43,7 @@ def valid_hex(s):
     try:
         _ = int(s, 16)
         return True
-    except:
+    except ValueError:
         return False
 
 
