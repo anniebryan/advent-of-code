@@ -31,10 +31,10 @@ def solve_part_2(puzzle_input: list[str]):
         for j in range(len(remaining)):
             box_2 = remaining[j]
             different = 0
-            for l in range(len(box_1) - 1):  # all 27 letters
-                if box_1[l] != box_2[l]:
+            for k in range(len(box_1) - 1):  # all 27 letters
+                if box_1[k] != box_2[k]:
                     different += 1
-                    letter = l
+                    letter = k
             if different == 1:
                 return box_1[0:letter] + box_1[letter + 1:]
 

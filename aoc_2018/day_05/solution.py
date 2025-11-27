@@ -17,11 +17,11 @@ def destroy(p, c):
     if p is None or len(p) == 0:
         return c
     else:
-        l = str(p[-1:])  # last letter
+        letter = str(p[-1:])  # last letter
         lc = string.ascii_lowercase
         uc = string.ascii_uppercase
-        if (l in lc and c in uc) or (l in uc and c in lc):  # opposite case
-            if l.lower() == c.lower():
+        if (letter in lc and c in uc) or (letter in uc and c in lc):  # opposite case
+            if letter.lower() == c.lower():
                 return p[:-1]
         return p + c
 
