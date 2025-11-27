@@ -5,7 +5,7 @@ Day 6: Guard Gallivant
 
 import click
 import os
-import pathlib
+from pathlib import Path
 
 
 def parse_input(puzzle_input: list[str]):
@@ -84,7 +84,7 @@ def solve_part_2(puzzle_input: list[str]):
 @click.option("-se", "--skip_example", is_flag=True, default=False)
 @click.option("-sp", "--skip_puzzle", is_flag=True, default=False)
 def main(skip_example: bool = False, skip_puzzle: bool = False) -> None:
-    base_dir = pathlib.Path(__file__).parent
+    base_dir = Path(__file__).parent
     example_files = sorted([fn for fn in os.listdir(base_dir) if fn.endswith(".txt") and "example" in fn])
 
     def _run_solution(filename: str, display_name: str):
