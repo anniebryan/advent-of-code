@@ -12,7 +12,12 @@ import regex as re
 
 def get_claims(puzzle_input):
     pattern = r'#(\d+) @ (\d+),(\d+): (\d+)x(\d+)'
-    claims = [[int(y) for y in re.match(pattern, row).groups()] for row in puzzle_input]
+    claims = []
+    for row in puzzle_input:
+        match = re.match(pattern, row)
+        assert match is not None
+        for y in match.groups():
+            claims.append(int(y))
     return claims
 
 

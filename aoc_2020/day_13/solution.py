@@ -23,8 +23,10 @@ def next_bus_time(puzzle_input):
     earliest_bus = get_earliest_bus(puzzle_input)
     bus_times = get_bus_times(puzzle_input)
     time_to_wait = {x: x - earliest_bus % x for x in bus_times}
-    soonest_bus = min(time_to_wait, key = time_to_wait.get)
-    return soonest_bus, time_to_wait[soonest_bus]
+    min_time = min(time_to_wait.values())
+    for k, v in time_to_wait.items():
+        if v == min_time:
+            return k, min_time
 
 
 def get_departure_requirements(puzzle_input):

@@ -17,36 +17,38 @@ def process_instruction(instruction, direction, x, y):
     action, val = instruction[0], instruction[1]
     if action == 'N' or (action == 'F' and direction == 90):
         return direction, x, y + val
-    elif action == 'S' or (action == 'F' and direction == 270):
+    if action == 'S' or (action == 'F' and direction == 270):
         return direction, x, y - val
-    elif action == 'E' or (action == 'F' and direction == 0):
+    if action == 'E' or (action == 'F' and direction == 0):
         return direction, x + val, y
-    elif action == 'W' or (action == 'F' and direction == 180):
+    if action == 'W' or (action == 'F' and direction == 180):
         return direction, x - val, y
-    elif action == 'L':
+    if action == 'L':
         return (direction + val) % 360, x, y
-    elif action == 'R':
+    if action == 'R':
         return (direction - val) % 360, x, y
+    raise NotImplementedError
 
 
 def process_waypoint(instruction, x, y, way_x, way_y):
     action, val = instruction[0], instruction[1]
     if action == 'N':
         return x, y, way_x, way_y + val
-    elif action == 'S':
+    if action == 'S':
         return x, y, way_x, way_y - val
-    elif action == 'E':
+    if action == 'E':
         return x, y, way_x + val, way_y
-    elif action == 'W':
+    if action == 'W':
         return x, y, way_x - val, way_y
-    elif (action == 'L' and val == 90)  or (action == 'R' and val == 270):
+    if (action == 'L' and val == 90)  or (action == 'R' and val == 270):
         return x, y, -way_y, way_x
-    elif (action == 'L' and val == 270) or (action == 'R' and val == 90):
+    if (action == 'L' and val == 270) or (action == 'R' and val == 90):
         return x, y, way_y, -way_x
-    elif (action == 'L' or action == 'R') and val == 180:
+    if (action == 'L' or action == 'R') and val == 180:
         return x, y, -way_x, -way_y
-    elif action == 'F':
+    if action == 'F':
         return x + way_x * val, y + way_y * val, way_x, way_y
+    raise NotImplementedError
 
 
 def process_all_instructions(puzzle_input, part_one):

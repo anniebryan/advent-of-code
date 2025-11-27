@@ -20,7 +20,9 @@ def get_containers(puzzle_input):
     """
     containers = defaultdict(set)
     for rule in puzzle_input:
-        outer_bag = re.match('([A-Za-z ]+) bags', rule)[1]
+        match = re.match(r"([A-Za-z ]+) bags", rule)
+        assert match is not None
+        outer_bag = match[1]
         inner_bags = re.findall(r'(\d+) ([A-Za-z ]+?) bags?', rule)
         for bag in inner_bags:
             containers[bag[1]].add(outer_bag)
@@ -34,7 +36,9 @@ def get_num_containing(puzzle_input):
     """
     containing = {}
     for rule in puzzle_input:
-        outer_bag = re.match(r'([A-Za-z ]+) bags', rule)[1].split(" bags contain no other")[0]
+        match = re.match(r"([A-Za-z ]+) bags", rule)
+        assert match is not None
+        outer_bag = match[1].split(" bags contain no other")[0]
         inner_bags = re.findall(r'(\d+) ([A-Za-z ]+?) bags?', rule)
         containing[outer_bag] = {(int(t[0]), t[1]) for t in inner_bags}
     return containing
