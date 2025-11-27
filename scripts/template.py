@@ -1,6 +1,6 @@
 """
-Advent of Code {{ year }}
-Day {{ day }}
+Advent of Code $YEAR
+Day $DAY
 """
 
 import click
