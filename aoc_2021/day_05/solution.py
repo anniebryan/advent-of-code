@@ -3,10 +3,11 @@ Advent of Code 2021
 Day 5: Hydrothermal Venture
 """
 
-import click
 import os
-from pathlib import Path
 from collections import defaultdict
+from pathlib import Path
+
+import click
 
 
 def get_point_pairs(puzzle_input):

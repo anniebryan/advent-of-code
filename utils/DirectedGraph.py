@@ -2,6 +2,7 @@ import heapq
 from collections import defaultdict, deque
 from typing import Any
 
+
 class DirectedGraph:
     def __init__(self):
         self.graph = defaultdict(set)

@@ -3,11 +3,13 @@ Advent of Code 2024
 Day 1: Historian Hysteria
 """
 
-import click
 import os
-from pathlib import Path
-import regex as re
 from collections import Counter
+from pathlib import Path
+
+import click
+import regex as re
+
 
 def parse_input(puzzle_input):
     left_list, right_list = [], []

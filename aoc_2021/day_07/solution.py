@@ -3,9 +3,10 @@ Advent of Code 2021
 Day 7: The Threachery of Whales
 """
 
-import click
 import os
 from pathlib import Path
+
+import click
 
 
 def get_positions(puzzle_input):

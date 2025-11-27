@@ -3,9 +3,10 @@ Advent of Code 2021
 Day 4: Giant Squid
 """
 
-import click
 import os
 from pathlib import Path
+
+import click
 
 SIZE = 5
 

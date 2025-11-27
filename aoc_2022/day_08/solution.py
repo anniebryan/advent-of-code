@@ -3,9 +3,10 @@ Advent of Code 2022
 Day 8: Treetop Tree House
 """
 
-import click
 import os
 from pathlib import Path
+
+import click
 
 
 class Forest:

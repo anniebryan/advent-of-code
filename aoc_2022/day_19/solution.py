@@ -3,11 +3,12 @@ Advent of Code 2022
 Day 19: Not Enough Minerals
 """
 
-import click
 import os
-from pathlib import Path
 import re
 from collections import deque
+from pathlib import Path
+
+import click
 
 
 class Blueprint:

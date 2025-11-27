@@ -3,9 +3,10 @@ Advent of Code 2019
 Day 1: The Tyranny of the Rocket Equation
 """
 
-import click
 import os
 from pathlib import Path
+
+import click
 
 
 def get_masses(puzzle_input):

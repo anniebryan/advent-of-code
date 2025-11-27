@@ -3,12 +3,14 @@ Advent of Code 2023
 Day 16: The Floor Will Be Lava
 """
 
-from typing import Iterator
-import click
 import os
-from pathlib import Path
-from utils import Grid
 from collections import deque
+from pathlib import Path
+from typing import Iterator
+
+import click
+
+from utils import Grid
 
 
 def move_beam(g: Grid, start_pos: tuple[int, int], start_direction: tuple[int, int]) -> Iterator[tuple[int, int]]:

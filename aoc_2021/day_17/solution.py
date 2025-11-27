@@ -3,9 +3,10 @@ Advent of Code 2021
 Day 17: Trick Shot
 """
 
-import click
 import os
 from pathlib import Path
+
+import click
 
 
 def get_target_area(puzzle_input):

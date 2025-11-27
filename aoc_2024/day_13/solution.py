@@ -3,9 +3,10 @@ Advent of Code 2024
 Day 13: Claw Contraption
 """
 
-import click
 import os
 from pathlib import Path
+
+import click
 import regex as re
 
 COST = {"A": 3, "B": 1}

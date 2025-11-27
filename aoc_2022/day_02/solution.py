@@ -3,9 +3,10 @@ Advent of Code 2022
 Day 2: Rock Paper Scissors
 """
 
-import click
 import os
 from pathlib import Path
+
+import click
 
 
 def get_score(row, part_1):

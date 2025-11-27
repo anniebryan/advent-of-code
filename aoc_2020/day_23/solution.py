@@ -3,9 +3,10 @@ Advent of Code 2020
 Day 23: Crab Cups
 """
 
-import click
 import os
 from pathlib import Path
+
+import click
 
 
 def get_initial_cups(puzzle_input, num_cups):

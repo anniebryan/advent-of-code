@@ -3,11 +3,12 @@ Advent of Code 2022
 Day 21: Monkey Math
 """
 
-import click
-import os
-from pathlib import Path
-import re
 import operator
+import os
+import re
+from pathlib import Path
+
+import click
 
 OPS = {
     "+": operator.add,

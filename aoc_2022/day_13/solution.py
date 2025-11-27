@@ -3,11 +3,12 @@ Advent of Code 2022
 Day 13: Distress Signal
 """
 
-import click
-import os
-from pathlib import Path
 import ast
+import os
 from functools import cmp_to_key
+from pathlib import Path
+
+import click
 
 
 def compare_pair(left, right):

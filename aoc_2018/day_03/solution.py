@@ -3,9 +3,10 @@ Advent of Code 2018
 Day 3: No Matter How You Slice It
 """
 
-import click
 import os
 from pathlib import Path
+
+import click
 import regex as re
 
 

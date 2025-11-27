@@ -3,9 +3,10 @@ Advent of Code 2022
 Day 1: Calorie Counting
 """
 
-import click
 import os
 from pathlib import Path
+
+import click
 
 
 def get_max_three(a, b, c, current_elf):

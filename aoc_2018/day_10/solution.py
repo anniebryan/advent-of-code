@@ -3,9 +3,10 @@ Advent of Code 2018
 Day 10: The Stars Align
 """
 
-import click
 import os
 from pathlib import Path
+
+import click
 import regex as re
 
 

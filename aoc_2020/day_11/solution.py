@@ -3,9 +3,10 @@ Advent of Code 2020
 Day 11: Seating System
 """
 
-import click
 import os
 from pathlib import Path
+
+import click
 
 
 def get_area_dimensions(puzzle_input):

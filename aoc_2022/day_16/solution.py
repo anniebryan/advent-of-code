@@ -3,10 +3,11 @@ Advent of Code 2022
 Day 16: Proboscidea Volcanium
 """
 
-import click
 import os
-from pathlib import Path
 from itertools import combinations
+from pathlib import Path
+
+import click
 import regex as re
 
 

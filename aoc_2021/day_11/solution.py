@@ -3,10 +3,11 @@ Advent of Code 2021
 Day 11: Dumbo Octopus
 """
 
-import click
 import os
-from pathlib import Path
 from collections import deque
+from pathlib import Path
+
+import click
 
 
 def get_octopus_dict(puzzle_input):

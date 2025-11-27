@@ -3,9 +3,11 @@ Advent of Code 2024
 Day 23: LAN Party
 """
 
-import click
 import os
 from pathlib import Path
+
+import click
+
 from utils import DirectedGraph
 
 

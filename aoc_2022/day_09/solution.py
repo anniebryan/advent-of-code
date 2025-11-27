@@ -3,9 +3,10 @@ Advent of Code 2022
 Day 9: Rope Bridge
 """
 
-import click
 import os
 from pathlib import Path
+
+import click
 
 
 def get_moves(puzzle_input):

@@ -3,9 +3,10 @@ Advent of Code 2020
 Day 14: Docking Data
 """
 
-import click
 import os
 from pathlib import Path
+
+import click
 
 
 def binary(n):

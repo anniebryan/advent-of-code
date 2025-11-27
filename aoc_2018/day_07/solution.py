@@ -3,12 +3,13 @@ Advent of Code 2018
 Day 7: The Sum of Its Parts
 """
 
-import click
-import os
-from pathlib import Path
-import regex as re
 import copy
+import os
 from collections import defaultdict
+from pathlib import Path
+
+import click
+import regex as re
 
 
 def parse_requirements(puzzle_input):

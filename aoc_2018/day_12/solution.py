@@ -3,9 +3,10 @@ Advent of Code 2018
 Day 12: Subterranean Sustainability
 """
 
-import click
 import os
 from pathlib import Path
+
+import click
 
 
 def get_initial_plant_indices(puzzle_input):

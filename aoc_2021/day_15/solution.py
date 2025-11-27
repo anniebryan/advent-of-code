@@ -3,11 +3,12 @@ Advent of Code 2021
 Day 15: Chiton
 """
 
-import click
-import os
-from pathlib import Path
-import sys
 import heapq
+import os
+import sys
+from pathlib import Path
+
+import click
 
 
 def get_risk_levels(puzzle_input, part_2):

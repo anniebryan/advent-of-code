@@ -3,11 +3,12 @@ Advent of Code 2023
 Day 7: Camel Cards
 """
 
-import click
 import os
-from pathlib import Path
 from collections import Counter
 from functools import cmp_to_key
+from pathlib import Path
+
+import click
 
 
 def parse_input(puzzle_input: list[str]):

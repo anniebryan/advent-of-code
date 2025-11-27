@@ -3,9 +3,10 @@ Advent of Code 2020
 Day 25: Combo Breaker
 """
 
-import click
 import os
 from pathlib import Path
+
+import click
 
 
 def get_public_keys(puzzle_input):

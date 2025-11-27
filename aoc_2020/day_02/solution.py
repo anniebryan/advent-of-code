@@ -3,9 +3,10 @@ Advent of Code 2020
 Day 2: Password Philosophy
 """
 
-import click
 import os
 from pathlib import Path
+
+import click
 
 
 def get_passwords(puzzle_input):

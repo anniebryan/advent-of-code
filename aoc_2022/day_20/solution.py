@@ -3,9 +3,10 @@ Advent of Code 2022
 Day 20: Grove Positioning System
 """
 
-import click
 import os
 from pathlib import Path
+
+import click
 
 
 # TODO move to utils

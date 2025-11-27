@@ -3,12 +3,13 @@ Advent of Code 2024
 Day 14: Restroom Redoubt
 """
 
-import click
 import os
-from pathlib import Path
-import regex as re
-from math import prod
 from collections import defaultdict
+from math import prod
+from pathlib import Path
+
+import click
+import regex as re
 
 
 def parse_input(puzzle_input: list[str]):

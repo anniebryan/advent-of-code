@@ -3,9 +3,10 @@ Advent of Code 2020
 Day 21: Allergen Assessment
 """
 
-import click
 import os
 from pathlib import Path
+
+import click
 
 
 def get_all_foods(puzzle_input):

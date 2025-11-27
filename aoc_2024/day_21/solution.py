@@ -3,12 +3,13 @@ Advent of Code 2024
 Day 21: Keypad Conundrum
 """
 
-import click
 import os
-from pathlib import Path
 from collections import defaultdict
-from utils import Grid
+from pathlib import Path
 
+import click
+
+from utils import Grid
 
 NUMERIC_KEYPAD = Grid(["789", "456", "123", ".0A"])
 DIRECTIONAL_KEYPAD = Grid([".^A", "<v>"])

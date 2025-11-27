@@ -3,10 +3,11 @@ Advent of Code 2020
 Day 24: Lobby Layout
 """
 
-import click
 import os
-from pathlib import Path
 from collections import defaultdict
+from pathlib import Path
+
+import click
 
 
 def get_instructions(puzzle_input):

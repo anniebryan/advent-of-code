@@ -3,9 +3,10 @@ Advent of Code 2022
 Day 12: Hill Climbing Algorithm
 """
 
-import click
 import os
 from pathlib import Path
+
+import click
 
 
 def create_map(puzzle_input):

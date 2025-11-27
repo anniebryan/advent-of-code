@@ -3,9 +3,11 @@ Advent of Code 2024
 Day 10: Hoof It
 """
 
-import click
 import os
 from pathlib import Path
+
+import click
+
 from utils import DirectedGraph
 
 

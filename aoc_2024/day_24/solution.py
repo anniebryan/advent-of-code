@@ -3,11 +3,12 @@ Advent of Code 2024
 Day 24: Crossed Wires
 """
 
-import click
 import os
+from collections import deque
 from pathlib import Path
 from typing import Literal
-from collections import deque
+
+import click
 
 
 def parse_input(puzzle_input: list[str]):
