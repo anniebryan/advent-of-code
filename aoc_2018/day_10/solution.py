@@ -43,6 +43,7 @@ def get_smallest_box(boxes):
         maxx, minx, maxy, miny = box
         if answer_box == maxx - minx + maxy - miny:
             return i, box
+    raise AssertionError
 
 
 def solve_part_1(puzzle_input: list[str]):

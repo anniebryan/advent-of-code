@@ -11,7 +11,7 @@ import regex as re
 
 
 def get_min_max_r(puzzle_input):
-    min_r, max_r = (int(x) for x in re.findall('(\d+)-(\d+)', puzzle_input[0])[0])
+    min_r, max_r = (int(x) for x in re.findall(r"(\d+)-(\d+)", puzzle_input[0])[0])
     return min_r, max_r
 
 

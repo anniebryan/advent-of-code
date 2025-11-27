@@ -13,7 +13,10 @@ import regex as re
 
 
 def parse_requirements(puzzle_input):
-    requirements = {re.findall(r'Step ([A-Z]) must be finished before step ([A-Z]) can begin', i)[0] for i in puzzle_input}
+    requirements = {
+        re.findall(r'Step ([A-Z]) must be finished before step ([A-Z]) can begin', i)[0]
+        for i in puzzle_input
+    }
     all_steps = {r[i] for r in requirements for i in [0, 1]}
     all_prerequisites = defaultdict(set)
     all_dependencies = defaultdict(set)
@@ -114,7 +117,14 @@ def solve_part_2(puzzle_input: list[str]):
     time = 0
     _, prerequisites = copy.deepcopy(all_steps), copy.deepcopy(all_prerequisites)
     while len(completed) < len(all_steps):
-        workers, completed, prerequisites = timestep(workers, completed, prerequisites, all_steps, all_dependencies, seconds_to_subtract)
+        workers, completed, prerequisites = timestep(
+            workers,
+            completed,
+            prerequisites,
+            all_steps,
+            all_dependencies,
+            seconds_to_subtract,
+        )
         time += 1
     return time - 1
 
