@@ -5,7 +5,7 @@ Day 1: Trebuchet?!
 
 import click
 import os
-import pathlib
+from pathlib import Path
 
 DIGIT_WORDS = {"one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6, "seven": 7, "eight": 8, "nine": 9}
 
@@ -53,7 +53,7 @@ def solve_part_2(puzzle_input: list[str]) -> int:
 @click.option("-se", "--skip_example", is_flag=True, default=False)
 @click.option("-sp", "--skip_puzzle", is_flag=True, default=False)
 def main(skip_example: bool = False, skip_puzzle: bool = False) -> None:
-    base_dir = pathlib.Path(__file__).parent
+    base_dir = Path(__file__).parent
     example_files = sorted([fn for fn in os.listdir(base_dir) if fn.endswith(".txt") and "example" in fn])
 
     def _run_solution(filename: str, display_name: str):
