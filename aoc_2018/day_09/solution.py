@@ -3,11 +3,12 @@ Advent of Code 2018
 Day 9: Marble Mania
 """
 
-import click
 import os
+from collections import defaultdict, deque
 from pathlib import Path
+
+import click
 import regex as re
-from collections import deque, defaultdict
 
 
 def get_info(puzzle_input):

@@ -3,10 +3,11 @@ Advent of Code 2020
 Day 3: Toboggan Trajectory
 """
 
-import click
 import os
-from pathlib import Path
 from math import prod
+from pathlib import Path
+
+import click
 
 
 def num_trees(puzzle_input, right, down):

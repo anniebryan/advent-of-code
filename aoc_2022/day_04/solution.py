@@ -3,9 +3,10 @@ Advent of Code 2022
 Day 4: Camp Cleanup
 """
 
-import click
 import os
 from pathlib import Path
+
+import click
 
 
 def get_sections(puzzle_input):

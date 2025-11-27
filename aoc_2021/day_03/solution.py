@@ -3,9 +3,10 @@ Advent of Code 2021
 Day 3: Binary Diagnostic
 """
 
-import click
 import os
 from pathlib import Path
+
+import click
 
 bits = lambda i, iterable: [int(n[i]) for n in iterable]
 most_common = lambda i, iterable: '1' if sum(bits(i, iterable)) >= len(list(iterable)) / 2 else '0'

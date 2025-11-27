@@ -3,13 +3,14 @@ Advent of Code 2023
 Day 8: Haunted Wasteland
 """
 
-import click
 import os
-from pathlib import Path
-import regex as re
 from itertools import cycle
 from math import lcm
+from pathlib import Path
 from typing import Callable
+
+import click
+import regex as re
 
 
 class Graph:

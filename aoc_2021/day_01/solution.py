@@ -3,9 +3,10 @@ Advent of Code 2021
 Day 1: Sonar Sweep
 """
 
-import click
 import os
 from pathlib import Path
+
+import click
 
 
 def get_measurements(puzzle_input):

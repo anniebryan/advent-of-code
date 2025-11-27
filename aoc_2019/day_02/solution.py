@@ -3,9 +3,10 @@ Advent of Code 2019
 Day 2: 1202 Program Alarm
 """
 
-import click
 import os
 from pathlib import Path
+
+import click
 
 
 def get_ints(puzzle_input):

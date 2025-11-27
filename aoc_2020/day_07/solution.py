@@ -3,11 +3,12 @@ Advent of Code 2020
 Day 7: Handy Haversacks
 """
 
-import click
 import os
-from pathlib import Path
-import regex as re
 from collections import defaultdict, deque
+from pathlib import Path
+
+import click
+import regex as re
 
 SHINY_GOLD = 'shiny gold'
 

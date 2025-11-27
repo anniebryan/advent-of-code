@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 import sys
-import requests
 from pathlib import Path
 from string import Template
+
+import requests
 
 SCRIPTS_DIR = Path(__file__).resolve().parent
 REPO_ROOT = SCRIPTS_DIR.parent

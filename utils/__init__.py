@@ -1,7 +1,7 @@
 from .DirectedGraph import DirectedGraph
 from .Grid import Grid
-from .IntRangeSet import IntRangeSet
 from .IntRangeMap import IntRangeMap
+from .IntRangeSet import IntRangeSet
 
 __all__ = [
     "DirectedGraph",
