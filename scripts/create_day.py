@@ -6,7 +6,7 @@ from string import Template
 import requests
 
 SCRIPTS_DIR = Path(__file__).resolve().parent
-REPO_ROOT = SCRIPTS_DIR.parent
+PROJECT_ROOT = SCRIPTS_DIR.parent / "src"
 
 TEMPLATE_FILE = SCRIPTS_DIR / "template.py"
 CONFIG_FILE = SCRIPTS_DIR / "config.txt"
@@ -37,7 +37,7 @@ def main() -> None:
     year = int(sys.argv[1])
     day = int(sys.argv[2])
 
-    target_dir = REPO_ROOT / f"aoc_{year}" / f"day_{day:02d}"
+    target_dir = PROJECT_ROOT / f"aoc_{year}" / f"day_{day:02d}"
     target_dir.mkdir(parents=True, exist_ok=True)
 
     solution_file = target_dir / "solution.py"
