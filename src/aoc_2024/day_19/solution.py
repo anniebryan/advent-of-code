@@ -3,12 +3,6 @@ Advent of Code 2024
 Day 19: Linen Layout
 """
 
-import os
-from pathlib import Path
-
-import click
-
-
 def parse_input(puzzle_input: list[str]):
     available_patterns = puzzle_input[0].split(", ")
     desired_designs = puzzle_input[2:]

@@ -3,12 +3,6 @@ Advent of Code 2022
 Day 20: Grove Positioning System
 """
 
-import os
-from pathlib import Path
-
-import click
-
-
 # TODO move to utils
 class Node:
     def __init__(self, val):

@@ -3,12 +3,8 @@ Advent of Code 2024
 Day 20: Race Condition
 """
 
-import os
 from collections import defaultdict, deque
-from pathlib import Path
 from typing import Iterable
-
-import click
 
 from utils import Grid
 

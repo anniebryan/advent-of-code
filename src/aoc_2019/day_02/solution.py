@@ -3,11 +3,6 @@ Advent of Code 2019
 Day 2: 1202 Program Alarm
 """
 
-import os
-from pathlib import Path
-
-import click
-
 
 def get_ints(puzzle_input):
     ints = [int(i) for i in puzzle_input.split(",")]

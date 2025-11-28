@@ -3,12 +3,6 @@ Advent of Code 2018
 Day 1: Chronal Calibration
 """
 
-import os
-from pathlib import Path
-
-import click
-
-
 def solve_part_1(puzzle_input: list[str]):
     return sum([int(x) for x in puzzle_input])
 

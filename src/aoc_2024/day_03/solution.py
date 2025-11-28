@@ -3,10 +3,6 @@ Advent of Code 2024
 Day 3: Mull It Over
 """
 
-import os
-from pathlib import Path
-
-import click
 import regex as re
 
 PATTERN = r'mul\((?P<n1>\d+),(?P<n2>\d+)\)'

@@ -3,11 +3,7 @@ Advent of Code 2021
 Day 8: Seven Segment Search
 """
 
-import os
 from collections import defaultdict
-from pathlib import Path
-
-import click
 
 TOP = 'top'
 TOP_LEFT = 'top left'

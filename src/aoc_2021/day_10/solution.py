@@ -3,12 +3,8 @@ Advent of Code 2021
 Day 10: Syntax Scoring
 """
 
-import os
 from collections import deque
-from pathlib import Path
 from statistics import median
-
-import click
 
 TABLE = {')': 3, ']': 57, '}': 1197, '>': 25137}
 POINTS = {')': 1, ']': 2, '}': 3, '>': 4}

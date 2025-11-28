@@ -3,12 +3,6 @@ Advent of Code 2021
 Day 17: Trick Shot
 """
 
-import os
-from pathlib import Path
-
-import click
-
-
 def get_target_area(puzzle_input):
     return [[int(x) for x in puzzle_input[0].split(',')[i].split('=')[1].split('..')] for i in range(2)]
 

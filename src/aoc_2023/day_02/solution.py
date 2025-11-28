@@ -3,10 +3,6 @@ Advent of Code 2023
 Day 2: Cube Conundrum
 """
 
-import os
-from pathlib import Path
-
-import click
 import regex as re
 
 

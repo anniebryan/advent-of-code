@@ -3,12 +3,6 @@ Advent of Code 2024
 Day 7: Bridge Repair
 """
 
-import os
-from pathlib import Path
-
-import click
-
-
 def parse_input(puzzle_input: list[str]):
     equations = []
     for line in puzzle_input:

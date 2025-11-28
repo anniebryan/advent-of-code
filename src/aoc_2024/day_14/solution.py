@@ -3,12 +3,9 @@ Advent of Code 2024
 Day 14: Restroom Redoubt
 """
 
-import os
 from collections import defaultdict
 from math import prod
-from pathlib import Path
 
-import click
 import regex as re
 
 

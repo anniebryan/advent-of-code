@@ -3,11 +3,8 @@ Advent of Code 2024
 Day 1: Historian Hysteria
 """
 
-import os
 from collections import Counter
-from pathlib import Path
 
-import click
 import regex as re
 
 

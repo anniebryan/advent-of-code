@@ -3,12 +3,6 @@ Advent of Code 2021
 Day 16: Packet Decoder
 """
 
-import os
-from pathlib import Path
-
-import click
-
-
 def hex_to_bin(hex_char):
     return bin(int(hex_char, 16))[2:].zfill(4)
 

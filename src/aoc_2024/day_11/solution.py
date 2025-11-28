@@ -3,12 +3,6 @@ Advent of Code 2024
 Day 11: Plutonian Pebbles
 """
 
-import os
-from pathlib import Path
-
-import click
-
-
 def parse_input(puzzle_input: list[str]):
     return [int(n) for n in puzzle_input[0].split()]
 

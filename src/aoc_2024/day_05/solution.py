@@ -3,11 +3,6 @@ Advent of Code 2024
 Day 5: Print Queue
 """
 
-import os
-from pathlib import Path
-
-import click
-
 from utils import DirectedGraph
 
 

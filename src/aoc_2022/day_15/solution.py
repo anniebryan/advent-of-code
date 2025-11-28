@@ -3,11 +3,8 @@ Advent of Code 2022
 Day 15: Beacon Exclusion Zone
 """
 
-import os
 from collections import defaultdict
-from pathlib import Path
 
-import click
 import regex as re
 
 

@@ -3,12 +3,8 @@ Advent of Code 2023
 Day 13: Point of Incidence
 """
 
-import os
 from collections import defaultdict
-from pathlib import Path
 from typing import Iterable
-
-import click
 
 
 def parse_input(puzzle_input: list[str]):

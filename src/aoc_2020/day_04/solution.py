@@ -3,12 +3,6 @@ Advent of Code 2020
 Day 4: Passport Processing
 """
 
-import os
-from pathlib import Path
-
-import click
-
-
 def get_all_passports(puzzle_input):
     all_passports = []
     passport = []

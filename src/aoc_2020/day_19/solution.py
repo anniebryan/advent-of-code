@@ -3,10 +3,6 @@ Advent of Code 2020
 Day 19: Monster Messages
 """
 
-import os
-from pathlib import Path
-
-import click
 import regex as re
 
 

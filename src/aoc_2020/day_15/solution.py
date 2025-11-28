@@ -3,12 +3,6 @@ Advent of Code 2020
 Day 15: Rambunctious Recitation
 """
 
-import os
-from pathlib import Path
-
-import click
-
-
 def process_input(puzzle_input):
     numbers = puzzle_input[0].split(",")
     history = {int(n): i + 1 for i, n in enumerate(numbers)}
