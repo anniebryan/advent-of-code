@@ -24,7 +24,7 @@ class Valve:
 def parse_puzzle_input(puzzle_input):
     valves = {}
     for row in puzzle_input:
-        values = re.match("Valve (.*) has flow rate=(\d+); tunnels? leads? to valves? (.*)", row).groups()
+        values = re.match(r"Valve (.*) has flow rate=(\d+); tunnels? leads? to valves? (.*)", row).groups()
         name = values[0]
         flow_rate = int(values[1])
         tunnels = values[2].split(", ")

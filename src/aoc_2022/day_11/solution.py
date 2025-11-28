@@ -15,18 +15,18 @@ class Monkey:
     def __init__(self, rows):
         self.items = [int(n) for n in re.findall("Starting items: (.*)", rows[1])[0].split(", ")]
 
-        operation, value = re.findall("Operation: new = old (\*|\+) (.*)", rows[2])[0]
+        operation, value = re.findall(r"Operation: new = old (\*|\+) (.*)", rows[2])[0]
         op = {"+": lambda x, y: x + y, "*": lambda x, y: x * y}[operation]
-        if re.match("\d", value):
+        if re.match(r"\d", value):
             self.operation = lambda old: op(old, int(value))
         else:
             self.operation = lambda old: op(old, old)
 
-        self.divisible_by = int(re.findall("Test: divisible by (\d+)", rows[3])[0])
+        self.divisible_by = int(re.findall(r"Test: divisible by (\d+)", rows[3])[0])
         self.test = lambda n: n % self.divisible_by == 0
 
-        self.throw_if_true = int(re.findall("If true: throw to monkey (\d+)", rows[4])[0])
-        self.throw_if_false = int(re.findall("If false: throw to monkey (\d+)", rows[5])[0])
+        self.throw_if_true = int(re.findall(r"If true: throw to monkey (\d+)", rows[4])[0])
+        self.throw_if_false = int(re.findall(r"If false: throw to monkey (\d+)", rows[5])[0])
 
         self.num_times_inspected = 0
         self.memo = {}

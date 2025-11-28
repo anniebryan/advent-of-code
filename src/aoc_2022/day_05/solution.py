@@ -23,7 +23,7 @@ def get_crates_and_instructions(puzzle_input):
             instructions.append(tuple([int(items[i]) for i in [1, 3, 5]]))
         else:  # crate
             for i, ch in enumerate(row):
-                if i % 4 == 1 and ch != ' ' and not re.match('\d+', ch):
+                if i % 4 == 1 and ch != ' ' and not re.match(r'\d+', ch):
                     crates[(i // 4) + 1].append(ch)
     crates = {i: crates[i][::-1] for i in crates}
     return crates, instructions
