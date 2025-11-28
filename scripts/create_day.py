@@ -8,7 +8,7 @@ import requests
 SCRIPTS_DIR = Path(__file__).resolve().parent
 PROJECT_ROOT = SCRIPTS_DIR.parent / "src"
 
-TEMPLATE_FILE = SCRIPTS_DIR / "template.py"
+TEMPLATE_FILE = SCRIPTS_DIR / "template.py.tpl"
 CONFIG_FILE = SCRIPTS_DIR / "config.txt"
 
 
