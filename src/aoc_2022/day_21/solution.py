@@ -4,11 +4,7 @@ Day 21: Monkey Math
 """
 
 import operator
-import os
 import re
-from pathlib import Path
-
-import click
 
 OPS = {
     "+": operator.add,

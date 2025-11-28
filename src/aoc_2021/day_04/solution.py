@@ -3,11 +3,6 @@ Advent of Code 2021
 Day 4: Giant Squid
 """
 
-import os
-from pathlib import Path
-
-import click
-
 SIZE = 5
 
 row = lambda marked: any([all([(i, j) in marked for j in range(SIZE)]) for i in range(SIZE)])

@@ -3,11 +3,8 @@ Advent of Code 2022
 Day 11: Monkey in the Middle
 """
 
-import os
 from functools import reduce
-from pathlib import Path
 
-import click
 import regex as re
 
 

@@ -3,11 +3,7 @@ Advent of Code 2020
 Day 9: Encoding Error
 """
 
-import os
 from collections import deque
-from pathlib import Path
-
-import click
 
 
 def get_numbers(puzzle_input):

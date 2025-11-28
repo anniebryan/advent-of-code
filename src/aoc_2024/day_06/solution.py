@@ -3,12 +3,6 @@ Advent of Code 2024
 Day 6: Guard Gallivant
 """
 
-import os
-from pathlib import Path
-
-import click
-
-
 def parse_input(puzzle_input: list[str]):
     obstacle_locations = set()
     guard_loc = None

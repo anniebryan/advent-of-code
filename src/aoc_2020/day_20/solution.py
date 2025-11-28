@@ -3,12 +3,8 @@ Advent of Code 2020
 Day 20: Jurassic Jigsaw
 """
 
-import os
 from collections import deque
 from math import prod
-from pathlib import Path
-
-import click
 
 
 def process_input(puzzle_input):

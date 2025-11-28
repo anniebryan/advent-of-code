@@ -3,10 +3,6 @@ Advent of Code 2023
 Day 5: If You Give A Seed A Fertilizer
 """
 
-import os
-from pathlib import Path
-
-import click
 import regex as re
 
 from utils import IntRangeMap, IntRangeSet

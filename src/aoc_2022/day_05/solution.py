@@ -3,11 +3,8 @@ Advent of Code 2022
 Day 5: Supply Stacks
 """
 
-import os
 from collections import defaultdict
-from pathlib import Path
 
-import click
 import regex as re
 
 

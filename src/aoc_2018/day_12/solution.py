@@ -3,12 +3,6 @@ Advent of Code 2018
 Day 12: Subterranean Sustainability
 """
 
-import os
-from pathlib import Path
-
-import click
-
-
 def get_initial_plant_indices(puzzle_input):
     initial_state = puzzle_input[0].split()[-1]
     indices = {i for i in range(len(initial_state)) if initial_state[i] == '#'}

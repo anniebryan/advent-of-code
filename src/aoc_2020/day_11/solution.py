@@ -3,12 +3,6 @@ Advent of Code 2020
 Day 11: Seating System
 """
 
-import os
-from pathlib import Path
-
-import click
-
-
 def get_area_dimensions(puzzle_input):
     width = len(puzzle_input)
     height = len(puzzle_input[0])

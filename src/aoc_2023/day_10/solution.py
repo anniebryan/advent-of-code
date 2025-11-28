@@ -3,11 +3,7 @@ Advent of Code 2023
 Day 10: Pipe Maze
 """
 
-import os
 from collections import defaultdict
-from pathlib import Path
-
-import click
 
 
 class PipeGrid:

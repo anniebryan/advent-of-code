@@ -3,12 +3,6 @@ Advent of Code 2024
 Day 2: Red-Nosed Reports
 """
 
-import os
-from pathlib import Path
-
-import click
-
-
 def is_safe(nums: list[int]) -> bool:
     all_increasing = True
     all_decreasing = True

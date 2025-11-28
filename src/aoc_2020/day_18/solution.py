@@ -3,12 +3,6 @@ Advent of Code 2020
 Day 18: Operation Order
 """
 
-import os
-from pathlib import Path
-
-import click
-
-
 def process_parens(exp, i, add_first):
     num_parens, j = 1, i
 

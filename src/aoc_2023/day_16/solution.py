@@ -3,12 +3,8 @@ Advent of Code 2023
 Day 16: The Floor Will Be Lava
 """
 
-import os
 from collections import deque
-from pathlib import Path
 from typing import Iterator
-
-import click
 
 from utils import Grid
 

@@ -4,11 +4,7 @@ Day 13: Distress Signal
 """
 
 import ast
-import os
 from functools import cmp_to_key
-from pathlib import Path
-
-import click
 
 
 def compare_pair(left, right):

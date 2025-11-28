@@ -3,11 +3,7 @@ Advent of Code 2021
 Day 14: Extended Polymerization
 """
 
-import os
 from collections import defaultdict, deque
-from pathlib import Path
-
-import click
 
 
 def get_template(puzzle_input):

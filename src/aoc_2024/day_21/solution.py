@@ -3,11 +3,7 @@ Advent of Code 2024
 Day 21: Keypad Conundrum
 """
 
-import os
 from collections import defaultdict
-from pathlib import Path
-
-import click
 
 from utils import Grid
 

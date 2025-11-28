@@ -3,11 +3,7 @@ Advent of Code 2024
 Day 9: Disk Fragmenter
 """
 
-import os
 from collections import deque
-from pathlib import Path
-
-import click
 
 from utils import IntRangeSet
 

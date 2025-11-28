@@ -3,11 +3,7 @@ Advent of Code 2023
 Day 15: Lens Library
 """
 
-import os
 from collections import defaultdict, deque
-from pathlib import Path
-
-import click
 
 
 def parse_input(puzzle_input: list[str]):

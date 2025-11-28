@@ -3,12 +3,6 @@ Advent of Code 2021
 Day 13: Transparent Origami
 """
 
-import os
-from pathlib import Path
-
-import click
-
-
 def get_dots_instructions(puzzle_input):
     dots, instructions = [], []
     is_instruction = False

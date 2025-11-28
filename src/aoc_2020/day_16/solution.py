@@ -3,11 +3,7 @@ Advent of Code 2020
 Day 16: Ticket Translation
 """
 
-import os
 from math import prod
-from pathlib import Path
-
-import click
 
 
 def process_input(puzzle_input):

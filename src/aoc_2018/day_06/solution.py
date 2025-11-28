@@ -3,11 +3,8 @@ Advent of Code 2018
 Day 6: Chronal Coordinatesw
 """
 
-import os
 from collections import defaultdict
-from pathlib import Path
 
-import click
 import regex as re
 
 

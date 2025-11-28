@@ -3,11 +3,7 @@ Advent of Code 2020
 Day 22: Crab Combat
 """
 
-import os
 from collections import deque
-from pathlib import Path
-
-import click
 
 
 def get_initial_decks(puzzle_input):

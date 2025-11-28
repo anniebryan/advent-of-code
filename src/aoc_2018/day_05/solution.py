@@ -3,12 +3,8 @@ Advent of Code 2018
 Day 5: Alchemical Reduction
 """
 
-import os
 import string
 from functools import reduce
-from pathlib import Path
-
-import click
 
 
 def destroy(p, c):

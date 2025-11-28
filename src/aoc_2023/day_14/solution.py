@@ -4,12 +4,7 @@ Day 14: Parabolic Reflector Dish
 """
 
 import copy
-import os
-from enum import Enum
-from pathlib import Path
 from typing import Literal
-
-import click
 
 from utils import Grid
 

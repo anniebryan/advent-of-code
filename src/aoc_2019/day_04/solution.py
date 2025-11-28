@@ -3,10 +3,6 @@ Advent of Code 2019
 Day 4: Secure Container
 """
 
-import os
-from pathlib import Path
-
-import click
 import regex as re
 
 

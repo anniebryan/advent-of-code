@@ -3,11 +3,6 @@ Advent of Code 2024
 Day 18: RAM Run
 """
 
-import os
-from pathlib import Path
-
-import click
-
 from utils import Grid
 
 

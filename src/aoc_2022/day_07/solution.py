@@ -3,12 +3,6 @@ Advent of Code 2022
 Day 7: No Space Left On Device
 """
 
-import os
-from pathlib import Path
-
-import click
-
-
 # TODO move to utils
 class File:
     def __init__(self, name, size):

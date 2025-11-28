@@ -3,11 +3,7 @@ Advent of Code 2024
 Day 16: Reindeer Maze
 """
 
-import os
 from collections import defaultdict, deque
-from pathlib import Path
-
-import click
 
 from utils import Grid
 

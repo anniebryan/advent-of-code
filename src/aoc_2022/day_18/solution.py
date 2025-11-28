@@ -3,11 +3,7 @@ Advent of Code 2022
 Day 18: Boiling Boulders
 """
 
-import os
 from collections import defaultdict, deque
-from pathlib import Path
-
-import click
 
 
 def get_sides(cube):

@@ -3,10 +3,6 @@ Advent of Code 2018
 Day 11: Chronal Charge
 """
 
-import os
-from pathlib import Path
-
-import click
 import numpy as np
 
 

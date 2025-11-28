@@ -3,12 +3,6 @@ Advent of Code 2022
 Day 6: Tuning Trouble
 """
 
-import os
-from pathlib import Path
-
-import click
-
-
 def all_different(last_elems):
     return len(last_elems) == len(set(last_elems))
 

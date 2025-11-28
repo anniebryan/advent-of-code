@@ -3,11 +3,7 @@ Advent of Code 2024
 Day 25: Code Chronicle
 """
 
-import os
 from collections import defaultdict
-from pathlib import Path
-
-import click
 
 
 def get_values(lines: list[str]) -> list[int]:

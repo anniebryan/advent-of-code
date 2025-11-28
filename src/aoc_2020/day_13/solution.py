@@ -3,11 +3,7 @@ Advent of Code 2020
 Day 13: Shuttle Search
 """
 
-import os
 from math import prod
-from pathlib import Path
-
-import click
 
 
 def get_earliest_bus(puzzle_input):

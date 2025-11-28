@@ -3,12 +3,6 @@ Advent of Code 2022
 Day 4: Camp Cleanup
 """
 
-import os
-from pathlib import Path
-
-import click
-
-
 def get_sections(puzzle_input):
     for r in puzzle_input:
         elf_one, elf_two = r.split(',')

@@ -3,12 +3,7 @@ Advent of Code 2024
 Day 22: Monkey Market
 """
 
-import os
 from collections import defaultdict
-from pathlib import Path
-from typing import Iterable
-
-import click
 
 N_SECRET_NUMS = 2000
 

@@ -3,12 +3,6 @@ Advent of Code 2022
 Day 2: Rock Paper Scissors
 """
 
-import os
-from pathlib import Path
-
-import click
-
-
 def get_score(row, part_1):
     opp, me = row.split(" ")
     opp_move = {"A": 0, "B": 1, "C": 2}[opp]

@@ -3,11 +3,7 @@ Advent of Code 2023
 Day 12: Hot Springs
 """
 
-import os
 from functools import lru_cache
-from pathlib import Path
-
-import click
 
 
 def parse_input(puzzle_input: list[str], part_2: bool) -> list[tuple[str, list[int]]]:

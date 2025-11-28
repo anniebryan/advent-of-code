@@ -3,12 +3,6 @@ Advent of Code 2019
 Day 1: The Tyranny of the Rocket Equation
 """
 
-import os
-from pathlib import Path
-
-import click
-
-
 def get_masses(puzzle_input):
     masses = [int(m) for m in puzzle_input]
     return masses

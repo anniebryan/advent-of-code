@@ -3,10 +3,6 @@ Advent of Code 2023
 Day 4: Scratchcards
 """
 
-import os
-from pathlib import Path
-
-import click
 import regex as re
 
 

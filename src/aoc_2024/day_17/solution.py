@@ -3,10 +3,6 @@ Advent of Code 2024
 Day 17: Chronospatial Computer
 """
 
-import os
-from pathlib import Path
-
-import click
 import regex as re
 
 

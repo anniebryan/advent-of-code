@@ -3,12 +3,6 @@ Advent of Code 2020
 Day 17: Conway Cubes
 """
 
-import os
-from pathlib import Path
-
-import click
-
-
 def initial_active(puzzle_input, num_dim):
     active = set()
     for i in range(len(puzzle_input)):

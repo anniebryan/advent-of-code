@@ -3,12 +3,8 @@ Advent of Code 2020
 Day 10: Adapter Array
 """
 
-import os
 from collections import defaultdict
 from math import prod
-from pathlib import Path
-
-import click
 
 
 def get_numbers(puzzle_input):
