@@ -12,9 +12,9 @@ import regex as re
 
 
 def get_sensor_beacon_coordinates(puzzle_input):
-    int_regex = "(-?\d+)"
+    pattern = r"Sensor at x=(-?\d+), y=(-?\d+): closest beacon is at x=(-?\d+), y=(-?\d+)"
     for row in puzzle_input:
-        coordinates = re.match(f"Sensor at x={int_regex}, y={int_regex}: closest beacon is at x={int_regex}, y={int_regex}", row)
+        coordinates = re.match(pattern, row)
         (sensor_x, sensor_y, beacon_x, beacon_y) = map(int, coordinates.groups())
         yield (sensor_x, sensor_y, beacon_x, beacon_y)
 

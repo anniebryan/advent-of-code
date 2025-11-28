@@ -31,7 +31,7 @@ def execute_program(puzzle_input):
                 ready = True
 
         # parse a new row's instruction
-        if re.match("addx -?(\d+)", row):
+        if re.match(r"addx -?(\d+)", row):
             prev_cycle_instr = int(row.split(" ")[1])
         elif row == "noop":
             prev_cycle_instr = None
