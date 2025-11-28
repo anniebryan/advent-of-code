@@ -13,7 +13,7 @@ import click
 
 class Blueprint:
     def __init__(self, row):
-        values = re.match("Blueprint (\d+): Each ore robot costs (\d+) ore. Each clay robot costs (\d+) ore. Each obsidian robot costs (\d+) ore and (\d+) clay. Each geode robot costs (\d+) ore and (\d+) obsidian.", row).groups()
+        values = re.match(r"Blueprint (\d+): Each ore robot costs (\d+) ore. Each clay robot costs (\d+) ore. Each obsidian robot costs (\d+) ore and (\d+) clay. Each geode robot costs (\d+) ore and (\d+) obsidian.", row).groups()
         self.id = int(values[0])
         self.ore_robot_cost = int(values[1])
         self.clay_robot_cost = int(values[2])
