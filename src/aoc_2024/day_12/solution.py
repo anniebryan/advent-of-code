@@ -3,12 +3,8 @@ Advent of Code 2024
 Day 12: Garden Groups
 """
 
-import os
 from collections import defaultdict, deque
 from collections.abc import Iterator
-from pathlib import Path
-
-import click
 
 from utils import Grid
 

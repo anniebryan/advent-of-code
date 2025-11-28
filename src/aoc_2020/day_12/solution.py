@@ -3,12 +3,6 @@ Advent of Code 2020
 Day 12: Rain Risk
 """
 
-import os
-from pathlib import Path
-
-import click
-
-
 def get_instructions(puzzle_input):
     return [(line[0], int(line[1:])) for line in puzzle_input]
 

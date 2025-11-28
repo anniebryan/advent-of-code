@@ -3,12 +3,6 @@ Advent of Code 2023
 Day 11: Cosmic Expansion
 """
 
-import os
-from pathlib import Path
-
-import click
-
-
 class Loc:
     def __init__(self, x: int, y: int):
         self.x = x

@@ -3,12 +3,6 @@ Advent of Code 2023
 Day 9: Mirage Maintenance
 """
 
-import os
-from pathlib import Path
-
-import click
-
-
 def parse_input(puzzle_input: list[str]):
     return [[int(n) for n in line.split()] for line in puzzle_input]
 

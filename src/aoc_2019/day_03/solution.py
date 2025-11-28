@@ -3,12 +3,6 @@ Advent of Code 2019
 Day 3: Crossed Wires
 """
 
-import os
-from pathlib import Path
-
-import click
-
-
 def get_wires(puzzle_input):
     wire_1, wire_2 = [[(i[0], int(i[1:])) for i in row.split(",")] for row in puzzle_input]
     return wire_1, wire_2

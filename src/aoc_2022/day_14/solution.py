@@ -3,12 +3,6 @@ Advent of Code 2022
 Day 14: Regolith Reservoir
 """
 
-import os
-from pathlib import Path
-
-import click
-
-
 def points(line):
     path = []
     for point in line.split(' -> '):

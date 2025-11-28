@@ -3,11 +3,7 @@ Advent of Code 2018
 Day 2: Inventory Management System
 """
 
-import os
 import string
-from pathlib import Path
-
-import click
 
 
 def solve_part_1(puzzle_input: list[str]):

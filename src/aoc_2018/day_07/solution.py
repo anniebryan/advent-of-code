@@ -4,11 +4,8 @@ Day 7: The Sum of Its Parts
 """
 
 import copy
-import os
 from collections import defaultdict
-from pathlib import Path
 
-import click
 import regex as re
 
 

@@ -3,12 +3,6 @@ Advent of Code 2022
 Day 3: Rucksack Reorganization
 """
 
-import os
-from pathlib import Path
-
-import click
-
-
 def letter_in_common(row):
     n = len(row) // 2
     left = set()

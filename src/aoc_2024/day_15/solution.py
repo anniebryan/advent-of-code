@@ -3,11 +3,6 @@ Advent of Code 2024
 Day 15: Warehouse Woes
 """
 
-import os
-from pathlib import Path
-
-import click
-
 from utils import Grid
 
 MOVE_TO_DIR = {

@@ -3,11 +3,7 @@ Advent of Code 2022
 Day 17: Pyroclastic Flow
 """
 
-import os
 from itertools import cycle
-from pathlib import Path
-
-import click
 
 
 def get_rocks():

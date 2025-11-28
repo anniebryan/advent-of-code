@@ -3,11 +3,8 @@ Advent of Code 2018
 Day 9: Marble Mania
 """
 
-import os
 from collections import defaultdict, deque
-from pathlib import Path
 
-import click
 import regex as re
 
 

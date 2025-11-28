@@ -3,10 +3,6 @@ Advent of Code 2022
 Day 10: Cathode-Ray Tube
 """
 
-import os
-from pathlib import Path
-
-import click
 import regex as re
 
 
