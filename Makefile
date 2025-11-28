@@ -2,9 +2,6 @@
 YEAR := $(word 2, $(MAKECMDGOALS))
 DAY  := $(word 3, $(MAKECMDGOALS))
 
-# Zero-pad DAY (01, 02, ..., 31)
-PADDED_DAY := $(shell printf "%02d" $(DAY))
-
 # Prevent make from treating YEAR/DAY as targets
 $(YEAR) $(DAY):
 	@:
@@ -17,4 +14,4 @@ create:
 
 run:
 	@echo "Running solution for AOC $(YEAR) Day $(DAY)"
-	python3 aoc_$(YEAR)/day_$(PADDED_DAY)/solution.py
+	python3 scripts/run.py $(YEAR) $(DAY)
