@@ -6,7 +6,7 @@ Day 12: Garden Groups
 from collections import defaultdict, deque
 from collections.abc import Iterator
 
-from utils import Grid
+from aoc_utils import Grid
 
 
 def fill_region(g: Grid, i: int, j: int) -> set[tuple[int, int]]:

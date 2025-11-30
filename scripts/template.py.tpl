@@ -25,7 +25,7 @@ import click
 import numpy
 import regex
 
-from utils import DirectedGraph, Grid, IntRangeMap, IntRangeSet
+from aoc_utils import DirectedGraph, Grid, IntRangeMap, IntRangeSet
 
 
 def parse_input(puzzle_input: list[str], part_2: bool):

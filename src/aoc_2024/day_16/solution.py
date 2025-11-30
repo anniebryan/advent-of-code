@@ -5,7 +5,7 @@ Day 16: Reindeer Maze
 
 from collections import defaultdict, deque
 
-from utils import Grid
+from aoc_utils import Grid
 
 
 def all_possible_scores(grid: Grid) -> set[int]:

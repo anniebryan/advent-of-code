@@ -3,7 +3,7 @@ Advent of Code 2024
 Day 15: Warehouse Woes
 """
 
-from utils import Grid
+from aoc_utils import Grid
 
 MOVE_TO_DIR = {
     ">": (0, 1),

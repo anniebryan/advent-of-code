@@ -6,7 +6,7 @@ Day 14: Parabolic Reflector Dish
 import copy
 from typing import Literal
 
-from utils import Grid
+from aoc_utils import Grid
 
 
 def tilt(g: Grid, direction: Literal["N", "S", "E", "W"]) -> Grid:

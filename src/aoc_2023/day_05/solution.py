@@ -5,7 +5,7 @@ Day 5: If You Give A Seed A Fertilizer
 
 import regex as re
 
-from utils import IntRangeMap, IntRangeSet
+from aoc_utils import IntRangeMap, IntRangeSet
 
 
 def parse_input(puzzle_input: list[str], part_2: bool) -> tuple[IntRangeSet, dict[tuple[str, str], IntRangeMap]]:

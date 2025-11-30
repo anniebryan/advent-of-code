@@ -5,7 +5,7 @@ Day 21: Keypad Conundrum
 
 from collections import defaultdict
 
-from utils import Grid
+from aoc_utils import Grid
 
 NUMERIC_KEYPAD = Grid(["789", "456", "123", ".0A"])
 DIRECTIONAL_KEYPAD = Grid([".^A", "<v>"])
