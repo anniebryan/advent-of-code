@@ -11,7 +11,7 @@ import regex as re
 def parse_input(puzzle_input):
     left_list, right_list = [], []
     for line in puzzle_input:
-        nums = re.findall('\d+', line)
+        nums = re.findall(r'\d+', line)
         assert len(nums) == 2
         left_num, right_num = nums
         left_list.append(int(left_num))
