@@ -70,10 +70,15 @@ def run_day(year: int, day: int, skip_example: bool = False, skip_puzzle: bool =
     if not base_dir.exists():
         print(f"Day directory {base_dir} does not exist")
         return
+    
+    input_dir = base_dir / "input"
+    if not input_dir.exists():
+        print(f"Input directory {input_dir} does not exist")
+        return
 
     print(f"=== Day {day:02d} ===")
 
-    example_files = sorted([p.name for p in base_dir.glob("*example*.txt")])
+    example_files = sorted([p.name for p in input_dir.glob("*example*.txt")])
 
     try:
         solve_part_1, solve_part_2 = load_solution_module(year, day)
@@ -84,7 +89,7 @@ def run_day(year: int, day: int, skip_example: bool = False, skip_puzzle: bool =
     if not skip_example:
         for example_file in example_files:
             _run_solution(
-                base_dir,
+                input_dir,
                 example_file,
                 f"Example ({example_file})",
                 solve_part_1,
@@ -93,7 +98,7 @@ def run_day(year: int, day: int, skip_example: bool = False, skip_puzzle: bool =
 
     if not skip_puzzle:
         _run_solution(
-            base_dir,
+            input_dir,
             "puzzle.txt",
             "Puzzle Input",
             solve_part_1,
