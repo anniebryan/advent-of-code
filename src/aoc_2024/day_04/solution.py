@@ -12,7 +12,7 @@ def parse_input(puzzle_input: list[str]):
 
 
 def solve_part_1(puzzle_input: list[str]):
-    graph = parse_input(puzzle_input, False)
+    graph = parse_input(puzzle_input)
     valid_words = {"XMAS", "SAMX"}
     num_xmas = 0
     for i in range(len(puzzle_input)):
@@ -35,7 +35,7 @@ def solve_part_1(puzzle_input: list[str]):
 
 
 def solve_part_2(puzzle_input: list[str]):
-    graph = parse_input(puzzle_input, True)
+    graph = parse_input(puzzle_input)
     valid_words = {"MAS", "SAM"}
     num_xmas = 0
     for i in range(len(puzzle_input) - 2):
