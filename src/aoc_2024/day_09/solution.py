@@ -5,7 +5,7 @@ Day 9: Disk Fragmenter
 
 from collections import deque
 
-from utils import IntRangeSet
+from aoc_utils import IntRangeSet
 
 
 def parse_input(puzzle_input: list[str], part_2: bool) -> tuple[deque, deque]:

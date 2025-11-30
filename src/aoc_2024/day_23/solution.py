@@ -3,7 +3,7 @@ Advent of Code 2024
 Day 23: LAN Party
 """
 
-from utils import DirectedGraph
+from aoc_utils import DirectedGraph
 
 
 def parse_input(puzzle_input: list[str]) -> DirectedGraph:

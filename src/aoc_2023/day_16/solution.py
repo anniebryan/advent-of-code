@@ -6,7 +6,7 @@ Day 16: The Floor Will Be Lava
 from collections import deque
 from typing import Iterator
 
-from utils import Grid
+from aoc_utils import Grid
 
 
 def move_beam(g: Grid, start_pos: tuple[int, int], start_direction: tuple[int, int]) -> Iterator[tuple[int, int]]:
