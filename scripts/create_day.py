@@ -40,9 +40,12 @@ def main() -> None:
     target_dir = PROJECT_ROOT / f"aoc_{year}" / f"day_{day:02d}"
     target_dir.mkdir(parents=True, exist_ok=True)
 
+    input_dir = target_dir / "input"
+    input_dir.mkdir(parents=True, exist_ok=True)
+
     solution_file = target_dir / "solution.py"
-    example_file = target_dir / "example.txt"
-    puzzle_file = target_dir / "puzzle.txt"
+    example_file = input_dir / "example.txt"
+    puzzle_file = input_dir / "puzzle.txt"
 
     if solution_file.exists():
         print(f"{solution_file} already exists — not overwriting.")
