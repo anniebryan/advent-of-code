@@ -76,7 +76,7 @@ def run_day(year: int, day: int, skip_example: bool = False, skip_puzzle: bool =
         print(f"Input directory {input_dir} does not exist")
         return
 
-    print(f"=== Day {day:02d} ===")
+    print(f"\n=== Day {day:02d} ===\n")
 
     example_files = sorted([p.name for p in input_dir.glob("*example*.txt")])
 
