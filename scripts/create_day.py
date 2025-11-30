@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import subprocess
 import sys
 from pathlib import Path
 from string import Template
@@ -75,6 +76,11 @@ def main() -> None:
             puzzle_input = response.text.strip("\n")
             puzzle_file.write_text(puzzle_input)
             print(f"Created {puzzle_file}")
+
+    try:
+        subprocess.run(["code", str(solution_file), str(example_file), str(puzzle_file)], check=False)
+    except subprocess.SubprocessError:
+        print("Failed to open files in VS Code")
 
     print("Done!")
 
