@@ -64,7 +64,14 @@ def load_solution_module(year: int, day: int) -> tuple[Callable, Callable]:
     return module.solve_part_1, module.solve_part_2
 
 
-def run_day(year: int, day: int, skip_example: bool = False, skip_puzzle: bool = False) -> None:
+def _run_day(
+        year: int,
+        day: int,
+        skip_example: bool = False,
+        skip_puzzle: bool = False,
+        part1_only: bool = False,
+        part2_only: bool = False,
+) -> None:
     """Runs the solution for a single day."""
     base_dir = Path(__file__).parent.parent / "src" / f"aoc_{year}" / f"day_{day:02d}"
     if not base_dir.exists():
@@ -116,9 +123,18 @@ def cli() -> None:
 @click.argument("day", type=int)
 @click.option("-se", "--skip_example", is_flag=True, default=False)
 @click.option("-sp", "--skip_puzzle", is_flag=True, default=False)
-def run_cmd(year: int, day: int, skip_example: bool = False, skip_puzzle: bool = False) -> None:
+@click.option("-p1", "--part1-only", is_flag=True, default=False)
+@click.option("-p2", "--part2-only", is_flag=True, default=False)
+def run(
+        year: int,
+        day: int,
+        skip_example: bool = False,
+        skip_puzzle: bool = False,
+        part1_only: bool = False,
+        part2_only: bool = False,
+) -> None:
     """Runs the solution for a single day."""
-    run_day(year, day, skip_example, skip_puzzle)
+    _run_day(year, day, skip_example, skip_puzzle)
 
 
 @cli.command(name="run-all")
@@ -137,7 +153,7 @@ def run_all(year: int) -> None:
         return
 
     for day_dir in day_dirs:
-        run_day(year, int(day_dir.name.split("_")[1]), False, False)
+        _run_day(year, int(day_dir.name.split("_")[1]), False, False)
 
 
 if __name__ == "__main__":
