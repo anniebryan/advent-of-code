@@ -94,7 +94,7 @@ def run_day(year: int, day: int, skip_example: bool = False, skip_puzzle: bool =
     if not skip_puzzle:
         _run_solution(
             base_dir,
-            "input.txt",
+            "puzzle.txt",
             "Puzzle Input",
             solve_part_1,
             solve_part_2,
