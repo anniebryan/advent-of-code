@@ -31,13 +31,13 @@ def _run_solution(
         print(f"Part 1: {solve_part_1(puzzle_input)}")
     except Exception:
         print("Part 1: ERROR")
-        traceback.print_exc(limit=1)
+        traceback.print_exc()
 
     try:
         print(f"Part 2: {solve_part_2(puzzle_input)}")
     except Exception:
         print("Part 2: ERROR")
-        traceback.print_exc(limit=1)
+        traceback.print_exc()
 
 
 def load_solution_module(year: int, day: int) -> tuple[Callable, Callable]:
