@@ -3,6 +3,8 @@ Advent of Code 2018
 Day 3: No Matter How You Slice It
 """
 
+from typing import Any
+
 import regex as re
 
 
@@ -10,18 +12,19 @@ def get_claims(puzzle_input):
     pattern = r'#(\d+) @ (\d+),(\d+): (\d+)x(\d+)'
     claims = []
     for row in puzzle_input:
+        claim = []
         match = re.match(pattern, row)
         assert match is not None
         for y in match.groups():
-            claims.append(int(y))
+            claim.append(int(y))
+        claims.append(claim)
     return claims
 
 
-def generate_fabric():
-    areas = dict.fromkeys(range(1000))  # keys are columns (left and right)
-    for key in areas.keys():
-        areas[key] = dict.fromkeys(range(1000))  # values are dicts that map row (up and down) to value
-    return areas
+def generate_fabric() -> dict[int, dict[int, Any]]:
+    # keys are columns (left and right)
+    # values are dicts that map row (up and down) to value
+    return {key: dict.fromkeys(range(1000), None) for key in range(1000)}
     
 
 def solve_part_1(puzzle_input: list[str]):
@@ -29,8 +32,8 @@ def solve_part_1(puzzle_input: list[str]):
     areas = generate_fabric()
     s = 0
     for c in claims:
-        for h in range(c[1],c[1] + c[3]):
-            for v in range(c[2],c[2] + c[4]):
+        for h in range(c[1], c[1] + c[3]):
+            for v in range(c[2], c[2] + c[4]):
                 if areas[h][v] is None:
                     areas[h][v] = False  # one claim covers
                 elif not areas[h][v]:

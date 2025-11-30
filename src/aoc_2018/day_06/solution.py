@@ -41,7 +41,7 @@ def distances(p1, points):
 
 
 def solve_part_1(puzzle_input: list[str]):
-    points = get_points(puzzle_input)
+    points = get_points(puzzle_input[1:])
     x_min, x_max, y_min, y_max = get_min_max_bounds(points)
     closest = defaultdict(int)
     extend_to_inf = set()
