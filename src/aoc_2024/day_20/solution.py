@@ -6,7 +6,7 @@ Day 20: Race Condition
 from collections import defaultdict, deque
 from typing import Iterable
 
-from utils import Grid
+from aoc_utils import Grid
 
 
 def neighbors(g: Grid, loc: tuple[int, int]) -> Iterable[tuple[int, int]]:
