@@ -14,4 +14,8 @@ create:
 
 run:
 	@echo "Running solution for AOC $(YEAR) Day $(DAY)"
-	python3 scripts/run.py $(YEAR) $(DAY)
+	python3 scripts/run.py run $(YEAR) $(DAY)
+
+run-all:
+	@echo "Running all solutions for AOC $(YEAR)"
+	python3 scripts/run.py run-all $(YEAR)
