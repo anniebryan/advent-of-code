@@ -1,6 +1,6 @@
 """
 Advent of Code $YEAR
-Day $DAY
+Day $DAY: TODO
 """
 
 import ast
