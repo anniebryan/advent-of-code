@@ -8,39 +8,27 @@ from math import prod
 
 
 def parse_input(puzzle_input: list[str], part_2: bool):
+    problems = defaultdict(list)
     if part_2:
-        chars = defaultdict(dict)
-        for i, line in enumerate(puzzle_input):
-            for j, ch in enumerate(line[::-1]):
-                if ch.isnumeric():
-                    chars[j][i] = int(ch)
-                else:
-                    chars[j][i] = ch
-
-        i = 0
-        problems = defaultdict(list)
-        for col in sorted(chars):
+        problem_num = 0
+        num_cols, num_rows = len(puzzle_input[0]), len(puzzle_input)
+        for i in range(num_cols - 1, -1, -1):
             digits, op = [], None
-            for _, val in sorted(chars[col].items()):
-                if isinstance(val, int):
-                    digits.append(val)
-                elif val in {"+", "*"}:
-                    op = val
-                elif val == " ":
-                    pass
-                else:
-                    raise ValueError(f"Unexpected {val=}")
+            for j in range(num_rows):
+                ch = puzzle_input[j][i]
+                if ch.isnumeric():
+                    digits.append(int(ch))
+                elif ch != " ":
+                    op = ch
             if digits:
                 num = 0
                 for d in digits:
-                    num *= 10
-                    num += d
-                problems[i].append(num)
+                    num = (num * 10) + d
+                problems[problem_num].append(num)
             if op:
-                problems[i].append(op)
-                i += 1
+                problems[problem_num].append(op)
+                problem_num += 1
     else:
-        problems = defaultdict(list)
         for line in puzzle_input:
             for i, ch in enumerate(line.strip().split()):
                 if ch.isnumeric():
