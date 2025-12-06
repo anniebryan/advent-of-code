@@ -9,6 +9,15 @@ class IntRangeSet:
     def __init__(self):
         self.ranges = []
 
+    def in_range(self, val: int) -> bool:
+        """
+        Returns True if `val` is present in any of the integer ranges, False otherwise.
+        """
+        for (a, b) in self.ranges:
+            if a <= val <= a + b:
+                return True
+        return False
+
     @property
     def min_value(self) -> Union[int, None]:
         """
