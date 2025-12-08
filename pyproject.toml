@@ -5,4 +5,4 @@ line-length = 120
 preview = true
 
 [tool.ruff.lint]
-select = ["E", "F", "I"]  # I = import sorting rules
+select = ["E", "F", "I"]
