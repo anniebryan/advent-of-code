@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import re
 import sys
+import time
 import traceback
 from importlib.util import module_from_spec, spec_from_file_location
 from pathlib import Path
@@ -26,7 +27,11 @@ def _read_puzzle_input(base_dir: Path, filename: str) -> list[str] | None:
 
 def _run_test_case(num: int, puzzle_input: list[str], solve_fn: Callable) -> None:
     try:
-        print(f"Part {num}: {solve_fn(puzzle_input)}")
+        t0 = time.time()
+        result = solve_fn(puzzle_input)
+        t1 = time.time()
+        print(f"Part {num}: {result}")
+        print(f"({(t1 - t0):.3} seconds)")
     except Exception:
         print(f"Part {num}: ERROR")
         traceback.print_exc()
