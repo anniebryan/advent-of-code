@@ -25,8 +25,7 @@ def solve_part_1(puzzle_input: list[str]):
     beams = set([start_x])
     num_splits = 0
     for depth in range(1, max(all_splitters) + 2):
-        splitters = all_splitters.get(depth)
-        if splitters:
+        if (splitters := all_splitters.get(depth)):
             new_beams = set()
             for b in beams:
                 if b in splitters:
@@ -45,8 +44,7 @@ def solve_part_2(puzzle_input: list[str]):
     num_paths = defaultdict(int)
     num_paths[start_x] = 1
     for depth in range(1, max(all_splitters) + 2):
-        splitters = all_splitters.get(depth)
-        if splitters:
+        if (splitters := all_splitters.get(depth)):
             new_beams = set()
             new_num_paths = defaultdict(int)
             for b in beams:
