@@ -18,21 +18,21 @@ def parse_input(puzzle_input: list[str], part_2: bool):
     return num_connections, coordinates
 
 
-def get_dists(coordinates: list[tuple[int, int, int]]) -> dict[tuple[int, int], float]:
-    # (i, j) -> distance between coordinates[i] and coordinates[j]
-    dists = {}
+def get_squared_dists(coordinates: list[tuple[int, int, int]]) -> dict[tuple[int, int], float]:
+    # (i, j) -> squared distance between coordinates[i] and coordinates[j]
+    sq_dists = {}
     for i, (x1, y1, z1) in enumerate(coordinates):
         for j, (x2, y2, z2) in enumerate(coordinates):
             if i >= j:
                 continue
-            dists[i, j] = ((x2 - x1) ** 2 + (y2 - y1) ** 2 + (z2 - z1) ** 2) ** 0.5
-    return dists
+            sq_dists[i, j] = (x2 - x1) ** 2 + (y2 - y1) ** 2 + (z2 - z1) ** 2
+    return sq_dists
 
 
 # TODO: speedup (currently ~10s)
 def solve_part_1(puzzle_input: list[str]):
     num_connections, coordinates = parse_input(puzzle_input, False)
-    dists = get_dists(coordinates)
+    dists = get_squared_dists(coordinates)
 
     connections = []
     for _ in range(num_connections):
@@ -55,7 +55,7 @@ def solve_part_1(puzzle_input: list[str]):
 # TODO: speedup (currently ~80s)
 def solve_part_2(puzzle_input: list[str]):
     _, coordinates = parse_input(puzzle_input, True)
-    dists = get_dists(coordinates)
+    dists = get_squared_dists(coordinates)
 
     g = nx.Graph()
     g.add_nodes_from(coordinates)
