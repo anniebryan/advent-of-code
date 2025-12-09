@@ -44,30 +44,13 @@ def parse_input(puzzle_input: list[str], part_2: bool) -> list[tuple[str, int]]:
     return dig_plan
 
 
-def construct_perimeter(dig_plan: list[tuple[str, int]]) -> set[tuple[int, int]]:
-    start = (0, 0)
-    perimeter: set[tuple[int, int]] = set([start])
-    last_point = start
-    for direction, num_steps in dig_plan:
-        x, y = last_point
-        dx, dy = {
-            "U": (0, -1),
-            "D": (0, 1),
-            "R": (1, 0),
-            "L": (-1, 0),
-        }[direction]
-        for i in range(1, num_steps + 1):
-            perimeter.add((x + dx * i, y + dy * i))
-        last_point = (x + dx * num_steps, y + dy * num_steps)
-    return perimeter
-
-
 def _solve(puzzle_input: list[str], part_2: bool) -> int:
     dig_plan = parse_input(puzzle_input, part_2)
-    perimeter = construct_perimeter(dig_plan)
-    shape = Shape(set(perimeter))
-    interior = shape.get_interior_points()
-    return len(interior)
+
+    shape = Shape()
+    shape.execute_dig_plan(dig_plan)
+
+    return shape.get_num_interior_points()
 
 
 def solve_part_1(puzzle_input: list[str]):
