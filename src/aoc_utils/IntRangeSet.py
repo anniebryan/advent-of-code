@@ -46,6 +46,13 @@ class IntRangeSet:
             n += length + 1
         return n
 
+    @property
+    def num_ranges(self) -> int:
+        """
+        The total number of disjoint ranges.
+        """
+        return len(self.ranges)
+
     def all_values(self) -> list[int]:
         """
         Returns a list of all values in the ranges.
