@@ -1,6 +1,6 @@
 import heapq
 from collections import defaultdict
-from typing import Any
+from typing import Any, Iterator
 
 
 class DirectedWeightedGraph:
@@ -28,3 +28,22 @@ class DirectedWeightedGraph:
                         dists[n] = new_dist
                         heapq.heappush(q, (new_dist, n))
         return dists
+
+    def all_unique_paths(self, start: Any, end: Any) -> list[tuple[int, list[Any]]]:
+        """Returns a list of (total_weight, path) for each unique path from start -> end."""
+        q = [(0, [start])]
+        all_paths = []
+
+        while q:
+            dist_so_far, path_so_far = heapq.heappop(q)
+            curr = path_so_far[-1]
+            for n in self.neighbors[curr]:
+                if n not in path_so_far:
+                    w = self.weights[(curr, n)]
+                    new_dist = dist_so_far + w
+                    new_path = path_so_far + [n]
+                    if n == end:
+                        all_paths.append((new_dist, new_path))
+                    else:
+                        heapq.heappush(q, (new_dist, new_path))
+        return all_paths
