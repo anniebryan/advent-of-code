@@ -19,11 +19,18 @@ class IntRangeSet:
         return False
 
     @property
+    def is_empty(self) -> bool:
+        """
+        Returns True if the IntRangeSet is empty, False otherwise.
+        """
+        return self.num_ranges == 0
+
+    @property
     def min_value(self) -> Union[int, None]:
         """
         The minimum value in the range, or None if the range is empty.
         """
-        if len(self.ranges) == 0:
+        if self.is_empty:
             return None
         return min([start for start, _ in self.ranges])
 
@@ -32,7 +39,7 @@ class IntRangeSet:
         """
         The maximum value in the range, or None if the range is empty.
         """
-        if len(self.ranges) == 0:
+        if self.is_empty:
             return None
         return max([start + length + 1 for start, length in self.ranges])
 
@@ -78,8 +85,8 @@ class IntRangeSet:
         """
         Returns a string representation of self.ranges, or a summary for large ranges.
         """
-        if len(self.ranges) > 10:
-            return (f"<IntRangeSet object with {len(self.ranges)} ranges, "
+        if self.num_ranges > 10:
+            return (f"<IntRangeSet object with {self.num_ranges} ranges, "
                     f"{self.num_values} values, min: {self.min_value}, max: {self.max_value}>")
         repr_str = []
         for (start, length) in sorted(self.ranges, key=lambda t: t[0]):
