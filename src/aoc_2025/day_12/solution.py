@@ -130,11 +130,7 @@ def all_presents_can_fit(available_spaces: np.ndarray, shapes_to_fit: list[Prese
 def solve_part_1(puzzle_input: list[str]):
     presents, regions = parse_input(puzzle_input, False)
     result = 0
-    n = len(regions)
-    it = 1
     for (width, length, shapes) in regions:
-        print(f"{it} / {n}")
-        it += 1
         shapes_to_fit: list[Present] = []
         for i, num in enumerate(shapes):
             shapes_to_fit.extend([presents[i]] * num)
