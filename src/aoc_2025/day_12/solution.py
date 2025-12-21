@@ -3,29 +3,9 @@ Advent of Code 2025
 Day 12: Christmas Tree Farm
 """
 
-import ast
-import copy
-import heapq
-import operator
-import os
 import re
-import string
-import sys
-from collections import Counter, defaultdict, deque
-from collections.abc import Iterator
-from enum import Enum
-from functools import cmp_to_key, lru_cache, reduce
-from itertools import combinations, cycle
-from math import lcm, prod
-from pathlib import Path
-from statistics import median
-from typing import Callable, Iterable, Iterator, Literal
 
-import click
 import numpy as np
-import regex
-
-from aoc_utils import DirectedGraph, DirectedWeightedGraph, Grid, IntRangeMap, IntRangeSet
 
 
 class Present:
@@ -60,11 +40,13 @@ class Present:
             s.append("".join(row))
         return "\n".join(s)
 
-    def rotate(self, num_rotations: int = 1) -> "Present":
+    def get_rotated_variants(self, num_rotations: int = 1) -> set["Present"]:
+        rotations = set()
         p = self
         for _ in range(num_rotations):
             p = Present({(j, p.height - i - 1) for (i, j) in p.locs})
-        return p
+            rotations.add(p)
+        return rotations
 
     def apply_offset(self, i_offset: int, j_offset: int) -> "Present":
         return Present({(i + i_offset, j + j_offset) for (i, j) in self.locs})
@@ -112,8 +94,7 @@ def all_presents_can_fit(available_spaces: np.ndarray, shapes_to_fit: list[Prese
         return False
 
     s = shapes_to_fit[0]
-    for num_rotations in range(4):
-        rotated_s = s.rotate(num_rotations)
+    for rotated_s in s.get_rotated_variants(4):
         for i_offset in range(len(available_spaces) - rotated_s.height + 1):
             for j_offset in range(len(available_spaces[0]) - rotated_s.width + 1):
                 offset_s = rotated_s.apply_offset(i_offset, j_offset)
