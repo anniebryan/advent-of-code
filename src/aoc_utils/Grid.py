@@ -10,11 +10,17 @@ class Grid:
     @classmethod
     def from_puzzle_input(cls, puzzle_input: list[str]) -> "Grid":
         g = Grid()
-        g.width = len(puzzle_input[0])
-        g.height = len(puzzle_input)
         for i, row in enumerate(puzzle_input):
             for j, val in enumerate(row):
                 g.set(i, j, val)
+        return g
+
+    def repeat(self, n_i: int, n_j: int) -> "Grid":
+        """Returns a new Grid consisting of self, repeated n_i times vertically and n_j times horizontally."""
+        g = Grid()
+        for i in range(self.height * n_i):
+            for j in range(self.width * n_j):
+                g.set(i, j, self.at(i % self.height, j % self.width))
         return g
 
     def at(self, i: int, j: int) -> str:
@@ -38,6 +44,8 @@ class Grid:
 
     def set(self, i: int, j: int, val: str) -> None:
         self.values[(i, j)] = val
+        self.height = max(self.height, i + 1)
+        self.width = max(self.width, j + 1)
 
     def __eq__(self, other) -> bool:
         if not isinstance(other, Grid):
