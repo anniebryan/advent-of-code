@@ -2,13 +2,20 @@ import heapq
 
 
 class Grid:
-    def __init__(self, puzzle_input: list[str]):
+    def __init__(self):
         self.values = {}
-        self.width = len(puzzle_input[0])
-        self.height = len(puzzle_input)
+        self.width = 0
+        self.height = 0
+
+    @classmethod
+    def from_puzzle_input(cls, puzzle_input: list[str]) -> "Grid":
+        g = Grid()
+        g.width = len(puzzle_input[0])
+        g.height = len(puzzle_input)
         for i, row in enumerate(puzzle_input):
             for j, val in enumerate(row):
-                self.values[(i, j)] = val
+                g.set(i, j, val)
+        return g
 
     def at(self, i: int, j: int) -> str:
         return self.values[(i, j)]

@@ -7,7 +7,7 @@ from aoc_utils import Grid
 
 
 def parse_input(puzzle_input: list[str], part_2: bool) -> Grid:
-    return Grid(puzzle_input)
+    return Grid.from_puzzle_input(puzzle_input)
 
 
 def _get_accessible_rolls(g: Grid) -> set[tuple[int, int]]:

@@ -66,7 +66,7 @@ def display_res(time_saved_dict: dict[int, int]) -> None:
 
 def num_cheats(puzzle_input: list[str], max_cheat_len: int, picoseconds_saved: int) -> int:
     verbose = (puzzle_input[0] == "T")
-    g = Grid(puzzle_input[1:])
+    g = Grid.from_puzzle_input(puzzle_input[1:])
     time_saved_dict = get_times_saved(g, max_cheat_len)
 
     if verbose:

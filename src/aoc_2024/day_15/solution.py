@@ -18,7 +18,7 @@ def parse_input(puzzle_input: list[str], part_2: bool):
     grid_rows = puzzle_input[:empty_line_ix]
     if part_2:
         grid_rows = [row.replace("#", "##").replace(".", "..").replace("O", "[]").replace("@", "@.") for row in grid_rows]
-    grid = Grid(grid_rows)
+    grid = Grid.from_puzzle_input(grid_rows)
     moves = "".join(puzzle_input[empty_line_ix + 1:])
     return grid, moves
 

@@ -7,8 +7,8 @@ from collections import defaultdict
 
 from aoc_utils import Grid
 
-NUMERIC_KEYPAD = Grid(["789", "456", "123", ".0A"])
-DIRECTIONAL_KEYPAD = Grid([".^A", "<v>"])
+NUMERIC_KEYPAD = Grid.from_puzzle_input(["789", "456", "123", ".0A"])
+DIRECTIONAL_KEYPAD = Grid.from_puzzle_input([".^A", "<v>"])
 
 
 def shortest_path(start_key: str, dest_key: str, keypad: Grid) -> str:

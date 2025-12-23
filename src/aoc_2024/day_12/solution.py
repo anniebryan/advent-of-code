@@ -24,7 +24,7 @@ def fill_region(g: Grid, i: int, j: int) -> set[tuple[int, int]]:
 
 
 def get_all_regions(puzzle_input: list[str]) -> Iterator[tuple[int, int]]:
-    g = Grid(puzzle_input)
+    g = Grid.from_puzzle_input(puzzle_input)
     all_seen = set()
     for (i, j) in g:
         if (i, j) in all_seen:

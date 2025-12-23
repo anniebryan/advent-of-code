@@ -31,7 +31,7 @@ def coords_to_grid(coords: set[tuple[int, int]]) -> Grid:
             else:
                 row.append(".")
         grid_input.append("".join(row))
-    return Grid(grid_input)
+    return Grid.from_puzzle_input(grid_input)
 
 
 def path_exists(grid: Grid, start: tuple[int, int], end: tuple[int, int]) -> bool:

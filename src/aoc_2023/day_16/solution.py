@@ -69,12 +69,12 @@ def all_possible_start_configs(g: Grid) -> Iterator[tuple[tuple[int, int], tuple
 
 
 def solve_part_1(puzzle_input: list[str]):
-    g = Grid(puzzle_input)
+    g = Grid.from_puzzle_input(puzzle_input)
     return calc_num_energized(g, (0, 0), (0, 1))
 
 
 def solve_part_2(puzzle_input: list[str]):
-    g = Grid(puzzle_input)
+    g = Grid.from_puzzle_input(puzzle_input)
     max_energized = 0
     for start_pos, start_dir in all_possible_start_configs(g):
         max_energized = max(max_energized, calc_num_energized(g, start_pos, start_dir))

@@ -42,12 +42,12 @@ def all_possible_scores(grid: Grid) -> set[int]:
 
 
 def solve_part_1(puzzle_input: list[str]):
-    grid = Grid(puzzle_input)
+    grid = Grid.from_puzzle_input(puzzle_input)
     final_scores, _ = all_possible_scores(grid)
     return min(final_scores)
 
 
 def solve_part_2(puzzle_input: list[str]):
-    grid = Grid(puzzle_input)
+    grid = Grid.from_puzzle_input(puzzle_input)
     final_scores, all_locs_in_paths = all_possible_scores(grid)
     return len(all_locs_in_paths[min(final_scores)])

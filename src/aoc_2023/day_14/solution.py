@@ -81,12 +81,12 @@ def cycle_n_times(g: Grid, n: int) -> Grid:
 
 
 def solve_part_1(puzzle_input: list[str]):
-    g = Grid(puzzle_input)
+    g = Grid.from_puzzle_input(puzzle_input)
     g = tilt(g, "N")
     return total_load(g)
 
 
 def solve_part_2(puzzle_input: list[str]):
-    g = Grid(puzzle_input)
+    g = Grid.from_puzzle_input(puzzle_input)
     g = cycle_n_times(g, 1000000000)
     return total_load(g)
