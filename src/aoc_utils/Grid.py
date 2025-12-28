@@ -74,17 +74,29 @@ class Grid:
                 if self.in_bounds(ni, nj) and self.at(ni, nj) != "#":
                     yield (ni, nj)
 
-    def dijkstra(self, start: tuple[int, int]) -> dict[tuple[int, int], int]:
+    def dijkstra(
+            self,
+            start: tuple[int, int],
+            *,
+            max_path_length: int | None = None,
+            allow_wrap_around: bool = False,
+    ) -> dict[tuple[int, int], int]:
+
         q = [(0, start)]
         dists = {start: 0}
         visited = set()
 
         while q:
             dist_so_far, curr = heapq.heappop(q)
-            if curr not in visited:
-                visited.add(curr)
-                for (ni, nj) in self.neighbors(curr):
-                    if (ni, nj) not in dists or dists[(ni, nj)] > dist_so_far + 1:
-                        dists[(ni, nj)] = dist_so_far + 1
-                        heapq.heappush(q, (dist_so_far + 1, (ni, nj)))
+            if curr in visited:
+                continue
+            if max_path_length is not None and dist_so_far > max_path_length:
+                continue
+
+            visited.add(curr)
+            dists[curr] = dist_so_far
+
+            for n in self.neighbors(curr, allow_wrap_around=allow_wrap_around):
+                heapq.heappush(q, (dist_so_far + 1, n))
+
         return dists
