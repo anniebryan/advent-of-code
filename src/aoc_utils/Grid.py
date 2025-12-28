@@ -1,4 +1,5 @@
 import heapq
+from typing import Iterable
 
 
 class Grid:
@@ -56,6 +57,23 @@ class Grid:
     def where(self, val: str) -> list[tuple[int, int]]:
         return [(i, j) for (i, j), v in self.values.items() if v == val]
 
+    def neighbors(self, point: tuple[int, int], *, allow_wrap_around: bool = False) -> Iterable[tuple[int, int]]:
+        """
+        allow_wrap_around: If True, wraps the point's coordinates around as if the grid extends to infinity.
+        """
+        (i, j) = point
+        for (di, dj) in [(1, 0), (-1, 0), (0, 1), (0, -1)]:
+            (ni, nj) = (i + di, j + dj)
+
+            if allow_wrap_around:
+                (wrapped_ni, wrapped_nj) = (ni % self.height, nj % self.width)
+                if self.in_bounds(wrapped_ni, wrapped_nj) and self.at(wrapped_ni, wrapped_nj) != "#":
+                    yield (ni, nj)
+
+            else:
+                if self.in_bounds(ni, nj) and self.at(ni, nj) != "#":
+                    yield (ni, nj)
+
     def dijkstra(self, start: tuple[int, int]) -> dict[tuple[int, int], int]:
         q = [(0, start)]
         dists = {start: 0}
@@ -65,10 +83,8 @@ class Grid:
             dist_so_far, curr = heapq.heappop(q)
             if curr not in visited:
                 visited.add(curr)
-                (i, j) = curr
-                for (ni, nj) in [(i + 1, j), (i - 1, j), (i, j + 1), (i, j - 1)]:
-                    if self.in_bounds(ni, nj) and self.at(ni, nj) != "#":
-                        if (ni, nj) not in dists or dists[(ni, nj)] > dist_so_far + 1:
-                            dists[(ni, nj)] = dist_so_far + 1
-                            heapq.heappush(q, (dist_so_far + 1, (ni, nj)))
+                for (ni, nj) in self.neighbors(curr):
+                    if (ni, nj) not in dists or dists[(ni, nj)] > dist_so_far + 1:
+                        dists[(ni, nj)] = dist_so_far + 1
+                        heapq.heappush(q, (dist_so_far + 1, (ni, nj)))
         return dists
