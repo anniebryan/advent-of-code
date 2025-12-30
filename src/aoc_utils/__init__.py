@@ -4,6 +4,7 @@ from .Grid import Grid
 from .IntRangeMap import IntRangeMap
 from .IntRangeSet import IntRangeSet
 from .Shape import Shape
+from .UndirectedGraph import UndirectedGraph
 
 __all__ = [
     "DirectedGraph",
@@ -12,4 +13,5 @@ __all__ = [
     "IntRangeSet",
     "IntRangeMap",
     "Shape",
+    "UndirectedGraph",
 ]
