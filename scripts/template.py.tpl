@@ -22,7 +22,7 @@ from statistics import median
 from typing import Callable, Iterable, Iterator, Literal
 
 import click
-import numpy
+import numpy as np
 import regex
 
 from aoc_utils import DirectedGraph, DirectedWeightedGraph, Grid, IntRangeMap, IntRangeSet
