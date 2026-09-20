@@ -27,6 +27,12 @@ class Grid:
     def at(self, i: int, j: int) -> str:
         return self.values[(i, j)]
 
+    def values_at_row(self, row: int) -> dict[tuple[int, int], str]:
+        return {(i, j): val for (i, j), val in self.values.items() if i == row}
+
+    def values_at_column(self, column: int) -> dict[tuple[int, int], str]:
+        return {(i, j): val for (i, j), val in self.values.items() if j == column}
+
     def in_bounds(self, i: int, j: int) -> bool:
         return (i, j) in self.values
 
@@ -39,7 +45,7 @@ class Grid:
         for i in range(self.height):
             s = []
             for j in range(self.width):
-                s.append(str(self.values[(i, j)]))
+                s.append(str(self.values.get((i, j), " ")))
             output.append("".join(s))
         return "\n".join(output)
 
