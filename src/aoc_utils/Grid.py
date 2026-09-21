@@ -5,6 +5,10 @@ from typing import Iterable
 class Grid:
     def __init__(self):
         self.values = {}
+        self.min_i = None
+        self.max_i = None
+        self.min_j = None
+        self.max_j = None
         self.width = 0
         self.height = 0
 
@@ -24,7 +28,7 @@ class Grid:
                 g.set(i, j, self.at(i % self.height, j % self.width))
         return g
 
-    def at(self, i: int, j: int) -> str:
+    def at(self, i: int, j: int) -> int | str:
         return self.values[(i, j)]
 
     def values_at_row(self, row: int) -> dict[tuple[int, int], str]:
@@ -49,10 +53,14 @@ class Grid:
             output.append("".join(s))
         return "\n".join(output)
 
-    def set(self, i: int, j: int, val: str) -> None:
+    def set(self, i: int, j: int, val: int | str) -> None:
         self.values[(i, j)] = val
-        self.height = max(self.height, i + 1)
-        self.width = max(self.width, j + 1)
+        self.max_i = i if self.max_i is None else max(self.max_i, i)
+        self.min_i = i if self.min_i is None else min(self.min_i, i)
+        self.max_j = j if self.max_j is None else max(self.max_j, j)
+        self.min_j = j if self.min_j is None else min(self.min_j, j)
+        self.height = self.max_i - self.min_i + 1
+        self.width = self.max_j - self.min_j + 1
 
     def __eq__(self, other) -> bool:
         if not isinstance(other, Grid):
@@ -63,12 +71,22 @@ class Grid:
     def where(self, val: str) -> list[tuple[int, int]]:
         return [(i, j) for (i, j), v in self.values.items() if v == val]
 
-    def neighbors(self, point: tuple[int, int], *, allow_wrap_around: bool = False) -> Iterable[tuple[int, int]]:
+    def neighbors(
+            self,
+            point: tuple[int, int],
+            *,
+            allow_wrap_around: bool = False,
+            include_diagonals: bool = False,
+    ) -> Iterable[tuple[int, int]]:
         """
         allow_wrap_around: If True, wraps the point's coordinates around as if the grid extends to infinity.
+        include_diagonals: If True, includes diagonal squares as neighbors.
         """
         (i, j) = point
-        for (di, dj) in [(1, 0), (-1, 0), (0, 1), (0, -1)]:
+        directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+        if include_diagonals:
+            directions += [(1, 1), (-1, 1), (-1, -1), (1, -1)]
+        for (di, dj) in directions:
             (ni, nj) = (i + di, j + dj)
 
             if allow_wrap_around:
