@@ -13,6 +13,17 @@ class DirectedGraph:
     def neighbors(self, x: Any) -> set[Any]:
         return self.graph[x]
 
+    def outgoing_neighbors(self, x: Any) -> set[Any]:
+        return self.neighbors(x)
+
+    def incoming_neighbors(self, x: Any) -> set[Any]:
+        incoming = set()
+        for n, edges in self.graph.items():
+            for e in edges:
+                if e == x:
+                    incoming.add(n)
+        return incoming
+
     def exact_path_exists(self, vals: list[Any]) -> bool:
         for v1, v2 in zip(vals, vals[1:]):
             if v2 not in self.graph[v1]:
