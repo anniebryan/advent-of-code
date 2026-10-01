@@ -4,7 +4,7 @@ Day 2: Gift Shop
 """
 
 
-def parse_input(puzzle_input: list[str], part_2: bool):
+def parse_input(puzzle_input: list[str]):
     line = puzzle_input[0]
     ranges = [[int(x) for x in r.split("-")] for r in line.split(",")]
     return ranges
@@ -33,7 +33,7 @@ def is_invalid_id(num: int, part_2: bool) -> bool:
 
 
 def _solve(puzzle_input: list[str], part_2: bool) -> int:
-    ranges = parse_input(puzzle_input, False)
+    ranges = parse_input(puzzle_input)
     all_invalid_ids = []
     for (a, b) in ranges:
         for x in range(a, b + 1):

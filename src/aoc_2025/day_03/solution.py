@@ -3,7 +3,7 @@ Advent of Code 2025
 Day 3: Lobby
 """
 
-def parse_input(puzzle_input: list[str], part_2: bool):
+def parse_input(puzzle_input: list[str]):
     banks = [[int(n) for n in line] for line in puzzle_input]
     return banks
 
@@ -25,7 +25,7 @@ def _get_max_voltage(bank: list[int], num_digits: int) -> int:
 
 
 def solve_part_1(puzzle_input: list[str]):
-    banks = parse_input(puzzle_input, False)
+    banks = parse_input(puzzle_input)
     total_max_voltage = 0
     for bank in banks:
         total_max_voltage += _get_max_voltage(bank, 2)
@@ -33,7 +33,7 @@ def solve_part_1(puzzle_input: list[str]):
 
 
 def solve_part_2(puzzle_input: list[str]):
-    banks = parse_input(puzzle_input, True)
+    banks = parse_input(puzzle_input)
     total_max_voltage = 0
     for bank in banks:
         v =  _get_max_voltage(bank, 12)

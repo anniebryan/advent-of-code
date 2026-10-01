@@ -4,7 +4,7 @@ Day 11: Hex Ed
 """
 
 
-def parse_input(puzzle_input: list[str], part_2: bool):
+def parse_input(puzzle_input: list[str]):
     return puzzle_input[0].split(",")
 
 
@@ -26,7 +26,7 @@ def _hex_distance(i: int, j: int) -> int:
 
 
 def solve_part_1(puzzle_input: list[str]):
-    steps = parse_input(puzzle_input, False)
+    steps = parse_input(puzzle_input)
 
     i, j = 0, 0
     for step in steps:
@@ -36,7 +36,7 @@ def solve_part_1(puzzle_input: list[str]):
 
 
 def solve_part_2(puzzle_input: list[str]):
-    steps = parse_input(puzzle_input, True)
+    steps = parse_input(puzzle_input)
 
     i, j = 0, 0
     max_dist = _hex_distance(i, j)

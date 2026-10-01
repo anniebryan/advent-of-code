@@ -7,7 +7,7 @@ from aoc_2017.day_10.solution import calc_knot_hash
 from aoc_utils import UndirectedGraph
 
 
-def parse_input(puzzle_input: list[str], part_2: bool):
+def parse_input(puzzle_input: list[str]):
     key_string = puzzle_input[0].strip()
     rows = []
     for i in range(128):
@@ -21,7 +21,7 @@ def parse_input(puzzle_input: list[str], part_2: bool):
 
 
 def solve_part_1(puzzle_input: list[str]):
-    rows = parse_input(puzzle_input, False)
+    rows = parse_input(puzzle_input)
     num_squares = 0
     for row in rows:
         for ch in row:
@@ -31,7 +31,7 @@ def solve_part_1(puzzle_input: list[str]):
 
 
 def solve_part_2(puzzle_input: list[str]):
-    rows = parse_input(puzzle_input, True)
+    rows = parse_input(puzzle_input)
     squares = set()
     for i, row in enumerate(rows):
         for j, ch in enumerate(row):

@@ -4,12 +4,12 @@ Day 6: Memory Reallocation
 """
 
 
-def parse_input(puzzle_input: list[str], part_2: bool):
+def parse_input(puzzle_input: list[str]):
     return [int(n) for n in puzzle_input[0].split()]
 
 
 def solve_part_1(puzzle_input: list[str]):
-    banks = parse_input(puzzle_input, False)
+    banks = parse_input(puzzle_input)
     seen = set()
     num_cycles = 0
     state = " ".join(str(b) for b in banks)
@@ -27,7 +27,7 @@ def solve_part_1(puzzle_input: list[str]):
 
 
 def solve_part_2(puzzle_input: list[str]):
-    banks = parse_input(puzzle_input, True)
+    banks = parse_input(puzzle_input)
     seen = {}
     num_cycles = 0
     state = " ".join(str(b) for b in banks)

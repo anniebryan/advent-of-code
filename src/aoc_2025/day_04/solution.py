@@ -6,7 +6,7 @@ Day 4: Printing Department
 from aoc_utils import Grid
 
 
-def parse_input(puzzle_input: list[str], part_2: bool) -> Grid:
+def parse_input(puzzle_input: list[str]) -> Grid:
     return Grid.from_puzzle_input(puzzle_input)
 
 
@@ -29,12 +29,12 @@ def _get_accessible_rolls(g: Grid) -> set[tuple[int, int]]:
 
 
 def solve_part_1(puzzle_input: list[str]):
-    g = parse_input(puzzle_input, False)
+    g = parse_input(puzzle_input)
     return len(_get_accessible_rolls(g))
 
 
 def solve_part_2(puzzle_input: list[str]):
-    g = parse_input(puzzle_input, True)
+    g = parse_input(puzzle_input)
     total_num_accessible = 0
     accessible_rolls = _get_accessible_rolls(g)
     while accessible_rolls:

@@ -4,12 +4,12 @@ Day 5: A Maze of Twisty Trampolines, All Alike
 """
 
 
-def parse_input(puzzle_input: list[str], part_2: bool):
+def parse_input(puzzle_input: list[str]):
     return [int(n) for n in puzzle_input]
 
 
 def solve_part_1(puzzle_input: list[str]):
-    instructions = parse_input(puzzle_input, False)
+    instructions = parse_input(puzzle_input)
     curr_ix = 0
     num_steps = 0
     while 0 <= curr_ix < len(instructions):
@@ -21,7 +21,7 @@ def solve_part_1(puzzle_input: list[str]):
 
 
 def solve_part_2(puzzle_input: list[str]):
-    instructions = parse_input(puzzle_input, True)
+    instructions = parse_input(puzzle_input)
     curr_ix = 0
     num_steps = 0
     while 0 <= curr_ix < len(instructions):

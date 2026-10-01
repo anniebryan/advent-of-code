@@ -8,7 +8,7 @@ import re
 from aoc_utils import Cube, Grid
 
 
-def parse_input(puzzle_input: list[str], part_2: bool):
+def parse_input(puzzle_input: list[str]):
     grid = Grid()
     for i, line in enumerate(puzzle_input):
         if line == "":
@@ -26,7 +26,7 @@ def parse_input(puzzle_input: list[str], part_2: bool):
 
 
 def solve_part_1(puzzle_input: list[str]):
-    grid, path = parse_input(puzzle_input, False)
+    grid, path = parse_input(puzzle_input)
 
     i, j = min({loc for loc, val in grid.values_at_row(0).items() if val == "."})
     di, dj = (0, 1)  # facing right
@@ -64,7 +64,7 @@ def solve_part_1(puzzle_input: list[str]):
 
 
 def solve_part_2(puzzle_input: list[str]):
-    grid, path = parse_input(puzzle_input, True)
+    grid, path = parse_input(puzzle_input)
 
     cube = Cube.from_grid(grid)
 

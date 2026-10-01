@@ -65,7 +65,7 @@ class Rule:
         return outcome
 
 
-def parse_input(puzzle_input: list[str], part_2: bool) -> tuple[dict[str, Rule], list[dict[str, int]]]:
+def parse_input(puzzle_input: list[str]) -> tuple[dict[str, Rule], list[dict[str, int]]]:
     rules = {}
     for i, line in enumerate(puzzle_input):
         if line == "":
@@ -154,7 +154,7 @@ def num_combinations_accepted(
 
 
 def solve_part_1(puzzle_input: list[str]):
-    rules, all_parts = parse_input(puzzle_input, False)
+    rules, all_parts = parse_input(puzzle_input)
     total_rating = 0
     for part in all_parts:
         if part_is_accepted(part, rules, "in"):
@@ -163,7 +163,7 @@ def solve_part_1(puzzle_input: list[str]):
 
 
 def solve_part_2(puzzle_input: list[str]):
-    rules, _ = parse_input(puzzle_input, True)
+    rules, _ = parse_input(puzzle_input)
     return num_combinations_accepted(
         rules, rules["in"],
         x_min=MIN_VALUE, x_max=MAX_VALUE,

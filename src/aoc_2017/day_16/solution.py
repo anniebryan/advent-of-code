@@ -6,7 +6,7 @@ Day 16: Permutation Promenade
 NUM_DANCES = 1_000_000_000
 
 
-def parse_input(puzzle_input: list[str], part_2: bool):
+def parse_input(puzzle_input: list[str]):
     programs = list(puzzle_input[0])
     moves = puzzle_input[1].split(",")
     return programs, moves
@@ -32,14 +32,14 @@ def apply_move(move: str, programs: list[str]) -> list[str]:
 
 
 def solve_part_1(puzzle_input: list[str]):
-    programs, moves = parse_input(puzzle_input, False)
+    programs, moves = parse_input(puzzle_input)
     for move in moves:
         programs = apply_move(move, programs)
     return "".join(programs)
 
 
 def solve_part_2(puzzle_input: list[str]):
-    programs, moves = parse_input(puzzle_input, True)
+    programs, moves = parse_input(puzzle_input)
     init_program = "".join(programs)
     seen = {}
     for i in range(NUM_DANCES):

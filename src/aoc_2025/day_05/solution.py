@@ -6,7 +6,7 @@ Day 5: Cafeteria
 from aoc_utils import IntRangeSet
 
 
-def parse_input(puzzle_input: list[str], part_2: bool):
+def parse_input(puzzle_input: list[str]):
     fresh_ingredients = IntRangeSet()
     ingredient_ids = []
 
@@ -24,10 +24,10 @@ def parse_input(puzzle_input: list[str], part_2: bool):
 
 
 def solve_part_1(puzzle_input: list[str]):
-    fresh_ingredients, ingredient_ids = parse_input(puzzle_input, False)
+    fresh_ingredients, ingredient_ids = parse_input(puzzle_input)
     return len([i for i in ingredient_ids if fresh_ingredients.in_range(i)])
 
 
 def solve_part_2(puzzle_input: list[str]):
-    fresh_ingredients, _ = parse_input(puzzle_input, True)
+    fresh_ingredients, _ = parse_input(puzzle_input)
     return fresh_ingredients.num_values

@@ -4,12 +4,12 @@ Day 4: High-Entropy Passphrases
 """
 
 
-def parse_input(puzzle_input: list[str], part_2: bool):
+def parse_input(puzzle_input: list[str]):
     return [line.split() for line in puzzle_input]
 
 
 def solve_part_1(puzzle_input: list[str]):
-    lines = parse_input(puzzle_input, False)
+    lines = parse_input(puzzle_input)
     num_valid = 0
     for line in lines:
         unique_words = set(line)
@@ -19,7 +19,7 @@ def solve_part_1(puzzle_input: list[str]):
 
 
 def solve_part_2(puzzle_input: list[str]):
-    lines = parse_input(puzzle_input, True)
+    lines = parse_input(puzzle_input)
     num_valid = 0
     for line in lines:
         unique_words = set("".join(sorted(word)) for word in line)

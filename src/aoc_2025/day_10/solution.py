@@ -9,7 +9,7 @@ import numpy as np
 from scipy.optimize import Bounds, LinearConstraint, milp
 
 
-def parse_input(puzzle_input: list[str], part_2: bool):
+def parse_input(puzzle_input: list[str]):
     machines = []
     for line in puzzle_input:
         indicator_lights = line.split()[0][1:-1]
@@ -55,7 +55,7 @@ def fewest_button_presses_part_2(joltage_reqs: tuple[int, ...], buttons: list[tu
 
 
 def solve_part_1(puzzle_input: list[str]):
-    machines = parse_input(puzzle_input, False)
+    machines = parse_input(puzzle_input)
     total_presses = 0
     for (indicator_lights, buttons, _) in machines:
         total_presses += fewest_button_presses_part_1(indicator_lights, set(buttons))
@@ -63,7 +63,7 @@ def solve_part_1(puzzle_input: list[str]):
 
 
 def solve_part_2(puzzle_input: list[str]):
-    machines = parse_input(puzzle_input, True)
+    machines = parse_input(puzzle_input)
     total_presses = 0
     for (_, buttons, joltage_reqs) in machines:
         total_presses += fewest_button_presses_part_2(joltage_reqs, buttons)

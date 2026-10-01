@@ -6,7 +6,7 @@ Day 12: Digital Plumber
 from aoc_utils import UndirectedGraph
 
 
-def parse_input(puzzle_input: list[str], part_2: bool) -> UndirectedGraph:
+def parse_input(puzzle_input: list[str]) -> UndirectedGraph:
     g = UndirectedGraph()
     for line in puzzle_input:
         line_parts = line.split(" <-> ")
@@ -20,11 +20,11 @@ def parse_input(puzzle_input: list[str], part_2: bool) -> UndirectedGraph:
 
 
 def solve_part_1(puzzle_input: list[str]):
-    g = parse_input(puzzle_input, False)
+    g = parse_input(puzzle_input)
     dists = g.dijkstra(0)
     return len(dists)
 
 
 def solve_part_2(puzzle_input: list[str]):
-    g = parse_input(puzzle_input, True)
+    g = parse_input(puzzle_input)
     return g.num_connected_components()

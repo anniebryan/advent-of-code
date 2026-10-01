@@ -10,7 +10,7 @@ NUM_PAIRS_PART_1 = 40_000_000
 NUM_PAIRS_PART_2 = 5_000_000
 
 
-def parse_input(puzzle_input: list[str], part_2: bool):
+def parse_input(puzzle_input: list[str]):
     a = int(puzzle_input[0].removeprefix("Generator A starts with "))
     b = int(puzzle_input[1].removeprefix("Generator B starts with "))
     return (a, b)
@@ -41,7 +41,7 @@ def same_lower_16_bits(a: int, b: int) -> bool:
 
 
 def solve_part_1(puzzle_input: list[str]):
-    a, b = parse_input(puzzle_input, False)
+    a, b = parse_input(puzzle_input)
     final_count = 0
     for _ in range(NUM_PAIRS_PART_1):
         prev_a, prev_b = a, b
@@ -53,7 +53,7 @@ def solve_part_1(puzzle_input: list[str]):
 
 
 def solve_part_2(puzzle_input: list[str]):
-    a, b = parse_input(puzzle_input, True)
+    a, b = parse_input(puzzle_input)
     final_count = 0
     for _ in range(NUM_PAIRS_PART_2):
         prev_a, prev_b = a, b

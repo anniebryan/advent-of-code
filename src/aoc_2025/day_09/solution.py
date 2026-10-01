@@ -3,7 +3,7 @@ Advent of Code 2025
 Day 9: Movie Theater
 """
 
-def parse_input(puzzle_input: list[str], part_2: bool):
+def parse_input(puzzle_input: list[str]):
     locs = []
     for line in puzzle_input:
         x, y = line.split(",")
@@ -28,7 +28,7 @@ def any_edges_intersect(
 
 
 def solve_part_1(puzzle_input: list[str]):
-    locs = parse_input(puzzle_input, False)
+    locs = parse_input(puzzle_input)
     max_rect_size = 0
     for (x1, y1) in locs:
         for (x2, y2) in locs:
@@ -38,7 +38,7 @@ def solve_part_1(puzzle_input: list[str]):
 
 
 def solve_part_2(puzzle_input: list[str]):
-    locs = parse_input(puzzle_input, True)
+    locs = parse_input(puzzle_input)
 
     edges = set()
     for (x1, y1), (x2, y2) in zip(locs, locs[1:] + [locs[0]]):

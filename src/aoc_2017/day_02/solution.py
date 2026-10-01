@@ -4,12 +4,12 @@ Day 2: Corruption Checksum
 """
 
 
-def parse_input(puzzle_input: list[str], part_2: bool):
+def parse_input(puzzle_input: list[str]):
     return [[int(x) for x in line.split()] for line in puzzle_input]
 
 
 def solve_part_1(puzzle_input: list[str]):
-    rows = parse_input(puzzle_input, False)
+    rows = parse_input(puzzle_input)
     checksum = 0
     for row in rows:
         checksum += max(row) - min(row)
@@ -17,7 +17,7 @@ def solve_part_1(puzzle_input: list[str]):
 
 
 def solve_part_2(puzzle_input: list[str]):
-    rows = parse_input(puzzle_input, False)
+    rows = parse_input(puzzle_input)
     checksum = 0
     for row in rows:
         for i, a in enumerate(row):

@@ -6,7 +6,7 @@ Day 1: Secret Entrance
 import re
 
 
-def parse_input(puzzle_input: list[str], part_2: bool):
+def parse_input(puzzle_input: list[str]):
     directions = []
     for line in puzzle_input:
         match = re.match(r"(?P<dir>[LR])(?P<num>\d+)", line)
@@ -18,7 +18,7 @@ def parse_input(puzzle_input: list[str], part_2: bool):
 
 
 def solve_part_1(puzzle_input: list[str]):
-    directions = parse_input(puzzle_input, False)
+    directions = parse_input(puzzle_input)
     points_at_zero = 0
     curr = 50
     for (d, n) in directions:
@@ -30,7 +30,7 @@ def solve_part_1(puzzle_input: list[str]):
 
 
 def solve_part_2(puzzle_input: list[str]):
-    directions = parse_input(puzzle_input, True)
+    directions = parse_input(puzzle_input)
     points_at_zero = 0
     curr = 50
     for (d, n) in directions:

@@ -9,7 +9,7 @@ from math import prod
 import networkx as nx
 
 
-def parse_input(puzzle_input: list[str], part_2: bool):
+def parse_input(puzzle_input: list[str]):
     graph = nx.DiGraph()
     for line in puzzle_input:
         node, neighbors = line.split(": ")
@@ -20,7 +20,7 @@ def parse_input(puzzle_input: list[str], part_2: bool):
 
 
 def solve_part_1(puzzle_input: list[str]):
-    graph = parse_input(puzzle_input, False)
+    graph = parse_input(puzzle_input)
     for (node_1, node_2) in combinations(graph.nodes, 2):
         try:
             cut_value, partition = nx.minimum_cut(graph, node_1, node_2)

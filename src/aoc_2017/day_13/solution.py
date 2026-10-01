@@ -3,7 +3,7 @@ Advent of Code 2017
 Day 13: Packet Scanners
 """
 
-def parse_input(puzzle_input: list[str], part_2: bool):
+def parse_input(puzzle_input: list[str]):
     firewall_ranges = {}
     for line in puzzle_input:
         line_parts = line.split(": ")
@@ -36,7 +36,7 @@ def _get_all_scanner_locs(firewall_ranges: dict[int, int], i: int) -> dict[int, 
 
 
 def solve_part_1(puzzle_input: list[str]):
-    firewall_ranges = parse_input(puzzle_input, False)
+    firewall_ranges = parse_input(puzzle_input)
     severity = 0
     for i in range(max(firewall_ranges) + 1):
         scanner = _get_all_scanner_locs(firewall_ranges, i)
@@ -46,7 +46,7 @@ def solve_part_1(puzzle_input: list[str]):
 
 
 def solve_part_2(puzzle_input: list[str]):
-    firewall_ranges = parse_input(puzzle_input, True)
+    firewall_ranges = parse_input(puzzle_input)
 
     # initial (naive) attempt
     # delay = 0

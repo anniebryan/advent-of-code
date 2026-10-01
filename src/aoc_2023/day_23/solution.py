@@ -11,7 +11,7 @@ import numpy as np
 from aoc_utils import Grid
 
 
-def parse_input(puzzle_input: list[str], part_2: bool):
+def parse_input(puzzle_input: list[str]):
     grid = Grid.from_puzzle_input(puzzle_input)
     start = [i for i, ch in enumerate(puzzle_input[0]) if ch == "."][0]
     end = [i for i, ch in enumerate(puzzle_input[-1]) if ch == "."][0]
@@ -22,7 +22,7 @@ def parse_input(puzzle_input: list[str], part_2: bool):
 
 
 def solve_part_1(puzzle_input: list[str]):
-    grid = parse_input(puzzle_input, False)
+    grid = parse_input(puzzle_input)
     start, end = grid.where("S")[0], grid.where("E")[0]
 
     # modified version of Grid.dijkstra
@@ -97,7 +97,7 @@ def max_path_length_dfs(
 
 
 def solve_part_2(puzzle_input: list[str]):
-    grid = parse_input(puzzle_input, True)
+    grid = parse_input(puzzle_input)
     start, end = grid.where("S")[0], grid.where("E")[0]
 
     graph = build_graph(grid)

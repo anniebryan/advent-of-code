@@ -6,7 +6,7 @@ Day 7: Laboratories
 from collections import defaultdict
 
 
-def parse_input(puzzle_input: list[str], part_2: bool):
+def parse_input(puzzle_input: list[str]):
     assert "S" in puzzle_input[0]
     start_x = puzzle_input[0].index("S")
     
@@ -21,7 +21,7 @@ def parse_input(puzzle_input: list[str], part_2: bool):
 
 
 def solve_part_1(puzzle_input: list[str]):
-    start_x, all_splitters = parse_input(puzzle_input, False)
+    start_x, all_splitters = parse_input(puzzle_input)
     beams = set([start_x])
     num_splits = 0
     for depth in range(1, max(all_splitters) + 2):
@@ -39,7 +39,7 @@ def solve_part_1(puzzle_input: list[str]):
 
 
 def solve_part_2(puzzle_input: list[str]):
-    start_x, all_splitters = parse_input(puzzle_input, True)
+    start_x, all_splitters = parse_input(puzzle_input)
     beams = set([start_x])
     num_paths = defaultdict(int)
     num_paths[start_x] = 1

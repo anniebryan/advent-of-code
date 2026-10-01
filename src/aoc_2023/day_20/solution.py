@@ -18,7 +18,7 @@ class State(Enum):
     OFF = auto()
 
 
-def parse_input(puzzle_input: list[str], part_2: bool):
+def parse_input(puzzle_input: list[str]):
     broadcast: list[str] = []
     flip_flop: dict[str, list[str]] = {}
     conjunction: dict[str, list[str]] = {}
@@ -86,7 +86,7 @@ def press_button(broadcast, flip_flop, conjunction, state, most_recent_pulse_rec
 
 
 def solve_part_1(puzzle_input: list[str]):
-    broadcast, flip_flop, conjunction, module_to_all_inputs = parse_input(puzzle_input, False)
+    broadcast, flip_flop, conjunction, module_to_all_inputs = parse_input(puzzle_input)
 
     state = {x: State.OFF for x in flip_flop}
     most_recent_pulse_recieved = get_initial_low_pulses_received(conjunction, module_to_all_inputs)
@@ -103,7 +103,7 @@ def solve_part_1(puzzle_input: list[str]):
 
 
 def solve_part_2(puzzle_input: list[str]):
-    broadcast, flip_flop, conjunction, module_to_all_inputs = parse_input(puzzle_input, True)
+    broadcast, flip_flop, conjunction, module_to_all_inputs = parse_input(puzzle_input)
 
     state = {x: State.OFF for x in flip_flop}
     most_recent_pulse_recieved = get_initial_low_pulses_received(conjunction, module_to_all_inputs)

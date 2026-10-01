@@ -6,12 +6,12 @@ Day 3: Spiral Memory
 from aoc_utils import Grid
 
 
-def parse_input(puzzle_input: list[str], part_2: bool):
+def parse_input(puzzle_input: list[str]):
     return int(puzzle_input[0])
 
 
 def solve_part_1(puzzle_input: list[str]):
-    num = parse_input(puzzle_input, False)
+    num = parse_input(puzzle_input)
 
     g = Grid()
     curr_x, curr_y, curr_num = 0, 0, 1
@@ -34,7 +34,7 @@ def solve_part_1(puzzle_input: list[str]):
 
 
 def solve_part_2(puzzle_input: list[str]):
-    num = parse_input(puzzle_input, True)
+    num = parse_input(puzzle_input)
 
     g = Grid()
     curr_x, curr_y, curr_num = 0, 0, 1

@@ -8,7 +8,7 @@ from collections import Counter
 from aoc_utils import DirectedGraph
 
 
-def parse_input(puzzle_input: list[str], part_2: bool):
+def parse_input(puzzle_input: list[str]):
     g = DirectedGraph()
     tower_weights = {}
 
@@ -34,7 +34,7 @@ def _get_root_tower(g: DirectedGraph, tower_weights: dict[str, int]) -> str:
 
 
 def solve_part_1(puzzle_input: list[str]):
-    g, tower_weights = parse_input(puzzle_input, False)
+    g, tower_weights = parse_input(puzzle_input)
     return _get_root_tower(g, tower_weights)
 
 
@@ -66,7 +66,7 @@ def _find_corrected_weight(tower: str, g: DirectedGraph, tower_weights: dict[str
 
 
 def solve_part_2(puzzle_input: list[str]):
-    g, tower_weights = parse_input(puzzle_input, True)
+    g, tower_weights = parse_input(puzzle_input)
     root = _get_root_tower(g, tower_weights)
     _, corrected_weight = _find_corrected_weight(root, g, tower_weights)
     return corrected_weight

@@ -6,12 +6,12 @@ Day 21: Step Counter
 from aoc_utils import Grid
 
 
-def parse_input(puzzle_input: list[str], part_2: bool):
+def parse_input(puzzle_input: list[str]):
     return Grid.from_puzzle_input(puzzle_input)
 
 
 def solve_part_1(puzzle_input: list[str]):
-    grid = parse_input(puzzle_input, False)
+    grid = parse_input(puzzle_input)
     start = grid.where("S")[0]
     dists = grid.dijkstra(start)
     num_reachable = 0
@@ -23,7 +23,7 @@ def solve_part_1(puzzle_input: list[str]):
 
 
 def solve_part_2(puzzle_input: list[str]):
-    grid = parse_input(puzzle_input, True)
+    grid = parse_input(puzzle_input)
     start = grid.where("S")[0]
     if grid.width != grid.height:
         raise NotImplementedError("Solution does not work for non-square grids")

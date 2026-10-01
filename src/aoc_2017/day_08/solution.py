@@ -48,7 +48,7 @@ class Instruction:
         self.cond = cond
 
 
-def parse_input(puzzle_input: list[str], part_2: bool):
+def parse_input(puzzle_input: list[str]):
     registers: dict[str, Register] = {}
     instructions: list[Instruction] = []
 
@@ -73,7 +73,7 @@ def parse_input(puzzle_input: list[str], part_2: bool):
 
 
 def solve_part_1(puzzle_input: list[str]):
-    registers, instructions = parse_input(puzzle_input, False)
+    registers, instructions = parse_input(puzzle_input)
     for i in instructions:
         if i.cond.evaluate(registers):
             registers[i.register_name_to_change].apply_delta(i.delta)
@@ -81,7 +81,7 @@ def solve_part_1(puzzle_input: list[str]):
 
 
 def solve_part_2(puzzle_input: list[str]):
-    registers, instructions = parse_input(puzzle_input, True)
+    registers, instructions = parse_input(puzzle_input)
     max_val = max(r.value for r in registers.values())
     for i in instructions:
         if i.cond.evaluate(registers):

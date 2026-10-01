@@ -8,7 +8,7 @@ import heapq
 from aoc_utils import DirectedWeightedGraph
 
 
-def parse_input(puzzle_input: list[str], part_2: bool) -> DirectedWeightedGraph:
+def parse_input(puzzle_input: list[str]) -> DirectedWeightedGraph:
     g = DirectedWeightedGraph()
     for i, line in enumerate(puzzle_input):
         for j, val in enumerate(line):
@@ -28,7 +28,7 @@ def get_min_path_cost(
         min_steps_before_turn: int | None,
         max_steps_before_turn: int | None,
 ) -> int:
-    g = parse_input(puzzle_input, False)
+    g = parse_input(puzzle_input)
     
     start = (0, 0)
     target = (len(puzzle_input) - 1, len(puzzle_input[0]) - 1)

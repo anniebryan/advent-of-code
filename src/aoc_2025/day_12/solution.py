@@ -55,7 +55,7 @@ class Present:
         return Present({(i, j) for i in range(self.height) for j in range(self.width)})
 
 
-def parse_input(puzzle_input: list[str], part_2: bool):
+def parse_input(puzzle_input: list[str]):
     presents: dict[int, Present] = {}
     current_ix, current_present = None, None
     for i, line in enumerate(puzzle_input):
@@ -109,7 +109,7 @@ def all_presents_can_fit(available_spaces: np.ndarray, shapes_to_fit: list[Prese
 
 
 def solve_part_1(puzzle_input: list[str]):
-    presents, regions = parse_input(puzzle_input, False)
+    presents, regions = parse_input(puzzle_input)
     result = 0
     for (width, length, shapes) in regions:
         shapes_to_fit: list[Present] = []

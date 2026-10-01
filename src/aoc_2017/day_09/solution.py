@@ -6,7 +6,7 @@ Day 9: Stream Processing
 from collections import Counter
 
 
-def parse_input(puzzle_input: list[str], part_2: bool):
+def parse_input(puzzle_input: list[str]):
     return puzzle_input[0]
 
 
@@ -54,7 +54,7 @@ def _get_score(stream: str) -> int:
 
 
 def solve_part_1(puzzle_input: list[str]):
-    stream = parse_input(puzzle_input, False)
+    stream = parse_input(puzzle_input)
     stream = _remove_exclamations(stream)
     stream, _ = _remove_garbage(stream)
 
@@ -67,7 +67,7 @@ def solve_part_1(puzzle_input: list[str]):
 
 
 def solve_part_2(puzzle_input: list[str]):
-    stream = parse_input(puzzle_input, False)
+    stream = parse_input(puzzle_input)
     stream = _remove_exclamations(stream)
     _, chars_removed = _remove_garbage(stream)
     return len(chars_removed)

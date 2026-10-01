@@ -6,7 +6,7 @@ Day 22: Sand Slabs
 from collections import defaultdict, deque
 
 
-def parse_input(puzzle_input: list[str], part_2: bool):
+def parse_input(puzzle_input: list[str]):
     bricks = []
     for line in puzzle_input:
         brick = set()
@@ -52,7 +52,7 @@ def determine_supports(bricks: list[set[tuple[int, int, int]]]) -> dict[int, set
 
 
 def solve_part_1(puzzle_input: list[str]):
-    bricks = parse_input(puzzle_input, False)
+    bricks = parse_input(puzzle_input)
     bricks = drop_bricks(bricks)
 
     supported_by = determine_supports(bricks)
@@ -62,7 +62,7 @@ def solve_part_1(puzzle_input: list[str]):
 
 
 def solve_part_2(puzzle_input: list[str]):
-    bricks = parse_input(puzzle_input, True)
+    bricks = parse_input(puzzle_input)
     bricks = drop_bricks(bricks)
 
     supported_by = determine_supports(bricks)

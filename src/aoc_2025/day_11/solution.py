@@ -6,7 +6,7 @@ Day 11: Reactor
 from aoc_utils import DirectedWeightedGraph
 
 
-def parse_input(puzzle_input: list[str], part_2: bool):
+def parse_input(puzzle_input: list[str]):
     device_graph = DirectedWeightedGraph()
     for line in puzzle_input:
         d, outputs = line.split(":")
@@ -16,7 +16,7 @@ def parse_input(puzzle_input: list[str], part_2: bool):
 
 
 def solve_part_1(puzzle_input: list[str]):
-    device_graph = parse_input(puzzle_input, False)
+    device_graph = parse_input(puzzle_input)
     return len(list(device_graph.all_unique_paths("you", "out")))
 
 
@@ -46,5 +46,5 @@ def _solve_part_2_helper(
 
 
 def solve_part_2(puzzle_input: list[str]):
-    device_graph = parse_input(puzzle_input, True)
+    device_graph = parse_input(puzzle_input)
     return _solve_part_2_helper(device_graph, "svr", memo={})

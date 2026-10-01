@@ -8,7 +8,7 @@ from math import prod
 import networkx as nx
 
 
-def parse_input(puzzle_input: list[str], part_2: bool):
+def parse_input(puzzle_input: list[str]):
     num_connections = int(puzzle_input[0])
     coordinates = []
     for line in puzzle_input[1:]:
@@ -36,7 +36,7 @@ def get_dists(coordinates: list[tuple[int, int, int]]) -> dict[int, tuple]:
 
 
 def solve_part_1(puzzle_input: list[str]):
-    num_connections, coordinates = parse_input(puzzle_input, False)
+    num_connections, coordinates = parse_input(puzzle_input)
     dists = get_dists(coordinates)
 
     g = nx.Graph()
@@ -51,7 +51,7 @@ def solve_part_1(puzzle_input: list[str]):
 
 
 def solve_part_2(puzzle_input: list[str]):
-    _, coordinates = parse_input(puzzle_input, True)
+    _, coordinates = parse_input(puzzle_input)
     dists = get_dists(coordinates)
 
     g = nx.Graph()

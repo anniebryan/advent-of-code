@@ -8,7 +8,7 @@ import re
 import numpy as np
 
 
-def parse_input(puzzle_input: list[str], part_2: bool):
+def parse_input(puzzle_input: list[str]):
     match = re.match(r"test area: (?P<min_area>\d+)\-(?P<max_area>\d+)", puzzle_input[0])
     assert match is not None
     min_bounds = int(match.group("min_area"))
@@ -24,7 +24,7 @@ def parse_input(puzzle_input: list[str], part_2: bool):
 
 
 def solve_part_1(puzzle_input: list[str]):
-    min_bounds, max_bounds, stones = parse_input(puzzle_input, False)
+    min_bounds, max_bounds, stones = parse_input(puzzle_input)
 
     num_intersections_in_test_area = 0
     for i, (px1, py1, _, vx1, vy1, _) in enumerate(stones):
@@ -43,7 +43,7 @@ def solve_part_1(puzzle_input: list[str]):
 
 
 def solve_part_2(puzzle_input: list[str]):
-    _, _, stones = parse_input(puzzle_input, True)
+    _, _, stones = parse_input(puzzle_input)
 
     # we only need 4 stones' positions/velocities to solve for 6 unknowns
     # since each pair of stones gives us 2 equations
