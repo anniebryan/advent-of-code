@@ -93,7 +93,10 @@ def _run_day(
         return
 
     if not skip_example:
-        example_files = sorted([p.name for p in input_dir.glob("*example*.txt")])
+        example_files = sorted(
+            [p.name for p in input_dir.glob("*example*.txt")],
+            key=lambda n: int(n.split("example")[1].removesuffix(".txt") or "1")
+        )
         if not example_files:
             print("No example files found.")
         for example_file in example_files:
