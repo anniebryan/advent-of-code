@@ -1,6 +1,6 @@
 import heapq
 from collections import defaultdict
-from typing import Any, Iterator
+from typing import Any
 
 
 class DirectedWeightedGraph:

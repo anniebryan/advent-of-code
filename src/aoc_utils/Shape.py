@@ -1,6 +1,6 @@
 """Module defining a Shape class with a method to compute interior points."""
 
-from collections import defaultdict, deque
+from collections import deque
 
 
 class Shape:

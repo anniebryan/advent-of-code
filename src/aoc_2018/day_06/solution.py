@@ -5,8 +5,6 @@ Day 6: Chronal Coordinatesw
 
 from collections import defaultdict
 
-import regex as re
-
 
 def parse_input(puzzle_input: list[str]) -> tuple[int, list[tuple[int, int]]]:
     max_total_distance = int(puzzle_input[0])
