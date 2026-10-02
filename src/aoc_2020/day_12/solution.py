@@ -3,7 +3,7 @@ Advent of Code 2020
 Day 12: Rain Risk
 """
 
-def get_instructions(puzzle_input):
+def parse_input(puzzle_input: list[str]) -> list[tuple[str, int]]:
     return [(line[0], int(line[1:])) for line in puzzle_input]
 
 
@@ -45,8 +45,7 @@ def process_waypoint(instruction, x, y, way_x, way_y):
     raise NotImplementedError
 
 
-def process_all_instructions(puzzle_input, part_one):
-    instructions = get_instructions(puzzle_input)
+def process_all_instructions(instructions, part_one):
     x, y = 0, 0
     if part_one:
         direction = 0
@@ -64,10 +63,12 @@ def manhattan_distance(x, y):
 
 
 def solve_part_1(puzzle_input: list[str]):
-    final_x, final_y = process_all_instructions(puzzle_input, True)
+    instructions = parse_input(puzzle_input)
+    final_x, final_y = process_all_instructions(instructions, True)
     return manhattan_distance(final_x, final_y)
 
 
 def solve_part_2(puzzle_input: list[str]):
-    final_x, final_y = process_all_instructions(puzzle_input, False)
+    instructions = parse_input(puzzle_input)
+    final_x, final_y = process_all_instructions(instructions, False)
     return manhattan_distance(final_x, final_y)

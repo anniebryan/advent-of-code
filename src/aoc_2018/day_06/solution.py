@@ -8,8 +8,13 @@ from collections import defaultdict
 import regex as re
 
 
-def get_points(puzzle_input):
-    return [tuple(map(int, re.findall(r'\d+', x))) for x in puzzle_input]
+def parse_input(puzzle_input: list[str]) -> tuple[int, list[tuple[int, int]]]:
+    max_total_distance = int(puzzle_input[0])
+    points = []
+    for line in puzzle_input[1:]:
+        x, y = line.split(", ")
+        points.append((int(x), int(y)))
+    return max_total_distance, points
 
 
 def get_min_max_bounds(points):
@@ -41,7 +46,7 @@ def distances(p1, points):
 
 
 def solve_part_1(puzzle_input: list[str]):
-    points = get_points(puzzle_input[1:])
+    _, points = parse_input(puzzle_input)
     x_min, x_max, y_min, y_max = get_min_max_bounds(points)
     closest = defaultdict(int)
     extend_to_inf = set()
@@ -58,8 +63,7 @@ def solve_part_1(puzzle_input: list[str]):
 
 
 def solve_part_2(puzzle_input: list[str]):
-    max_total_distance = int(puzzle_input[0])
-    points = get_points(puzzle_input[1:])
+    max_total_distance, points = parse_input(puzzle_input)
     x_min, x_max, y_min, y_max = get_min_max_bounds(points)
     region = set()
     for x in range(x_min, x_max + 1):

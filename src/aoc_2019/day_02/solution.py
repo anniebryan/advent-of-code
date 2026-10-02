@@ -4,9 +4,10 @@ Day 2: 1202 Program Alarm
 """
 
 
-def get_ints(puzzle_input):
-    ints = [int(i) for i in puzzle_input.split(",")]
-    return ints
+def parse_input(puzzle_input: list[str]) -> tuple[bool, list[int]]:
+    replace = (puzzle_input[0] == "T")
+    ints = [int(i) for i in puzzle_input[1].split(",")]
+    return replace, ints
 
 
 def handle_opcode(i: int, ints: list):
@@ -47,8 +48,7 @@ def run_until_halt(ints: list):
 
 
 def solve_part_1(puzzle_input: list[str]):
-    replace = (puzzle_input[0] == "T")
-    ints = get_ints(puzzle_input[1])
+    replace, ints = parse_input(puzzle_input)
     if replace:
         ints[1] = 12
         ints[2] = 2
@@ -56,10 +56,9 @@ def solve_part_1(puzzle_input: list[str]):
 
 
 def solve_part_2(puzzle_input: list[str]):
-    replace = (puzzle_input[0] == "T")
+    replace, ints = parse_input(puzzle_input)
     if not replace:
         return "Not supported"
-    ints = get_ints(puzzle_input[1])
     desired_output = 19690720
     for noun in range(100):
         for verb in range(100):

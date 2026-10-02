@@ -4,7 +4,7 @@ Day 2: Password Philosophy
 """
 
 
-def get_passwords(puzzle_input):
+def parse_input(puzzle_input: list[str]) -> list[tuple[int, int, str, str]]:
     passwords = []
     for line in puzzle_input:
         info = line.split()
@@ -36,7 +36,7 @@ def count_valid_passwords(puzzle_input, policy_one):
     exactly once out of the two indices provided (one-indexed)
     """
     num_valid_passwords = 0
-    passwords = get_passwords(puzzle_input)
+    passwords = parse_input(puzzle_input)
     for password in passwords:
         i, j, c, p = password
         if policy_one:

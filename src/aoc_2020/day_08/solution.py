@@ -3,7 +3,7 @@ Advent of Code 2020
 Day 8: Handheld Halting
 """
 
-def get_instructions(puzzle_input):
+def parse_input(puzzle_input: list[str]) -> dict[int, tuple[str, int]]:
     instructions = {}
     for i in range(len(puzzle_input)):
         vals = puzzle_input[i].split()
@@ -49,10 +49,10 @@ def try_all_sequences(instructions):
 
 
 def solve_part_1(puzzle_input: list[str]):
-    instructions = get_instructions(puzzle_input)
+    instructions = parse_input(puzzle_input)
     return run_sequence(instructions)[1]
 
 
 def solve_part_2(puzzle_input: list[str]):
-    instructions = get_instructions(puzzle_input)
+    instructions = parse_input(puzzle_input)
     return try_all_sequences(instructions)

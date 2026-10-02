@@ -3,7 +3,7 @@ Advent of Code 2019
 Day 3: Crossed Wires
 """
 
-def get_wires(puzzle_input):
+def parse_input(puzzle_input: list[str]) -> tuple[list[tuple[str, int]], list[tuple[str, int]]]:
     wire_1, wire_2 = [[(i[0], int(i[1:])) for i in row.split(",")] for row in puzzle_input]
     return wire_1, wire_2
 
@@ -49,7 +49,7 @@ def get_intersections(wire_1, wire_2):
 
 
 def solve_part_1(puzzle_input: list[str]):
-    wire_1, wire_2 = get_wires(puzzle_input)
+    wire_1, wire_2 = parse_input(puzzle_input)
     distances = {get_manhattan_distance(i):i for i in get_intersections(wire_1, wire_2)}
     return min(distances)
 
@@ -59,7 +59,7 @@ def get_steps_so_far(path1, path2, loc):
 
 
 def solve_part_2(puzzle_input: list[str]):
-    wire_1, wire_2 = get_wires(puzzle_input)
+    wire_1, wire_2 = parse_input(puzzle_input)
     v1 = get_path(get_vertices(wire_1))
     v2 = get_path(get_vertices(wire_2))
     steps_so_far = {get_steps_so_far(v1,v2,i):i for i in get_intersections(wire_1, wire_2)}

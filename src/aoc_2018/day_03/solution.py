@@ -8,7 +8,7 @@ from typing import Any
 import regex as re
 
 
-def get_claims(puzzle_input):
+def parse_input(puzzle_input: list[str]) -> list[list[int]]:
     pattern = r'#(\d+) @ (\d+),(\d+): (\d+)x(\d+)'
     claims = []
     for row in puzzle_input:
@@ -28,7 +28,7 @@ def generate_fabric() -> dict[int, dict[int, Any]]:
     
 
 def solve_part_1(puzzle_input: list[str]):
-    claims = get_claims(puzzle_input)
+    claims = parse_input(puzzle_input)
     areas = generate_fabric()
     s = 0
     for c in claims:
@@ -43,7 +43,7 @@ def solve_part_1(puzzle_input: list[str]):
 
 
 def solve_part_2(puzzle_input: list[str]):
-    claims = get_claims(puzzle_input)
+    claims = parse_input(puzzle_input)
     areas = generate_fabric()
     for c in claims:
         claim_id = c[0]

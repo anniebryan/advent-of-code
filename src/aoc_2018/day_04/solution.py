@@ -11,7 +11,7 @@ import click
 import regex as re
 
 
-def parse_records(puzzle_input):
+def parse_input(puzzle_input: list[str]) -> tuple[dict[int, int], dict[int, dict[int, int]]]:
     pattern = r'\[(\d+)-(\d+)-(\d+) (\d+):(\d+)\] (.+)'
     records = [re.match(pattern, row).groups() for row in puzzle_input]
 
@@ -33,14 +33,14 @@ def parse_records(puzzle_input):
 
 
 def solve_part_1(puzzle_input: list[str]):
-    total_minutes, ind_minutes = parse_records(puzzle_input)
+    total_minutes, ind_minutes = parse_input(puzzle_input)
     max_guard = max(total_minutes, key = total_minutes.get)  # guard who sleeps the most
     max_minute = max(ind_minutes[max_guard], key = ind_minutes[max_guard].get)
     return f"{max_guard} * {max_minute} = {max_guard * max_minute}"
 
 
 def solve_part_2(puzzle_input: list[str]):
-    _, ind_minutes = parse_records(puzzle_input)
+    _, ind_minutes = parse_input(puzzle_input)
     common_minutes = {}
     for guard in ind_minutes:
         most_common_minute = max(ind_minutes[guard], key = ind_minutes[guard].get)

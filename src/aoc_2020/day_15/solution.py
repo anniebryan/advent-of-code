@@ -3,7 +3,7 @@ Advent of Code 2020
 Day 15: Rambunctious Recitation
 """
 
-def process_input(puzzle_input):
+def parse_input(puzzle_input: list[str]) -> tuple[dict[int, int], int, int]:
     numbers = puzzle_input[0].split(",")
     history = {int(n): i + 1 for i, n in enumerate(numbers)}
     last_turn = int(numbers[-1])
@@ -23,16 +23,17 @@ def take_turn(history, last_turn, i):
     return history, spoken, i + 1
 
 
-def nth_number_spoken(puzzle_input, n):
-    history, last_turn, i = process_input(puzzle_input)
+def nth_number_spoken(history, last_turn, i, n):
     while i <= n:
         history, last_turn, i = take_turn(history, last_turn, i)
     return last_turn
 
 
 def solve_part_1(puzzle_input: list[str]):
-    return nth_number_spoken(puzzle_input, 2020)
+    history, last_turn, i = parse_input(puzzle_input)
+    return nth_number_spoken(history, last_turn, i, 2020)
 
 
 def solve_part_2(puzzle_input: list[str]):
-    return nth_number_spoken(puzzle_input, 30000000)
+    history, last_turn, i = parse_input(puzzle_input)
+    return nth_number_spoken(history, last_turn, i, 30000000)

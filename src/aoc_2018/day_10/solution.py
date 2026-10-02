@@ -6,9 +6,8 @@ Day 10: The Stars Align
 import regex as re
 
 
-def get_data(puzzle_input):
-    data = [[int(x) for x in re.findall(r'-?\d+', i)] for i in puzzle_input]
-    return data
+def parse_input(puzzle_input: list[str]) -> list[list[int]]:
+    return [[int(x) for x in re.findall(r'-?\d+', i)] for i in puzzle_input]
 
 
 def get_boxes(data):
@@ -43,7 +42,7 @@ def get_smallest_box(boxes):
 
 
 def solve_part_1(puzzle_input: list[str]):
-    data = get_data(puzzle_input)
+    data = parse_input(puzzle_input)
     boxes = get_boxes(data)
     i, box = get_smallest_box(boxes)
     maxx, minx, maxy, miny = box
@@ -59,7 +58,7 @@ def solve_part_1(puzzle_input: list[str]):
 
 
 def solve_part_2(puzzle_input: list[str]):
-    data = get_data(puzzle_input)
+    data = parse_input(puzzle_input)
     boxes = get_boxes(data)
     i, _ = get_smallest_box(boxes)
     return i

@@ -8,7 +8,7 @@ from collections import defaultdict, deque
 import regex as re
 
 
-def get_info(puzzle_input):
+def parse_input(puzzle_input: list[str]) -> tuple[int, int]:
     pattern = r'([\d]+) players; last marble is worth ([\d]+) points'
     num_players, last_marble = map(lambda x: int(x), re.findall(pattern, puzzle_input[0])[0])
     return num_players, last_marble
@@ -46,11 +46,11 @@ def run_game(num_players, last_marble):
 
 
 def solve_part_1(puzzle_input: list[str]):
-    num_players, last_marble = get_info(puzzle_input)
+    num_players, last_marble = parse_input(puzzle_input)
     return run_game(num_players, last_marble)
 
 
 def solve_part_2(puzzle_input: list[str]):
-    num_players, last_marble = get_info(puzzle_input)
+    num_players, last_marble = parse_input(puzzle_input)
     last_marble *= 100
     return run_game(num_players, last_marble)

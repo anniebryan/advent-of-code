@@ -9,7 +9,7 @@ from collections import defaultdict
 import regex as re
 
 
-def parse_requirements(puzzle_input):
+def parse_input(puzzle_input: list[str]) -> tuple[set[str], dict[str, set[str]], dict[str, set[str]]]:
     requirements = {
         re.findall(r'Step ([A-Z]) must be finished before step ([A-Z]) can begin', i)[0]
         for i in puzzle_input
@@ -51,7 +51,7 @@ def solve_part_1(puzzle_input: list[str]):
     returns an order for steps to be completed satisfying all prerequisites as given in day7.txt
     ties are broken alphabetically
     """
-    all_steps, all_prerequisites, all_dependencies = parse_requirements(puzzle_input[2:])
+    all_steps, all_prerequisites, all_dependencies = parse_input(puzzle_input[2:])
     steps, prerequisites = copy.deepcopy(all_steps), copy.deepcopy(all_prerequisites)
     completed = set()
     order = []
@@ -106,7 +106,7 @@ def solve_part_2(puzzle_input: list[str]):
     """
     num_workers = int(puzzle_input[0])
     seconds_to_subtract = int(puzzle_input[1])
-    all_steps, all_prerequisites, all_dependencies = parse_requirements(puzzle_input[2:])
+    all_steps, all_prerequisites, all_dependencies = parse_input(puzzle_input[2:])
     # maps worker -> None if idle
     # maps worker -> (step, time remaining) otherwise
     workers = dict.fromkeys(range(num_workers))

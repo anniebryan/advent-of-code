@@ -3,7 +3,7 @@ Advent of Code 2019
 Day 1: The Tyranny of the Rocket Equation
 """
 
-def get_masses(puzzle_input):
+def parse_input(puzzle_input: list[str]) -> list[int]:
     masses = [int(m) for m in puzzle_input]
     return masses
 
@@ -34,10 +34,10 @@ def get_total_fuel(mass: int) -> int:
 
 
 def solve_part_1(puzzle_input: list[str]):
-    masses = get_masses(puzzle_input)
+    masses = parse_input(puzzle_input)
     return sum([get_fuel(m) for m in masses])
 
 
 def solve_part_2(puzzle_input: list[str]):
-    masses = get_masses(puzzle_input)
+    masses = parse_input(puzzle_input)
     return sum([get_total_fuel(m) for m in masses])

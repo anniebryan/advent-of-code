@@ -6,7 +6,7 @@ Day 9: Encoding Error
 from collections import deque
 
 
-def get_numbers(puzzle_input):
+def parse_input(puzzle_input: list[str]) -> list[int]:
     numbers = [int(n) for n in puzzle_input]
     return numbers
 
@@ -60,10 +60,10 @@ def encryption_weakness(numbers, target):
 
 def solve_part_1(puzzle_input: list[str]):
     preamble = int(puzzle_input[0].split("=")[1])
-    numbers = get_numbers(puzzle_input[1:])
+    numbers = parse_input(puzzle_input[1:])
     return find_first_invalid(numbers, preamble)
 
 
 def solve_part_2(puzzle_input: list[str]):
-    numbers = get_numbers(puzzle_input[1:])
+    numbers = parse_input(puzzle_input[1:])
     return encryption_weakness(numbers, solve_part_1(puzzle_input))

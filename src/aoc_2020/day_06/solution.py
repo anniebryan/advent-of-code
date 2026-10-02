@@ -6,7 +6,7 @@ Day 6: Custom Customs
 from collections import defaultdict
 
 
-def get_all_groups(puzzle_input):
+def parse_input(puzzle_input: list[str]) -> list[list[str]]:
     all_groups = []
     group = []
     for line in puzzle_input:
@@ -33,13 +33,11 @@ def get_questions_all_yes(group):
     return {key for key in d if d[key] == len(group)}
 
 
-def get_sum_counts(puzzle_input, fn):
-    return sum([len(fn(group)) for group in get_all_groups(puzzle_input)])
-
-
 def solve_part_1(puzzle_input: list[str]):
-    return get_sum_counts(puzzle_input, get_questions_at_least_one_yes)
+    all_groups = parse_input(puzzle_input)
+    return sum(len(get_questions_at_least_one_yes(group)) for group in all_groups)
 
 
 def solve_part_2(puzzle_input: list[str]):
-    return get_sum_counts(puzzle_input, get_questions_all_yes)
+    all_groups = parse_input(puzzle_input)
+    return sum(len(get_questions_all_yes(group)) for group in all_groups)

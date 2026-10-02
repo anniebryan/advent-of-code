@@ -3,7 +3,7 @@ Advent of Code 2018
 Day 12: Subterranean Sustainability
 """
 
-def get_initial_plant_indices(puzzle_input):
+def parse_input(puzzle_input: list[str]) -> set[int]:
     initial_state = puzzle_input[0].split()[-1]
     indices = {i for i in range(len(initial_state)) if initial_state[i] == '#'}
     return indices
@@ -33,7 +33,7 @@ def time_step(indices, rules):
 
 
 def run_n_generations(puzzle_input, n):
-    indices = get_initial_plant_indices(puzzle_input)
+    indices = parse_input(puzzle_input)
     rules = get_rules(puzzle_input)
     for _ in range(n):
         indices = time_step(indices, rules)

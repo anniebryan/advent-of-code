@@ -3,7 +3,7 @@ Advent of Code 2020
 Day 17: Conway Cubes
 """
 
-def initial_active(puzzle_input, num_dim):
+def parse_input(puzzle_input: list[str], num_dim: int) -> set[tuple[int, int, int]] | set[tuple[int, int, int, int]]:
     active = set()
     for i in range(len(puzzle_input)):
         row = puzzle_input[i]
@@ -69,7 +69,7 @@ def run_cycle(active, num_dim):
 
 
 def run_n_cycles(puzzle_input, n, num_dim):
-    active = initial_active(puzzle_input, num_dim)
+    active = parse_input(puzzle_input, num_dim)
     for _ in range(n):
         active = run_cycle(active, num_dim)
     return active

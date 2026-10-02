@@ -6,9 +6,8 @@ Day 11: Chronal Charge
 import numpy as np
 
 
-def get_serial_number(puzzle_input):
-    serial_number = int(puzzle_input[0])
-    return serial_number
+def parse_input(puzzle_input: list[str]) -> int:
+    return int(puzzle_input[0])
 
 
 def get_power_level(x, y, serial_number):
@@ -56,10 +55,10 @@ def consider_all_sizes(serial_number):
 
 
 def solve_part_1(puzzle_input: list[str]):
-    serial_number = get_serial_number(puzzle_input)
+    serial_number = parse_input(puzzle_input)
     return find_largest_total_power(3, serial_number)
 
 
 def solve_part_2(puzzle_input: list[str]):
-    serial_number = get_serial_number(puzzle_input)
+    serial_number = parse_input(puzzle_input)
     return consider_all_sizes(serial_number)

@@ -7,7 +7,7 @@ from collections import defaultdict
 from math import prod
 
 
-def get_numbers(puzzle_input):
+def parse_input(puzzle_input: list[str]) -> list[int]:
     numbers = [int(n) for n in puzzle_input]
     return numbers
 
@@ -35,10 +35,10 @@ def num_arrangements(numbers, last, memo={}):
 
 
 def solve_part_1(puzzle_input: list[str]):
-    numbers = get_numbers(puzzle_input)
+    numbers = parse_input(puzzle_input)
     return prod(get_differences(numbers))
 
 
 def solve_part_2(puzzle_input: list[str]):
-    numbers = get_numbers(puzzle_input)
+    numbers = parse_input(puzzle_input)
     return num_arrangements(sorted(numbers), 0)
